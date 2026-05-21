@@ -72,37 +72,40 @@ vve = sum((x - vpe)**2 for x in range(37)) / 37  # ≈  114.5 (valor de la varia
 vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio esperado)
 
 def dalembert(tiradas, capital):
-    apuesta_base = 10
+    apuesta_base = 5
     apuesta_actual = apuesta_base
-    capital_actual = capital
+    if capital != None: 
+        capital_actual = capital
+    else :
+        capital_actual = 0
     historial_tiradas = []
 
     for i in range(tiradas):
-        # 1. Girar la ruleta
+        ### Girar la ruleta
         numero = random.randint(0, 36)
         gano = numero != 0 and numero % 2 == 0  # apuesta a números pares
 
-        # 2. Actualizar capital si es finito
-        if capital_actual is not None:
-            if gano:
-                capital_actual += apuesta_actual
-            else:
-                capital_actual -= apuesta_actual
+        ### Actualizar capital si es finito
+        if gano:
+            capital_actual += apuesta_actual
+        else:
+            capital_actual -= apuesta_actual
 
-        # 3. Actualizar apuesta según D'Alembert
+        ### Actualizar apuesta según D'Alembert
         if gano:
             apuesta_actual = max(apuesta_base, apuesta_actual - apuesta_base)
         else:
             apuesta_actual += apuesta_base
 
-        # 4. Guardar estado
+        ### Guardar estado
         historial_tiradas.append(capital_actual)
 
-        # 5. Condiciones de corte
-        if capital_actual is not None and capital_actual <= 0:
+        #### Condiciones de corte
+        if capital is not None and capital_actual <= 0:
+            quiebra = True
             break
 
-    return historial_tiradas
+    return historial_tiradas, quiebra
 
 idx = 0
 def fibonacci():

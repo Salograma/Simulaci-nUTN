@@ -65,17 +65,55 @@ def main():
     args = parse_args()
     validar_argumentos(args)
     capital = None if args.a == 'i' else 1000
-
+    quiebras = 0
     historial_corridas = []
 
     for corrida in range(args.c):
         if args.s == 'm':
             resultado = martingala(args.n, capital)
         elif args.s == 'd':
-            resultado = dalembert(args.n, capital)
+            resultado, quebro = dalembert(args.n, capital)
         elif args.s == 'f':
-            resultado = fibonacci(args.n, capital)
+            resultado= fibonacci(args.n, capital)
         elif args.s == 'o':
-            resultado = otra_estrategia(args.n, capital)
+            resultado= otra_estrategia(args.n, capital)
         
         historial_corridas.append(resultado)
+        if quebro:
+            quiebras += 1
+
+def dalembert(tiradas, capital):###uso como unidad fija 5 fichas
+    apuesta_base = 5
+    apuesta_actual = apuesta_base
+    capital_actual = capital
+    historial_tiradas = []
+    quebro = False
+
+    for i in range(tiradas):
+        # 1. Girar la ruleta
+        numero = tirada()
+        gano = numero != 0 and numero % 2 == 0  # apuesta a números pares
+
+        # 2. Actualizar capital si es finito
+        if capital_actual is not None:
+            if gano:
+                capital_actual += apuesta_actual
+            else:
+                capital_actual -= apuesta_actual
+
+        # 3. Actualizar apuesta según D'Alembert
+        if gano:
+            apuesta_actual = max(apuesta_base, apuesta_actual - apuesta_base)
+        else:
+            apuesta_actual += apuesta_base
+
+        # 4. Guardar estado
+        historial_tiradas.append(capital_actual)
+
+        # 5. Condiciones de corte
+        if capital_actual is not None and capital_actual <= 0:
+            quebro = True
+            break
+
+    return historial_tiradas, quebro
+

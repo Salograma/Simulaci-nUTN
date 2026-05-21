@@ -72,18 +72,19 @@ vve = sum((x - vpe)**2 for x in range(37)) / 37  # ≈  114.5 (valor de la varia
 vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio esperado)
 
 
-<<<<<<< HEAD
 idx = 0
 def fibonacci():
-    apuesta = fib[idx]
     gamble = 'r'
     for i in range(numeroDeCorridas):
         capital = 1000
+        idx = 0
+        apuesta = fib[idx] * 5
         for _ in range(tiradasPorCorrida):
             if gamble == 'r':
                 if tirada() in red:
                     capital += apuesta
                     apuesta = 5
+                    idx = 0
                 else:
                     capital -= apuesta
                     idx += 1
@@ -95,6 +96,7 @@ def fibonacci():
                 if tirada() not in red:
                     capital += apuesta
                     apuesta = 5
+                    idx = 0
                 else:
                     capital -= apuesta
                     idx += 1
@@ -106,23 +108,3 @@ def fibonacci():
 match estrategia:
     case 'f':
         fibonacci()
-=======
-def main():
-    args = parse_args()
-    validar_argumentos(args)
-    capital = None if args.a == 'i' else 1000
-
-    historial_corridas = []
-
-    for corrida in range(args.c):
-        if args.s == 'm':
-            resultado = martingala(args.n, capital)
-        elif args.s == 'd':
-            resultado = dalembert(args.n, capital)
-        elif args.s == 'f':
-            resultado = fibonacci(args.n, capital)
-        elif args.s == 'o':
-            resultado = otra_estrategia(args.n, capital)
-        
-        historial_corridas.append(resultado)
->>>>>>> 39c4d3bd62c51c649c2bed436d93084212518e87

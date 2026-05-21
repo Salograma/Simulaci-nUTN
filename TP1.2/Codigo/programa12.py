@@ -158,3 +158,66 @@ def main():
             quiebras += 1
 
         historial_corridas.append(resultado)
+
+def martingala(tiradas, capital):
+
+    apuesta_base = 1
+    apuesta = apuesta_base
+
+    historial_capital = []
+
+    red = [1, 3, 5, 7, 9, 12, 14, 16, 18,
+           19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+    color_apuesta = 'rojo'
+
+    capital_infinito = capital is None
+
+    # Si el capital es infinito usamos un valor auxiliar
+    if capital_infinito:
+        capital_actual = 0
+    else:
+        capital_actual = capital
+
+    quebrado = False
+
+    for i in range(tiradas):
+
+        # Verificar si puede realizar la apuesta
+        if not capital_infinito and apuesta > capital_actual:
+            quebrado = True
+            break
+
+        # Realiza la apuesta
+        capital_actual -= apuesta
+
+        # Tirada de ruleta
+        num = random.randint(0, 36)
+
+        # Determinar color
+        if num in red:
+            color = 'rojo'
+        elif num == 0:
+            color = 'verde'
+        else:
+            color = 'negro'
+
+        # Resolver apuesta
+        if color == color_apuesta:
+            # Gana
+            capital_actual += apuesta * 2
+
+            # Reinicia apuesta
+            apuesta = apuesta_base
+        else:
+            # Pierde -> duplica
+            apuesta *= 2
+
+        # Guardar historial
+        historial_capital.append(capital_actual)
+
+    return {
+        "historial": historial_capital,
+        "capital_final": capital_actual,
+        "quebrado": quebrado
+    }

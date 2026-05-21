@@ -106,36 +106,62 @@ def dalembert(tiradas, capital):
 
 idx = 0
 def fibonacci():
-    gamble = 'r'
-    capital = 1000
-    idx = 0
-    apuesta = fib[idx] * 5
-    historial = [capital]
-    for _ in range(tiradasPorCorrida):
-        if gamble == 'r':
-            if tirada() in red:
-                capital += apuesta
-                apuesta = 5
-                idx = 0
+    if estrategia == 'f':
+        gamble = 'r'
+        capital = 1000
+        idx = 0
+        apuesta = fib[idx] * 5
+        historial = [capital]
+        for _ in range(tiradasPorCorrida):
+            if gamble == 'r':
+                if tirada() in red:
+                    capital += apuesta
+                    apuesta = 5
+                    idx = 0
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
+                    if apuesta == 0:
+                        print(f"Quebró en la corrida {_+1}")
+                        break
             else:
-                capital -= apuesta
-                idx += 1
-                apuesta = min(capital, 5*fib[idx])
-                if apuesta == 0:
-                    print(f"Quebró en la corrida {_+1}")
-                    break
-        else:
-            if tirada() not in red:
-                capital += apuesta
-                apuesta = 5
-                idx = 0
+                if tirada() not in red:
+                    capital += apuesta
+                    apuesta = 5
+                    idx = 0
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
+                    if apuesta == 0:
+                        print(f"Quebró en la corrida {_+1}")
+                        break
+    else:
+        gamble = 'r'
+        capital = 0
+        idx = 0
+        apuesta = fib[idx] * 5
+        historial = [capital]
+        for _ in range(tiradasPorCorrida):
+            if gamble == 'n':
+                if tirada() in red:
+                    capital += apuesta
+                    apuesta = 5
+                    idx = 0
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
             else:
-                capital -= apuesta
-                idx += 1
-                apuesta = min(capital, 5*fib[idx])
-                if apuesta == 0:
-                    print(f"Quebró en la corrida {_+1}")
-                    break
+                if tirada() not in red:
+                    capital += apuesta
+                    apuesta = 5
+                    idx = 0
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
 
 def main():
     args = parse_args()

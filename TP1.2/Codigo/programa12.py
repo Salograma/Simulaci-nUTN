@@ -4,17 +4,30 @@ import matplotlib.pyplot as plt
 import argparse
 import sys
 
+opcionesS = ['m', 'd', 'f', 'o']
+opcionesA = ['i', 'f']
 def parse_args():
     parser = argparse.ArgumentParser(description='Simulador de ruleta')
     parser.add_argument('-c', type=int, default=1,   help='Cantidad de corridas')
     parser.add_argument('-n', type=int, default=100, help='Tiradas por corrida')
     ###parser.add_argument('-e', type=int, default=7,   help='Número elegido (0-36)')
-    parser.add_argument('-s', type=str, required=True, choices=['m', 'd', 'f', 'o'],
+    parser.add_argument('-s', type=str, required=True, choices=opcionesS,
                         help='Estrategia: m=Martingala, d=DAlembert, f=Fibonacci, o=Otra')
-    parser.add_argument('-a', type=str, required=True, choices=['i', 'f'],
+    parser.add_argument('-a', type=str, required=True, choices=opcionesA,
                         help='Tipo de capital: i=infinito, f=finito')
     return parser.parse_args()
 
+args = parse_args()
+numeroDeCorridas = args.c
+tiradasPorCorrida = args.n
+estrategia = args.s
+capital  = args.a
+
+fib = [0] * 100
+fib[0] = 1
+fib[1] = 1
+for i in range(2,51):
+    fib[i] = fib[i-1] - fib[i-2]
 
 def validar_argumentos(args):
     errores = []
@@ -25,24 +38,22 @@ def validar_argumentos(args):
     if args.n <= 0:
         errores.append(f"Las tiradas (-n) deben ser mayor a 0. Recibido: {args.n}")
 
-    ###if numero_elegido < 0 or numero_elegido > 36:
-        ###errores.append(f"Número inválido, debe ser entre 0 y 36.")
+    if args.s not in opcionesS:
+        errores.append(f"La estrategia utilizada no existe. Debe ser 'm', 'd', 'f' u 'o'. Recibido: {args.s}")
+    
+    if args.a not in opcionesA:
+        errores.append(f"No eligió un capital válido. Debe ser o bieen, infinito: 'i' o finito: 'f'. Recibido: {args.a}")
 
     if errores:
         for e in errores:
             print(f"[ERROR] {e}")
         sys.exit(1)
 
-
-# Reemplazá los 3 input() por esto:
-args = parse_args()
-numeroDeCorridas = args.c
-tiradasPorCorrida = args.n
-###numero_elegido = args.e
-estrategia = args.s
-capital  =args.a
-
-
+fib = [0] * 100
+fib[0] = 1
+fib[1] = 1
+for i in range(2,51):
+    fib[i] = fib[i-1] - fib[i-2]
 
 print("Simulador de ruleta")
 
@@ -61,6 +72,41 @@ vve = sum((x - vpe)**2 for x in range(37)) / 37  # ≈  114.5 (valor de la varia
 vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio esperado)
 
 
+<<<<<<< HEAD
+idx = 0
+def fibonacci():
+    apuesta = fib[idx]
+    gamble = 'r'
+    for i in range(numeroDeCorridas):
+        capital = 1000
+        for _ in range(tiradasPorCorrida):
+            if gamble == 'r':
+                if tirada() in red:
+                    capital += apuesta
+                    apuesta = 5
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
+                    if apuesta == 0:
+                        print(f"Quebró en la corrida {i+1}")
+                        break
+            else:
+                if tirada() not in red:
+                    capital += apuesta
+                    apuesta = 5
+                else:
+                    capital -= apuesta
+                    idx += 1
+                    apuesta = min(capital, 5*fib[idx])
+                    if apuesta == 0:
+                        print(f"Quebró en la corrida {i+1}")
+                        break
+
+match estrategia:
+    case 'f':
+        fibonacci()
+=======
 def main():
     args = parse_args()
     validar_argumentos(args)
@@ -79,6 +125,7 @@ def main():
             resultado= otra_estrategia(args.n, capital)
         
         historial_corridas.append(resultado)
+<<<<<<< HEAD
         if quebro:
             quiebras += 1
 
@@ -117,3 +164,6 @@ def dalembert(tiradas, capital):###uso como unidad fija 5 fichas
 
     return historial_tiradas, quebro
 
+=======
+>>>>>>> 39c4d3bd62c51c649c2bed436d93084212518e87
+>>>>>>> 680397c05541d786b8e3f4d07dd8a2a3ef3ab2de

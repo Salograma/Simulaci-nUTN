@@ -107,35 +107,31 @@ def dalembert(tiradas, capital):
 idx = 0
 def fibonacci():
     gamble = 'r'
-    for i in range(numeroDeCorridas):
-        capital = 1000
-        idx = 0
-        apuesta = fib[idx] * 5
-        for _ in range(tiradasPorCorrida):
-            if gamble == 'r':
-                if tirada() in red:
-                    capital += apuesta
-                    apuesta = 5
-                    idx = 0
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
-                    if apuesta == 0:
-                        print(f"Quebró en la corrida {i+1}")
-                        break
+    for _ in range(tiradasPorCorrida):
+        if gamble == 'r':
+            if tirada() in red:
+                capital += apuesta
+                apuesta = 5
+                idx = 0
             else:
-                if tirada() not in red:
-                    capital += apuesta
-                    apuesta = 5
-                    idx = 0
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
-                    if apuesta == 0:
-                        print(f"Quebró en la corrida {i+1}")
-                        break
+                capital -= apuesta
+                idx += 1
+                apuesta = min(capital, 5*fib[idx])
+                if apuesta == 0:
+                    print(f"Quebró en la corrida {_+1}")
+                    break
+        else:
+            if tirada() not in red:
+                capital += apuesta
+                apuesta = 5
+                idx = 0
+            else:
+                capital -= apuesta
+                idx += 1
+                apuesta = min(capital, 5*fib[idx])
+                if apuesta == 0:
+                    print(f"Quebró en la corrida {_+1}")
+                    break
 
 def main():
     args = parse_args()

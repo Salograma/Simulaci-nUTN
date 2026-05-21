@@ -71,6 +71,38 @@ vpe = sum(range(37)) / 37                         # 18.0 (valor promedio esperad
 vve = sum((x - vpe)**2 for x in range(37)) / 37  # ≈  114.5 (valor de la varianza de esperada)
 vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio esperado)
 
+def dalembert(tiradas, capital):
+    apuesta_base = 10
+    apuesta_actual = apuesta_base
+    capital_actual = capital
+    historial_tiradas = []
+
+    for i in range(tiradas):
+        # 1. Girar la ruleta
+        numero = random.randint(0, 36)
+        gano = numero != 0 and numero % 2 == 0  # apuesta a números pares
+
+        # 2. Actualizar capital si es finito
+        if capital_actual is not None:
+            if gano:
+                capital_actual += apuesta_actual
+            else:
+                capital_actual -= apuesta_actual
+
+        # 3. Actualizar apuesta según D'Alembert
+        if gano:
+            apuesta_actual = max(apuesta_base, apuesta_actual - apuesta_base)
+        else:
+            apuesta_actual += apuesta_base
+
+        # 4. Guardar estado
+        historial_tiradas.append(capital_actual)
+
+        # 5. Condiciones de corte
+        if capital_actual is not None and capital_actual <= 0:
+            break
+
+    return historial_tiradas
 
 idx = 0
 def fibonacci():
@@ -105,26 +137,24 @@ def fibonacci():
                         print(f"Quebró en la corrida {i+1}")
                         break
 
-match estrategia:
-    case 'f':
-        fibonacci()
-=======
 def main():
     args = parse_args()
     validar_argumentos(args)
     capital = None if args.a == 'i' else 1000
-
+    quiebras = 0
     historial_corridas = []
 
     for corrida in range(args.c):
         if args.s == 'm':
-            resultado = martingala(args.n, capital)
+            resultado, quebro = martingala(args.n, capital)
         elif args.s == 'd':
-            resultado = dalembert(args.n, capital)
+            resultado, quebro = dalembert(args.n, capital)
         elif args.s == 'f':
-            resultado = fibonacci(args.n, capital)
+            resultado, quebro = fibonacci(args.n, capital)
         elif args.s == 'o':
-            resultado = otra_estrategia(args.n, capital)
+            resultado, quebro = otra_estrategia(args.n, capital)
         
+        if quebro : 
+            quiebras += 1
+
         historial_corridas.append(resultado)
->>>>>>> 39c4d3bd62c51c649c2bed436d93084212518e87

@@ -107,6 +107,10 @@ def dalembert(tiradas, capital):
 idx = 0
 def fibonacci():
     gamble = 'r'
+    capital = 1000
+    idx = 0
+    apuesta = fib[idx] * 5
+    historial = [capital]
     for _ in range(tiradasPorCorrida):
         if gamble == 'r':
             if tirada() in red:

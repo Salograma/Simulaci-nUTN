@@ -1,11 +1,91 @@
 import random
-import statistics
+import numpy as np
 import matplotlib.pyplot as plt
 import argparse
 import sys
 
 opcionesS = ['m', 'd', 'f', 'o']
 opcionesA = ['i', 'f']
+
+def graficar(historial_corridas, quiebras, estrategia, capital, tiradasPorCorrida):
+    nombre = nombres_estrategias.get(estrategia, estrategia)
+    tipo_capital = "Infinito" if capital == 'i' else "Finito"
+    capital_inicial = 0 if capital == 'i' else 1000
+ 
+    # --- Preparar matriz igualando longitudes al mínimo ---
+    min_len = min(len(h) for h in historial_corridas)
+    matriz = np.array([h[:min_len] for h in historial_corridas], dtype=float)
+    tiradas = np.arange(1, min_len + 1)
+    promedio = matriz.mean(axis=0)
+ 
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    fig.suptitle(f"Estrategia: {nombre} | Capital: {tipo_capital}", fontsize=14, fontweight='bold')
+ 
+    # ── Gráfica 1: Flujo de caja de cada corrida ──────────────────────────────
+    ax1 = axes[0, 0]
+    for h in historial_corridas:
+        ax1.plot(range(1, len(h) + 1), h, alpha=0.3, linewidth=0.8, color='red')
+    ax1.axhline(y=capital_inicial, color='blue', linestyle='--', linewidth=1.5, label='Capital inicial (fci)')
+    ax1.set_title('Flujo de caja por corrida')
+    ax1.set_xlabel('Tirada (n)')
+    ax1.set_ylabel('Capital ($)')
+    ax1.legend()
+    ax1.grid(True, alpha=0.3)
+ 
+    # ── Gráfica 2: Flujo de caja promedio ─────────────────────────────────────
+    ax2 = axes[0, 1]
+    ax2.plot(tiradas, promedio, color='red', linewidth=2, label='fc (promedio)')
+    ax2.axhline(y=capital_inicial, color='blue', linestyle='--', linewidth=1.5, label='fci (capital inicial)')
+    ax2.set_title('Flujo de caja promedio')
+    ax2.set_xlabel('Tirada (n)')
+    ax2.set_ylabel('Capital promedio ($)')
+    ax2.legend()
+    ax2.grid(True, alpha=0.3)
+ 
+    # ── Gráfica 3: Frecuencia relativa de éxito por tirada (frsa) ─────────────
+    ax3 = axes[1, 0]
+    frsa = [
+        np.sum(matriz[:, n] > capital_inicial) / len(historial_corridas)
+        for n in range(min_len)
+    ]
+    ax3.bar(tiradas, frsa, color='red', alpha=0.7, width=1.0)
+    ax3.axhline(y=0.5, color='black', linestyle='--', linewidth=1.2, label='50%')
+    # Línea de probabilidad teórica de ganar apostando al rojo: 18/37
+    ax3.axhline(y=18/37, color='green', linestyle=':', linewidth=1.2, label='P teórica (18/37 ≈ 0.486)')
+    ax3.set_title('Frecuencia relativa de éxito por tirada (frsa)')
+    ax3.set_xlabel('Tirada (n)')
+    ax3.set_ylabel('frsa')
+    ax3.set_ylim(0, 1)
+    ax3.legend()
+    ax3.grid(True, alpha=0.3, axis='y')
+ 
+    # ── Gráfica 4: Quiebras (solo capital finito) ──────────────────────────────
+    ax4 = axes[1, 1]
+    if capital == 'f':
+        quiebras_por_corrida = []
+        for h in historial_corridas:
+            # Si la corrida terminó antes de las tiradas pedidas, quebró
+            quiebras_por_corrida.append(1 if len(h) < tiradasPorCorrida else 0)
+        acumulado = np.cumsum(quiebras_por_corrida)
+        ax4.step(range(1, len(acumulado) + 1), acumulado, color='darkred', linewidth=2)
+        ax4.set_title(f'Quiebras acumuladas (total: {quiebras})')
+        ax4.set_xlabel('Corrida')
+        ax4.set_ylabel('Quiebras acumuladas')
+        ax4.grid(True, alpha=0.3)
+    else:
+        ax4.text(0.5, 0.5, 'No aplica\n(capital infinito)',
+                 ha='center', va='center', fontsize=13, color='gray',
+                 transform=ax4.transAxes)
+        ax4.set_title('Quiebras')
+        ax4.axis('off')
+ 
+    plt.tight_layout()
+    plt.savefig(f'resultado_{estrategia}_{capital}.png', dpi=150, bbox_inches='tight')
+    plt.show()
+    print(f"Gráfica guardada como: resultado_{estrategia}_{capital}.png")
+
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description='Simulador de ruleta')
     parser.add_argument('-c', type=int, default=1,   help='Cantidad de corridas')
@@ -335,6 +415,8 @@ def main():
             quiebras += 1
 
         historial_corridas.append(resultado)
+        
+    graficar(historial_corridas, quiebras, estrategia, capital, tiradasPorCorrida)
 
 
 if __name__ == '__main__': main()

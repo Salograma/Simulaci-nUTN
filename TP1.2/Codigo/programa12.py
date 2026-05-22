@@ -108,7 +108,6 @@ idx = 0
 def fibonacci():
     if estrategia == 'f':
         gamble = 'r'
-        capital = 1000
         idx = 0
         apuesta = fib[idx] * 5
         historial = [capital]
@@ -142,7 +141,6 @@ def fibonacci():
             estaQuebrado = True
     else:
         gamble = 'b'
-        capital = 0
         idx = 0
         apuesta = fib[idx] * 5
         historial = [capital]
@@ -168,14 +166,109 @@ def fibonacci():
                     apuesta = min(capital, 5*fib[idx])
     return historial, estaQuebrado
 
-def otraEstrategia():
-    print("")
-    #Acá la estrategia copada para mí sería hacer una queue y hacer un fibonacci, una martingala o un coso polivariable
+def estrategia_optima(ultimasJugadas):
+    retornos = ["r", "par", "inf", "filaInf"]
+    jugada = ultimasJugadas[0]
+    retornos[0] = "b" if jugada in red else "r"
+    retornos[1] = "par" if jugada % 2 == 1 else "impar"
+    boolsPierna = [False, False, False]
+    boolsFilas = [False, False, False]
+    mapPiernas = {0:"inf",1:"med",2:"sup"}
+    mapFilas = {0:"filaMed",1:"filaInf",2:"filaSup"}
+    for jugada in ultimasJugadas:
+        if(boolsFilas.count(True) < 2):
+            if jugada == 0:
+                continue
+            if jugada % 3 == 0:
+                boolsFilas[2] = True
+            elif jugada % 3 == 1:
+                boolsFilas[1] = True
+            else:
+                boolsFilas[0] = True
+        if(boolsPierna.count(True) < 2):
+            if jugada == 0:
+                continue
+            if jugada <= 12:
+                boolsPierna[2] = True
+            elif jugada <= 24:
+                boolsPierna[1] = True
+            else:
+                boolsPierna[0] = True
+        if boolsFilas.count(True) == 2 and boolsPierna.count(True) == 2:
+            break
+    if boolsFilas.count(True) == 2:
+        retornos[3] = mapFilas[boolsFilas.index(False)]
+    else:
+        retornos[3] = mapFilas[random.randint(0,2)]
+    if boolsPierna.count(True) == 2:
+        retornos[2] = mapPiernas[boolsPierna.index(False)]
+    else:
+        retornos[2] = mapPiernas[random.randint(0,2)]
+    return retornos
+        
+def evaluarTirada(numero, apuestaRealizada, base12, base13):
+    ganancia = 0
+    if numero == 0:
+        return 0
+    if apuestaRealizada[0] == 'r':
+        if numero in red:
+            ganancia += 2*base12
+    else:
+        if numero not in red:
+            ganancia += 2*base12
+    if apuestaRealizada[1] == 'par':
+        if numero % 2 == 0:
+            ganancia += 2*base12
+    else:
+        if numero % 2 == 1:
+            ganancia += 2*base12
+    if apuestaRealizada[2] == 'inf':
+        if numero <= 12 and numero != 0:
+            ganancia += 3*base13
+    elif apuestaRealizada[2] == 'med':
+        if 13 <= numero <= 24:
+            ganancia += 3*base13
+    else:
+        if 25 <= numero <= 36:
+            ganancia+= 3*base13
+    if apuestaRealizada[3] == 'filaInf':
+        if numero % 3 == 1:
+            ganancia += 3*base13
+    elif apuestaRealizada[3] == 'filaMed':
+        if numero % 3 == 2:
+            ganancia += 3*base13
+    else:
+        if numero % 3 == 0:
+            ganancia += 3*base13
+    return ganancia
+            
+def otra_estrategia(): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que tienen 1:3. Esta apuesta es fija
+    apuesta12 = 10 #Riesgo que tomo apostando 1:2
+    apuesta13 = 5 #Riesgo que tomo apostando 1:3
+    apuestaARealizar = (2*apuesta12 + 2*apuesta13)
+    quebro = False
+    historial = []
+    ganancias = []
+    retornos = ["r", "par", "inf", "filaInf"]
+    for i in tiradasPorCorrida:
+        capital -= apuestaARealizar
+        numeroActual = tirada()
+        historial.append(numeroActual)
+        ganancia = evaluarTirada(numeroActual, retornos, apuesta12, apuesta13)
+        capital += ganancia
+        if capital > (apuestaARealizar):
+            ganancias.append(ganancia - apuestaARealizar)
+            retornos = estrategia_optima(historial)
+            capital -= apuestaARealizar
+        else:
+            quebro = True
+            break
+    return historial, quebro
     
 def main():
     args = parse_args()
     validar_argumentos(args)
-    capital = None if args.a == 'i' else 1000
+    capital = 0 if args.a == 'i' else 1000
     quiebras = 0
     historial_corridas = []
 

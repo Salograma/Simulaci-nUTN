@@ -17,7 +17,7 @@ nombres_estrategias = {
 def graficar(historial_corridas, quiebras, estrategia, capital, tiradasPorCorrida):
     nombre = nombres_estrategias.get(estrategia, estrategia)
     tipo_capital = "Infinito" if capital == 'i' else "Finito"
-    capital_inicial = 0 if capital == 'i' else 1000
+    capital_inicial = 0 if capital == 'i' else 500
  
     # --- Preparar matriz igualando longitudes al mínimo ---
     min_len = min(len(h) for h in historial_corridas)
@@ -151,7 +151,7 @@ vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio es
 ## ------------------------ MARTINGALA
 
 def martingala(tiradas, capitalArg):
-    capital = None if capitalArg == 'i' else 1000
+    capital = None if capitalArg == 'i' else 500
     apuesta_base = 1
     apuesta = apuesta_base
 
@@ -217,7 +217,7 @@ def dalembert(tiradas, capitalArg):
     apuesta_actual = apuesta_base
     quebro = False
     historial_tiradas = []
-    capital_actual = 0 if capitalArg == 'i' else 1000
+    capital_actual = 0 if capitalArg == 'i' else 500
     for i in range(tiradas):
         # 1. Girar la ruleta
         numero = random.randint(0, 36)
@@ -256,7 +256,7 @@ def reinicio(capital, apuesta, idx):
 
 def fibonacci(tiradasPorCorrida, capitalArg):
     if capitalArg == 'f':
-        capital = 1000
+        capital = 500
         idx = 0
         apuesta = fib[idx] * 5
         historial = []

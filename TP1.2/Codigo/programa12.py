@@ -17,11 +17,7 @@ def parse_args():
                         help='Tipo de capital: i=infinito, f=finito')
     return parser.parse_args()
 
-args = parse_args()
-numeroDeCorridas = args.c
-tiradasPorCorrida = args.n
-estrategia = args.s
-capital  = args.a
+
 
 def validar_argumentos(args):
     errores = []
@@ -46,7 +42,7 @@ def validar_argumentos(args):
 fib = [0] * 100
 fib[0] = 1
 fib[1] = 1
-for i in range(2,51):
+for i in range(2,100):
     fib[i] = fib[i-1] + fib[i-2]
 
 print("Simulador de ruleta")
@@ -65,23 +61,86 @@ vpe = sum(range(37)) / 37                         # 18.0 (valor promedio esperad
 vve = sum((x - vpe)**2 for x in range(37)) / 37  # ≈  114.5 (valor de la varianza de esperada)
 vde = vve ** 0.5                                  # ≈ 10.7(valor del desvio esperado)
 
-def dalembert(tiradas, capital):
+## ------------------------ MARTINGALA
+
+def martingala(tiradas, capitalArg):
+    capital = None if capitalArg == 'i' else 1000
+    apuesta_base = 1
+    apuesta = apuesta_base
+
+    historial_capital = []
+
+    red = [1, 3, 5, 7, 9, 12, 14, 16, 18,
+           19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+    color_apuesta = 'rojo'
+
+    capital_infinito = capital is None
+
+    # Si el capital es infinito usamos un valor auxiliar
+    if capital_infinito:
+        capital_actual = 0
+    else:
+        capital_actual = capital
+
+    quebrado = False
+
+    for i in range(tiradas):
+
+        # Verificar si puede realizar la apuesta
+        if not capital_infinito and apuesta > capital_actual:
+            quebrado = True
+            break
+
+        # Realiza la apuesta
+        capital_actual -= apuesta
+
+        # Tirada de ruleta
+        num = random.randint(0, 36)
+
+        # Determinar color
+        if num in red:
+            color = 'rojo'
+        elif num == 0:
+            color = 'verde'
+        else:
+            color = 'negro'
+
+        # Resolver apuesta
+        if color == color_apuesta:
+            # Gana
+            capital_actual += apuesta * 2
+
+            # Reinicia apuesta
+            apuesta = apuesta_base
+        else:
+            # Pierde -> duplica
+            apuesta *= 2
+
+        # Guardar historial
+        historial_capital.append(capital_actual)
+
+    return historial_capital, quebrado
+    
+
+## ------------------------ D'Alembert
+
+def dalembert(tiradas, capitalArg):
     apuesta_base = 10
     apuesta_actual = apuesta_base
-    capital_actual = capital
+    quebro = False
     historial_tiradas = []
-
+    capital_actual = 0 if capitalArg == 'i' else 1000
     for i in range(tiradas):
         # 1. Girar la ruleta
         numero = random.randint(0, 36)
         gano = numero != 0 and numero % 2 == 0  # apuesta a números pares
 
-        # 2. Actualizar capital si es finito
-        if capital_actual is not None:
-            if gano:
-                capital_actual += apuesta_actual
-            else:
-                capital_actual -= apuesta_actual
+        # 2. Actualizar capital 
+        if gano:
+            capital_actual += apuesta_actual
+        else:
+            capital_actual -= apuesta_actual
 
         # 3. Actualizar apuesta según D'Alembert
         if gano:
@@ -93,10 +152,13 @@ def dalembert(tiradas, capital):
         historial_tiradas.append(capital_actual)
 
         # 5. Condiciones de corte
-        if capital_actual is not None and capital_actual <= 0:
+        if capitalArg == 'f' and capital_actual <= 0:
+            quebro = True
             break
 
-    return historial_tiradas
+    return historial_tiradas, quebro
+
+## ------------------------ FIBONACCI
 
 def reinicio(capital, apuesta, idx):
     capital += apuesta
@@ -104,71 +166,49 @@ def reinicio(capital, apuesta, idx):
     idx = 0
     return capital, apuesta, idx
 
-idx = 0
-def fibonacci():
-    if estrategia == 'f':
-        gamble = 'r'
+
+def fibonacci(tiradasPorCorrida, capitalArg):
+    if capitalArg == 'f':
+        capital = 1000
         idx = 0
         apuesta = fib[idx] * 5
-        historial = [capital]
+        historial = []
         estaQuebrado = False
         for _ in range(tiradasPorCorrida):
-            if gamble == 'r':
-                if tirada() in red:
-                    capital, apuesta, idx = reinicio(capital, apuesta, idx)
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
-                    if apuesta == 0:
-                        print(f"Quebró en la tirada {_+1}")
-                        historial.append(capital)
-                        break
+            if tirada() in red:
+                capital, apuesta, idx = reinicio(capital, apuesta, idx)
                 historial.append(capital)
             else:
-                if tirada() not in red:
-                    capital, apuesta, idx = reinicio(capital, apuesta, idx)
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
-                    if apuesta == 0:
-                        print(f"Quebró en la tirada {_+1}")
-                        historial.append(capital)
-                        break
+                capital -= apuesta
+                idx += 1
+                apuesta = min(capital, 5*fib[idx])
+                if apuesta == 0:
+                    estaQuebrado = True
+                    break
                 historial.append(capital)
-        if capital == 0:
-            estaQuebrado = True
     else:
-        gamble = 'b'
+        capital = 0
         idx = 0
         apuesta = fib[idx] * 5
-        historial = [capital]
-        estaQuebrado = None
+        historial = []
+        estaQuebrado = False
         for _ in range(tiradasPorCorrida):
-            if gamble == 'r':
-                if tirada() in red:
-                    capital += apuesta
-                    apuesta = 5
-                    idx = 0
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
+            if tirada() not in red:
+                capital, apuesta, idx = reinicio(capital, apuesta, idx)
+                historial.append(capital)
             else:
-                if tirada() not in red:
-                    capital += apuesta
-                    apuesta = 5
-                    idx = 0
-                else:
-                    capital -= apuesta
-                    idx += 1
-                    apuesta = min(capital, 5*fib[idx])
+                capital -= apuesta
+                idx += 1
+                apuesta = 5 * fib[idx]
+                historial.append(capital)
+            
     return historial, estaQuebrado
+
+## ------------------------ OTRA ESTRATEGIA PROPUESTA
 
 def estrategia_optima(ultimasJugadas):
     retornos = ["r", "par", "inf", "filaInf"]
-    jugada = ultimasJugadas[0]
+    jugada = ultimasJugadas[-1]
     retornos[0] = "b" if jugada in red else "r"
     retornos[1] = "par" if jugada % 2 == 1 else "impar"
     boolsPierna = [False, False, False]
@@ -242,110 +282,59 @@ def evaluarTirada(numero, apuestaRealizada, base12, base13):
             ganancia += 3*base13
     return ganancia
             
-def otra_estrategia(tiradasPorCorrida, capital): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que tienen 1:3. Esta apuesta es fija
+def otra_estrategia(tiradasPorCorrida, capitalArg): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que tienen 1:3. Esta apuesta es fija
+    capital = 0 if capitalArg == 'i' else 1000
     apuesta12 = 10 #Riesgo que tomo apostando 1:2
     apuesta13 = 5 #Riesgo que tomo apostando 1:3
     apuestaARealizar = (2*apuesta12 + 2*apuesta13)
     quebro = False
     historial = []
+    historial_numeros = []
     ganancias = []
     retornos = ["r", "par", "inf", "filaInf"]
     for i in range(tiradasPorCorrida):
-        capital -= apuestaARealizar
         numeroActual = tirada()
-        historial.append(numeroActual)
+        historial_numeros.append(numeroActual)
         ganancia = evaluarTirada(numeroActual, retornos, apuesta12, apuesta13)
         capital += ganancia
-        if capital > (apuestaARealizar):
+        if capital > (apuestaARealizar) or capitalArg == 'i':
+            historial.append(capital)
             ganancias.append(ganancia - apuestaARealizar)
-            retornos = estrategia_optima(historial)
+            retornos = estrategia_optima(historial_numeros)
             capital -= apuestaARealizar
         else:
             quebro = True
             break
+        
     return historial, quebro
-    
+
+## ------------------------ PROGRAMA PRINCIPAL
+
 def main():
     args = parse_args()
+    numeroDeCorridas = args.c
+    tiradasPorCorrida = args.n
+    estrategia = args.s
+    capital  = args.a
     validar_argumentos(args)
-    capital = 0 if args.a == 'i' else 1000
+    
     quiebras = 0
     historial_corridas = []
 
-    for corrida in range(args.c):
-        if args.s == 'm':
-            resultado, quebro = martingala(args.n, capital) #no reciben parametros de entrada
-        elif args.s == 'd':
-            resultado, quebro = dalembert(args.n, capital) #no reciben parametros de entrada
-        elif args.s == 'f':
-            resultado, quebro = fibonacci()
-        elif args.s == 'o':
-            resultado, quebro = otra_estrategia(args.n, capital) #no reciben parametros de entrada
+    for corrida in range(numeroDeCorridas):
+        if estrategia == 'm':
+            resultado, quebro = martingala(tiradasPorCorrida, capital) 
+        elif estrategia == 'd':
+            resultado, quebro = dalembert(tiradasPorCorrida, capital) 
+        elif estrategia == 'f':
+            resultado, quebro = fibonacci(tiradasPorCorrida, capital)
+        elif estrategia == 'o':
+            resultado, quebro = otra_estrategia(tiradasPorCorrida, capital) 
         
-        if quebro : 
+        if quebro is True : 
             quiebras += 1
 
         historial_corridas.append(resultado)
 
-def martingala(tiradas, capital):
 
-    apuesta_base = 1
-    apuesta = apuesta_base
-
-    historial_capital = []
-
-    red = [1, 3, 5, 7, 9, 12, 14, 16, 18,
-           19, 21, 23, 25, 27, 30, 32, 34, 36]
-
-    color_apuesta = 'rojo'
-
-    capital_infinito = capital is None
-
-    # Si el capital es infinito usamos un valor auxiliar
-    if capital_infinito:
-        capital_actual = 0
-    else:
-        capital_actual = capital
-
-    quebrado = False
-
-    for i in range(tiradas):
-
-        # Verificar si puede realizar la apuesta
-        if not capital_infinito and apuesta > capital_actual:
-            quebrado = True
-            break
-
-        # Realiza la apuesta
-        capital_actual -= apuesta
-
-        # Tirada de ruleta
-        num = random.randint(0, 36)
-
-        # Determinar color
-        if num in red:
-            color = 'rojo'
-        elif num == 0:
-            color = 'verde'
-        else:
-            color = 'negro'
-
-        # Resolver apuesta
-        if color == color_apuesta:
-            # Gana
-            capital_actual += apuesta * 2
-
-            # Reinicia apuesta
-            apuesta = apuesta_base
-        else:
-            # Pierde -> duplica
-            apuesta *= 2
-
-        # Guardar historial
-        historial_capital.append(capital_actual)
-
-    return {
-        "historial": historial_capital,
-        "capital_final": capital_actual,
-        "quebrado": quebrado
-    }
+if __name__ == '__main__': main()

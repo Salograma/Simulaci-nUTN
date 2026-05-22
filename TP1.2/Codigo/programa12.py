@@ -7,6 +7,13 @@ import sys
 opcionesS = ['m', 'd', 'f', 'o']
 opcionesA = ['i', 'f']
 
+nombres_estrategias = {
+    'm': 'Martingala',
+    'd': "D'Alembert",
+    'f': 'Fibonacci',
+    'o': 'Otra (Óptima)'
+}
+
 def graficar(historial_corridas, quiebras, estrategia, capital, tiradasPorCorrida):
     nombre = nombres_estrategias.get(estrategia, estrategia)
     tipo_capital = "Infinito" if capital == 'i' else "Finito"
@@ -415,7 +422,7 @@ def main():
             quiebras += 1
 
         historial_corridas.append(resultado)
-        
+
     graficar(historial_corridas, quiebras, estrategia, capital, tiradasPorCorrida)
 
 

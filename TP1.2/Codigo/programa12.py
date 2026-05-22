@@ -242,7 +242,7 @@ def evaluarTirada(numero, apuestaRealizada, base12, base13):
             ganancia += 3*base13
     return ganancia
             
-def otra_estrategia(): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que tienen 1:3. Esta apuesta es fija
+def otra_estrategia(tiradasPorCorrida, capital): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que tienen 1:3. Esta apuesta es fija
     apuesta12 = 10 #Riesgo que tomo apostando 1:2
     apuesta13 = 5 #Riesgo que tomo apostando 1:3
     apuestaARealizar = (2*apuesta12 + 2*apuesta13)
@@ -250,7 +250,7 @@ def otra_estrategia(): #Apostar 10 a las que tienen 1:2 y apostar 5 a las que ti
     historial = []
     ganancias = []
     retornos = ["r", "par", "inf", "filaInf"]
-    for i in tiradasPorCorrida:
+    for i in range(tiradasPorCorrida):
         capital -= apuestaARealizar
         numeroActual = tirada()
         historial.append(numeroActual)

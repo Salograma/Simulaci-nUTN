@@ -59,3 +59,5 @@ def graficar(datos: list[float], nombre: str = "Generador") -> None:
     plt.savefig(nombre_archivo, dpi=150)
     plt.show()
     print(f"Figura guardada: {nombre_archivo}")
+
+

@@ -9,15 +9,11 @@ import matplotlib.pyplot as plt
 from scipy import stats
 from generadores.gcl import gcl
 
-# ─── Generador base ───────────────────────────────────────────────────────────
-
 N = 10_000
 SEMILLA = 12345
 
 def get_uniformes(n=N):
     return gcl(semilla=SEMILLA, n=n)
-
-# ─── Transformaciones ─────────────────────────────────────────────────────────
 
 def gen_uniforme(a, b, uniformes):
     """Transformada inversa: X = a + (b - a) * r"""
@@ -87,8 +83,6 @@ def gen_empirica_discreta(valores, probabilidades, uniformes):
                 break
     return muestras
 
-# ─── Testeo ───────────────────────────────────────────────────────────────────
-
 def _convergencia(muestras, esperanza_teo, varianza_teo, nombre, archivo):
     N = len(muestras)
     cuadrados = [x**2 for x in muestras]
@@ -148,7 +142,6 @@ def _chi_discreta(muestras, valores_posibles, probs_teoricas, nombre, archivo):
     observadas = np.array([muestras.count(v) for v in valores_posibles], dtype=float)
     esperadas = np.array([p * n for p in probs_teoricas], dtype=float)
 
-    # Agrupar colas con esperada < 5
     grupos_obs, grupos_esp, etiquetas = [], [], []
     buf_obs, buf_esp = 0.0, 0.0
     inicio = None
@@ -169,7 +162,6 @@ def _chi_discreta(muestras, valores_posibles, probs_teoricas, nombre, archivo):
             grupos_esp.append(e)
             etiquetas.append(str(v))
 
-    # Volcar buffer restante
     if buf_esp > 0:
         grupos_obs.append(buf_obs)
         grupos_esp.append(buf_esp)
@@ -178,7 +170,7 @@ def _chi_discreta(muestras, valores_posibles, probs_teoricas, nombre, archivo):
     grupos_obs = np.array(grupos_obs, dtype=float)
     grupos_esp = np.array(grupos_esp, dtype=float)
 
-    # Normalizar para evitar error de precisión numérica
+    #Normalización para ser consistentes con la suma.
     grupos_esp = grupos_esp * (grupos_obs.sum() / grupos_esp.sum())
 
     chi2, p_valor = stats.chisquare(grupos_obs, grupos_esp)
@@ -247,9 +239,6 @@ def _histograma_discreto(muestras, valores, probs_teo, nombre, archivo):
     plt.savefig(archivo)
     plt.show()
 
-
-# ─── Testeos por distribución ─────────────────────────────────────────────────
-
 def testear_uniforme(a=0, b=1):
     u = get_uniformes()
     muestras = gen_uniforme(a, b, u)
@@ -277,7 +266,7 @@ def testear_exponencial(lam=2):
 
 
 def testear_normal(mu=0, sigma=1):
-    u = get_uniformes(N * 2)  # Box-Muller consume pares
+    u = get_uniformes(N * 2)
     muestras = gen_normal(mu, sigma, u)
 
     esp_teo = mu
@@ -321,7 +310,6 @@ def testear_poisson(lam=3):
 
 
 def testear_empirica_discreta():
-    # Ejemplo: demanda de un producto con distribución conocida
     valores = [0, 1, 2, 3, 4, 5]
     probabilidades = [0.10, 0.20, 0.30, 0.25, 0.10, 0.05]
 
@@ -336,8 +324,6 @@ def testear_empirica_discreta():
     _convergencia(muestras, esp_teo, var_teo, 'Empírica Discreta', 'conv_empirica.png')
     _chi_discreta(muestras, valores, probabilidades, 'Empírica Discreta', 'chi2_empirica.png')
 
-
-# ─── Main con selección por consola ───────────────────────────────────────────
 
 OPCIONES = {
     '1': ('Uniforme',           testear_uniforme),

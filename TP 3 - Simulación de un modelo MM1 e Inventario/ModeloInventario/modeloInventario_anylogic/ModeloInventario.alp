@@ -125,7 +125,7 @@
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[200]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -232,7 +232,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[40]]></Code>
+							<Code><![CDATA[60]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1783096291783</Id>
@@ -530,7 +530,7 @@ checkReorder();]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[double elapsedDays = (time() - lastEventTime) / 86400.0;
+					<Body><![CDATA[double elapsedDays = time() - lastEventTime;
 
 if (stock > 0) {
     totalHoldingCost += h * stock * elapsedDays;
@@ -1324,6 +1324,14 @@ orderOutstanding = false;]]></Body>
     fw.close();
 } catch (Exception e) {
     traceln("Error creando CSV: " + e.getMessage());
+}
+
+try {
+    java.io.FileWriter fw2 = new java.io.FileWriter("stock_diario.csv", false);
+    fw2.write("dia,stock\n");
+    fw2.close();
+} catch (Exception e) {
+    traceln("Error creando CSV de stock diario: " + e.getMessage());
 }]]></InitialSetupCode>
 			<MaximumMemory>512</MaximumMemory>
 			<RandomNumberGenerationType>randomSeed</RandomNumberGenerationType>

@@ -1,4 +1,5 @@
 # Trabajo Práctico Integrador de Simulación - UTN
+
 ## Proyecto: Simulación del Gas Ideal y Distribución de Maxwell-Boltzmann con Mapa Térmico en AnyLogic
 
 ---
@@ -6,9 +7,11 @@
 ## 1. Explicación y Fundamentación del Proyecto
 
 ### 1.1. Contexto Físico y Teórico
+
 La **Teoría Cinética de los Gases** y la **Estadística de Maxwell-Boltzmann** describen cómo se distribuyen las velocidades y energías cinéticas de las partículas (átomos o moléculas) en un gas ideal en equilibrio térmico.
 
 En un gas clásico:
+
 - Las partículas se mueven en trayectorias rectilíneas y colisionan elásticamente entre sí y contra las paredes del recipiente.
 - Aunque inicialmente todas las partículas comiencen con la misma velocidad (o velocidades arbitrarias), las sucesivas colisiones aleatorias redistribuyen la energía cinética.
 - El sistema converge naturalmente a un estado de equilibrio dinámico descripto por la **Distribución de Maxwell-Boltzmann**:
@@ -17,12 +20,14 @@ En un gas clásico:
   $$f(v) = 4\pi \left(\frac{m}{2\pi k_B T}\right)^{3/2} v^2 \exp\left(-\frac{m v^2}{2 k_B T}\right) \quad (\text{en 3D})$$
 
 Donde:
+
 - $v$: módulo de la velocidad de la partícula.
 - $m$: masa de la partícula.
 - $k_B$: constante de Boltzmann.
 - $T$: temperatura absoluta (Kelvin), la cual es directamente proporcional a la energía cinética media: $\langle E_k \rangle = \frac{1}{2} m \langle v^2 \rangle = k_B T$ (en 2D).
 
-### 1.2. ¿Por qué es un proyecto excelente para la cátedra de Simulación?
+### 1.2. ¿Por qué?
+
 1. **Paradigma Basado en Agentes (ABM - Agent Based Modeling):** Cada partícula es un agente autónomo con posición $(x, y)$, vector velocidad $(v_x, v_y)$, masa y radio.
 2. **Propiedad Emergente:** La distribución de Maxwell-Boltzmann no se programa explícitamente en el agente; **emerge** naturalmente de las micro-interacciones (choques elásticos).
 3. **Visualización Avanzada en AnyLogic:**
@@ -56,7 +61,7 @@ flowchart TD
 
 * **Objetivo del estudio:** Analizar el comportamiento termodinámico y la convergencia hacia la distribución de Maxwell-Boltzmann en un gas ideal bidimensional confinado, evaluando el impacto de la variación de temperatura y fuentes térmicas en la distribución espacial de energía.
 * **Límites del sistema:**
-  - Recinto cerrado 2D (o 3D) de dimensiones $L_x \times L_y$.
+  - Recinto cerrado 2D de dimensiones $L_x \times L_y$.
   - Paredes rígidas que pueden ser adiabáticas (rebote especular sin cambio de energía) o termostáticas (intercambian calor al contacto).
 * **Entidades y Atributos:**
   - **Agente `Particle`:** Posición $(x, y)$, velocidad $(v_x, v_y)$, módulo de velocidad $v = \sqrt{v_x^2 + v_y^2}$, masa $m$, radio $r$, color dinámico.
@@ -212,6 +217,7 @@ Diseñar un conjunto de corridas experimentales formales para el informe:
 ### Paso 9: Análisis de Sensibilidad
 
 Evaluar la robustez y estabilidad del simulador frente a variaciones de parámetros:
+
 * **Sensibilidad al paso de integración $\Delta t$:**
   - Probar valores de $dt = 0.001, 0.01, 0.05$. Evaluar el error numérico de solapamiento y la pérdida de conservación de energía.
 * **Sensibilidad al tamaño de muestra $N$:**
@@ -241,6 +247,7 @@ Evaluar la robustez y estabilidad del simulador frente a variaciones de parámet
 Para facilitar la implementación directa en AnyLogic, a continuación se detallan fragmentos de código Java recomendados para los agentes:
 
 ### 3.1. Función de Coloreo según Temperatura en el Agente `Particle`
+
 ```java
 // Función getColor() dentro de Particle -> Retorna Color
 double v = Math.sqrt(vx * vx + vy * vy);
@@ -263,6 +270,7 @@ if (ratio < 0.5) {
 ```
 
 ### 3.2. Colisión Elástica entre Partículas en `Main`
+
 ```java
 public void resolveCollision(Particle p1, Particle p2) {
     double dx = p2.x - p1.x;

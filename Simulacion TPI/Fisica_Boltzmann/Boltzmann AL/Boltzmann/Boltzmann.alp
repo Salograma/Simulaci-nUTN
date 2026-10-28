@@ -1470,9 +1470,11 @@ return new Color(c.getRed(), c.getGreen(), c.getBlue(), 120);]]></Body>
 					<Body><![CDATA[double Lxe = Lx - 2 * rMax, Lye = Ly - 2 * rMax;          // región accesible a los centros
 if (tWin > 0) pressure = impulseAcc / (tWin * 2 * (Lxe + Lye));
 pIdeal = particles.size() * kB * Tmeas / (Lxe * Lye);     // P A = N kB T
-impulseAcc = 0; tWin = 0;
+
 if (tWin > 0) { qL = qWall[0] / tWin; qR = qWall[1] / tWin; }
-qWall[0] = 0; qWall[1] = 0;]]></Body>
+qWall[0] = 0; qWall[1] = 0;
+
+impulseAcc = 0; tWin = 0;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>

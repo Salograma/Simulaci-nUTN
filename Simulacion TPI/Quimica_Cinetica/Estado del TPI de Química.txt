@@ -1,0 +1,24 @@
+Estado del TPI de Química (A + B ⇌ C en AnyLogic)
+
+El modelo base ya está armado y funcionando: agentes que chocan y reaccionan (directa e inversa), la parte de Dinámica de Sistemas corriendo en paralelo, los gráficos comparando agentes contra teoría, el cálculo de la constante de equilibrio y la medición de k1 con el experimento de Arrhenius.
+
+Cambios respecto del readme (hay que justificarlos en el informe):
+
+Usamos Ea1 = 400 y Ea2 = 600 en vez de 100 y 150. Con 100, la energía de activación es comparable a kT y no se ve un comportamiento de Arrhenius claro.
+El catalizador baja las dos energías de activación en la misma cantidad. Si solo bajara la directa, cambiaría el equilibrio, y un catalizador real no lo cambia.
+Agregamos un termostato para que el slider de temperatura realmente controle el sistema.
+k1 se mide como reacciones directas divididas por la integral de A·B, no con la fórmula de velocidad inicial del readme, que es mucho más ruidosa.
+La gráfica de Arrhenius se hace con dos ajustes: el del readme (ln k contra 1/T) y uno corregido (ln(k/√T) contra 1/T). La pendiente teórica es ≈ −480 en el primero y −400 en el segundo. La diferencia viene de la teoría de colisiones, no es un error.
+
+Lo que falta:
+
+Agregar al modelo: un evento a t = 50 que active el catalizador (escenario 3) y los eventos del escenario 4 (inyectar un pulso de A en el equilibrio y después enfriar). Si no están los botones de catalizador e inyección del Paso 7, también faltan.
+Correr los experimentos:
+Escenario 1: T = 100, 200, 400, midiendo el tiempo de vida media.
+Escenario 2: NA0 = 200, NB0 = 50. Ojo: como la reacción es reversible, C no llega a 50. Se estabiliza en el equilibrio teórico y sobra algo de B. Eso es lo correcto y hay que reportarlo así.
+Sensibilidad: barrido de Ea1 (escalado, porque los rangos del readme partían de Ea = 100), volumen a la mitad con N constante, y N = 30 contra N = 1000.
+Validación de la constante de equilibrio con 10 réplicas y test de Student.
+Evidencia de verificación: captura del balance de átomos en 0 durante toda una corrida, y la prueba con T = 1 donde no aparece nada de C.
+Informe: las 8 secciones del Paso 10, con el anexo del código Java.
+
+Un aviso para el informe: el readme dice que al reducir el volumen a la mitad la velocidad se cuadruplica. Es una buena aproximación, pero la densidad sube y con ella una corrección que no estaba prevista, así que lo medido va a dar algo por encima de 4. Hay que anticiparlo en el texto.

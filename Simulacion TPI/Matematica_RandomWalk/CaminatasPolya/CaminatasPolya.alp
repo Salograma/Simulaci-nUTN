@@ -18,7 +18,7 @@
 		<ActiveObjectClass>
 			<Id>1793206775859</Id>
 			<Name><![CDATA[Main]]></Name>
-			<StartupCode><![CDATA[verificarIsotropia(10000, 1000);]]></StartupCode>
+			<StartupCode><![CDATA[validarPolya(50000, 10000);]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1793206775862</Id>
@@ -173,7 +173,7 @@ return (double) retornos / M;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793365478860</Id>
 					<Name><![CDATA[verificarIsotropia]]></Name>
-					<X>270</X><Y>60</Y>
+					<X>470</X><Y>60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -209,7 +209,7 @@ for (int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793366339065</Id>
 					<Name><![CDATA[estadisticasPosicion]]></Name>
-					<X>440</X><Y>60</Y>
+					<X>300</X><Y>60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -295,6 +295,167 @@ for (int d = 1; d <= 4; d++) {
         double z = (p - p0) / Math.sqrt(p0 * (1 - p0) / M);
         traceln("     Z vs Polya = " + z + (Math.abs(z) < 1.96 ? "  -> valida" : "  -> rechaza"));
     }
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double[]]]></ReturnType>
+					<Id>1793388800531</Id>
+					<Name><![CDATA[estadisticasR2]]></Name>
+					<X>310</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[double sumaR2 = 0;
+double sumaR2Cuad = 0;
+
+for (int rep = 0; rep < M; rep++) {
+    int x = 0, y = 0, z = 0, w = 0;
+
+    for (int s = 1; s <= N; s++) {
+        int dir = uniform_discr(0, 2 * d - 1);
+
+        if (dir == 0) x++;
+        else if (dir == 1) x--;
+        else if (dir == 2) y++;
+        else if (dir == 3) y--;
+        else if (dir == 4) z++;
+        else if (dir == 5) z--;
+        else if (dir == 6) w++;
+        else if (dir == 7) w--;
+    }
+
+    double r2 = x * x + y * y + z * z + w * w;
+    sumaR2 += r2;
+    sumaR2Cuad += r2 * r2;
+}
+
+double media = sumaR2 / M;
+double varianza = sumaR2Cuad / M - media * media;
+double standardError = Math.sqrt(varianza / M);
+
+return new double[] { media, standardError };]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793388934577</Id>
+					<Name><![CDATA[verificarDifusion]]></Name>
+					<X>470</X><Y>110</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[for (int d = 1; d <= 4; d++) {
+    double[] r = estadisticasR2(d, M, N);
+    double media = r[0];
+    double standardError = r[1];
+    double limiteInferior = media - 1.96 * standardError;
+    double limiteSuperior = media + 1.96 * standardError;
+    boolean pasa = limiteInferior <= N && N <= limiteSuperior;
+
+    traceln("d=" + d + "  E[R2]=" + media
+        + "  IC95%=[" + limiteInferior + ", " + limiteSuperior + "]"
+        + "  esperado=" + N
+        + (pasa ? "  -> pasa" : "  -> no pasa"));
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[long[]]]></ReturnType>
+					<Id>1793392203436</Id>
+					<Name><![CDATA[contarVisitasOrigen]]></Name>
+					<X>310</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[long visitasImpares = 0;
+long visitasPares = 0;
+
+for (int rep = 0; rep < M; rep++) {
+    int x = 0, y = 0, z = 0, w = 0;
+
+    for (int s = 1; s <= N; s++) {
+        int dir = uniform_discr(0, 2 * d - 1);
+
+        if (dir == 0) x++;
+        else if (dir == 1) x--;
+        else if (dir == 2) y++;
+        else if (dir == 3) y--;
+        else if (dir == 4) z++;
+        else if (dir == 5) z--;
+        else if (dir == 6) w++;
+        else if (dir == 7) w--;
+        
+        if(x == 0 && y == 0 && z == 0 && w == 0){
+			if (s % 2 == 0) visitasPares++;
+			else visitasImpares++;
+		}
+    }
+}
+
+return new long[] { visitasPares, visitasImpares };]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793392748096</Id>
+					<Name><![CDATA[verificarParidad]]></Name>
+					<X>510</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[for(int d = 1; d <= 4; d++){
+	long[] r = contarVisitasOrigen(d, M, N);
+	boolean pasa = r[1] == 0 && r[0] > 0;
+	
+	traceln("d=" + d
+        + "  visitas pares=" + r[0]
+        + "  visitas impares=" + r[1]
+        + (pasa ? "  -> pasa" : "  -> no pasa"));
 }]]></Body>
 				</Function>
 			</Functions>

@@ -456,6 +456,21 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793463644612</Id>
+					<Name><![CDATA[vtSaved]]></Name>
+					<X>1040</X><Y>-470</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1792869861400</Id>
 					<Name><![CDATA[N]]></Name>
@@ -1130,10 +1145,13 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[statV.add(meanSpeed());
-if (statV.count() == 50) dsVT.add(Math.sqrt(Tmeas), statV.mean());
-statEkL.add(meanEk(1.0));
-statEkH.add(meanEk(m1));]]></Action>
+					<Action><![CDATA[   statV.add(meanSpeed());
+   if (statV.count() >= 50 && !vtSaved) {
+       dsVT.add(Math.sqrt(Tmeas), statV.mean());
+       vtSaved = true;
+   }
+   statEkL.add(meanEk(1.0));
+   statEkH.add(meanEk(m1));]]></Action>
 				</Event>
 			</Events>
 			<Functions>
@@ -1594,7 +1612,8 @@ N = newN;]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[cantAcc = null;
 nSnap = 0;
-statV.reset();]]></Body>
+statV.reset();
+vtSaved = false;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -1711,7 +1730,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>true</AutoUpdate>
+					<AutoUpdate>false</AutoUpdate>
 					<RecurrenceProperties>
 						<Id>1793149845823</Id>
 						<OccurrenceAtTime>true</OccurrenceAtTime>
@@ -1730,7 +1749,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793150123374</Id>
 					<Name><![CDATA[dsVT]]></Name>
-					<X>860</X><Y>580</Y>
+					<X>940</X><Y>-180</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1755,10 +1774,10 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793150211876</Id>
 					<Name><![CDATA[dsVTheo]]></Name>
-					<X>860</X><Y>620</Y>
+					<X>940</X><Y>-150</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
+					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<AutoUpdate>false</AutoUpdate>
 					<RecurrenceProperties>
@@ -1780,7 +1799,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793152140110</Id>
 					<Name><![CDATA[dsH1]]></Name>
-					<X>860</X><Y>670</Y>
+					<X>940</X><Y>-120</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1805,7 +1824,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793152206381</Id>
 					<Name><![CDATA[dsH2]]></Name>
-					<X>860</X><Y>720</Y>
+					<X>940</X><Y>-90</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1830,7 +1849,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793152209556</Id>
 					<Name><![CDATA[dsH3]]></Name>
-					<X>860</X><Y>760</Y>
+					<X>940</X><Y>-60</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1855,7 +1874,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
     			<DataSet>
 					<Id>1793152453506</Id>
 					<Name><![CDATA[dsHTheo]]></Name>
-					<X>860</X><Y>800</Y>
+					<X>940</X><Y>-30</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2151,7 +2170,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Color>-4565549</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
+						<PointStyle>NONE</PointStyle>
 						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
@@ -2162,7 +2181,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Color>-8388480</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>NONE</PointStyle>
+						<PointStyle>CIRCLE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
@@ -2174,7 +2193,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792874962120</Id>
 					<Name><![CDATA[text3]]></Name>
-					<X>10</X><Y>410</Y>
+					<X>20</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2184,11 +2203,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["T medida: " + format(Tmeas)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2196,7 +2215,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792874992937</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>10</X><Y>420</Y>
+					<X>20</X><Y>435</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2206,11 +2225,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["v_rms: " + format(vrms)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2218,7 +2237,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792874998556</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>10</X><Y>430</Y>
+					<X>20</X><Y>450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2228,11 +2247,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["E total: " + format(Etot)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2240,7 +2259,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792875003071</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>10</X><Y>440</Y>
+					<X>20</X><Y>465</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2250,11 +2269,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["N = " + particles.size()]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2262,7 +2281,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792875007866</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>10</X><Y>450</Y>
+					<X>20</X><Y>480</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2272,11 +2291,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["Choques/partícula: " + format(2.0 * collisions / particles.size())]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2284,7 +2303,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792875012967</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>10</X><Y>460</Y>
+					<X>20</X><Y>495</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2294,11 +2313,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["P medida: " + format(pressure) + " P ideal: " + format(pIdeal)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2306,7 +2325,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792875018221</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>10</X><Y>470</Y>
+					<X>20</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2316,11 +2335,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["χ² = " + format(chi2val) + " (crítico " + format(chi2crit) + ")"]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2328,7 +2347,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				<Text>
 					<Id>1792875023305</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>10</X><Y>480</Y>
+					<X>20</X><Y>525</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2338,11 +2357,11 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA[pValue > 0.05 ? "No se rechaza H0 (MB)" : "Se rechaza H0"]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
-						<Size>12</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2351,7 +2370,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1792875256292</Id>
 					<Name><![CDATA[radioParedes]]></Name>
-					<X>660</X><Y>380</Y>
+					<X>675</X><Y>380</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2365,7 +2384,7 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 if (value == 1) wallMode = 0;]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
-						<Font Name="Consolas" Size="16" Style="0"/>
+						<Font Name="Franklin Gothic Medium" Size="16" Style="0"/>
 						<Orientation>HORIZONTAL</Orientation>
 						<Button><![CDATA[Termicas]]></Button>
 						<Button><![CDATA[Adiabaticas]]></Button>
@@ -2436,7 +2455,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Text><![CDATA[text]]></Text>
 					<TextCode><![CDATA["Temperatura Izquierda = " + format(TL)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
+						<Name>Franklin Gothic Medium</Name>
 						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
@@ -2458,7 +2477,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Text><![CDATA[text]]></Text>
 					<TextCode><![CDATA["Temperatura Derecha = " + format(TR)]]></TextCode>
 					<Font>
-						<Name>Consolas</Name>
+						<Name>Franklin Gothic Medium</Name>
 						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
@@ -2652,7 +2671,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Color>-16777216</Color>
 					<Text><![CDATA[Temperatura]]></Text>
 					<Font>
-						<Name>Consolas</Name>
+						<Name>Franklin Gothic Medium</Name>
 						<Size>20</Size>
 						<Style>0</Style>
 					</Font>
@@ -2714,7 +2733,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Color>-16777216</Color>
 					<Text><![CDATA[Numero de Particulas]]></Text>
 					<Font>
-						<Name>Consolas</Name>
+						<Name>Franklin Gothic Medium</Name>
 						<Size>20</Size>
 						<Style>0</Style>
 					</Font>
@@ -2792,7 +2811,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				<Text>
 					<Id>1792877070954</Id>
 					<Name><![CDATA[text13]]></Name>
-					<X>660</X><Y>350</Y>
+					<X>785</X><Y>350</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2804,11 +2823,11 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Color>-16777216</Color>
 					<Text><![CDATA[Paredes]]></Text>
 					<Font>
-						<Name>Consolas</Name>
+						<Name>Franklin Gothic Medium</Name>
 						<Size>20</Size>
 						<Style>0</Style>
 					</Font>
-					<Alignment>LEFT</Alignment>
+					<Alignment>CENTER</Alignment>
 				</Text>
 				<Image>
 					<Id>1792877504783</Id>
@@ -2857,7 +2876,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				<Text>
 					<Id>1793149992235</Id>
 					<Name><![CDATA[text18]]></Name>
-					<X>660</X><Y>560</Y>
+					<X>20</X><Y>570</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2874,8 +2893,8 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 + String.format("%.2f", Math.sqrt(Math.PI * kB * Tmeas / 2))
 + "   fotos hist: " + nSnap]]></TextCode>
 					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2883,13 +2902,13 @@ if (value == 1) wallMode = 0;]]></ActionCode>
     			<Plot>
 					<Id>1793150306230</Id>
 					<Name><![CDATA[Medicion]]></Name>
-					<X>1010</X><Y>580</Y>
+					<X>840</X><Y>560</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>true</AutoUpdate>
+					<AutoUpdate>false</AutoUpdate>
 					<RecurrenceProperties>
 						<Id>1793150306228</Id>
 						<OccurrenceAtTime>true</OccurrenceAtTime>
@@ -2940,8 +2959,8 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Color>-14774017</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -2964,7 +2983,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793152313886</Id>
 					<Name><![CDATA[button]]></Name>
-					<X>660</X><Y>220</Y>
+					<X>620</X><Y>220</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2985,7 +3004,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793152329734</Id>
 					<Name><![CDATA[button1]]></Name>
-					<X>660</X><Y>260</Y>
+					<X>730</X><Y>220</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3006,7 +3025,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793152353223</Id>
 					<Name><![CDATA[button2]]></Name>
-					<X>660</X><Y>300</Y>
+					<X>850</X><Y>220</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3026,7 +3045,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
     			<Plot>
 					<Id>1793152375374</Id>
 					<Name><![CDATA[plot2]]></Name>
-					<X>1020</X><Y>820</Y>
+					<X>1120</X><Y>560</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3048,14 +3067,14 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>260</Width>
-					<Height>210</Height>
+					<Height>230</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
 						<Width>180</Width>
-						<Height>120</Height>
+						<Height>130</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
@@ -3063,7 +3082,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Legend>
 						<Place>SOUTH</Place>
 						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
+						<Size>40</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
@@ -3129,7 +3148,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				<Text>
 					<Id>1793153474546</Id>
 					<Name><![CDATA[text19]]></Name>
-					<X>20</X><Y>500</Y>
+					<X>20</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3139,13 +3158,13 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["<Ek> liviana = " + String.format("%.1f", meanEk(1.0))
 + "   <Ek> pesada = " + String.format("%.1f", meanEk(m1))
 + "   v_rms liv/pes = " + String.format("%.2f", vrmsOf(1.0) / vrmsOf(m1))]]></TextCode>
 					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -3153,7 +3172,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 				<Text>
 					<Id>1793153742918</Id>
 					<Name><![CDATA[text20]]></Name>
-					<X>20</X><Y>520</Y>
+					<X>20</X><Y>555</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3163,7 +3182,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
+					<Text><![CDATA[]]></Text>
 					<TextCode><![CDATA["<Ek> liv = " + String.format("%.1f", statEkL.mean())
 + " ± " + String.format("%.1f", statEkL.deviation() / Math.sqrt(statEkL.count()))
 + "   <Ek> pes = " + String.format("%.1f", statEkH.mean())
@@ -3171,8 +3190,8 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 + "   v_rms liv/pes = " + String.format("%.2f", Math.sqrt(statEkL.mean() * m1 / statEkH.mean()))
 + "   (n = " + statEkL.count() + ")"]]></TextCode>
 					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>16</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>

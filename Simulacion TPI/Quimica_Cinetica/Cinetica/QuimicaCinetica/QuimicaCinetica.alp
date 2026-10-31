@@ -2233,7 +2233,7 @@ tStats = time() + tEq;]]></Body>
 					<Id>1793387884258</Id>
 					<Expression><![CDATA[dataset]]></Expression>
 					<Color>-16728065</Color>
-					<Expression2><![CDATA[KeqEstAB()]]></Expression2>
+					<Expression2><![CDATA[KeqEstAB() * 1000]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
 						<LineWidth>2.0</LineWidth>
@@ -2243,7 +2243,7 @@ tStats = time() + tEq;]]></Body>
 					<Id>1793387912847</Id>
 					<Expression><![CDATA[dataset1]]></Expression>
 					<Color>-4565549</Color>
-					<Expression2><![CDATA[KeqEst()]]></Expression2>
+					<Expression2><![CDATA[KeqEst() * 1000]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>2.0</LineWidth>
@@ -2253,7 +2253,7 @@ tStats = time() + tEq;]]></Body>
 					<Id>1793387919119</Id>
 					<Expression><![CDATA[dataset2]]></Expression>
 					<Color>-16777216</Color>
-					<Expression2><![CDATA[KeqTeo()]]></Expression2>
+					<Expression2><![CDATA[KeqTeo() * 1000]]></Expression2>
 					<Expression2Flag>true</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>2.0</LineWidth>

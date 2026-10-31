@@ -18,7 +18,6 @@
 		<ActiveObjectClass>
 			<Id>1793206775859</Id>
 			<Name><![CDATA[Main]]></Name>
-			<StartupCode><![CDATA[validarPolya(50000, 10000);]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1793206775862</Id>
@@ -120,6 +119,68 @@
 				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
 			</ScaleRuler>
 			<CurrentLevel>1793206775873</CurrentLevel>
+			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1793480302556</Id>
+					<Name><![CDATA[y]]></Name>
+					<X>170</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793480453096</Id>
+					<Name><![CDATA[x]]></Name>
+					<X>170</X><Y>540</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793480454466</Id>
+					<Name><![CDATA[z]]></Name>
+					<X>170</X><Y>560</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793480455700</Id>
+					<Name><![CDATA[w]]></Name>
+					<X>170</X><Y>580</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -173,7 +234,7 @@ return (double) retornos / M;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793365478860</Id>
 					<Name><![CDATA[verificarIsotropia]]></Name>
-					<X>470</X><Y>60</Y>
+					<X>460</X><Y>60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -267,7 +328,7 @@ return resultado;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793366960349</Id>
 					<Name><![CDATA[validarPolya]]></Name>
-					<X>160</X><Y>110</Y>
+					<X>160</X><Y>100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -302,7 +363,7 @@ for (int d = 1; d <= 4; d++) {
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793388800531</Id>
 					<Name><![CDATA[estadisticasR2]]></Name>
-					<X>310</X><Y>110</Y>
+					<X>300</X><Y>100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -354,7 +415,7 @@ return new double[] { media, standardError };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793388934577</Id>
 					<Name><![CDATA[verificarDifusion]]></Name>
-					<X>470</X><Y>110</Y>
+					<X>460</X><Y>100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -386,7 +447,7 @@ return new double[] { media, standardError };]]></Body>
 					<ReturnType><![CDATA[long[]]]></ReturnType>
 					<Id>1793392203436</Id>
 					<Name><![CDATA[contarVisitasOrigen]]></Name>
-					<X>310</X><Y>160</Y>
+					<X>300</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -435,7 +496,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793392748096</Id>
 					<Name><![CDATA[verificarParidad]]></Name>
-					<X>510</X><Y>160</Y>
+					<X>460</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -457,6 +518,55 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
         + "  visitas impares=" + r[1]
         + (pasa ? "  -> pasa" : "  -> no pasa"));
 }]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793480350551</Id>
+					<Name><![CDATA[updateX]]></Name>
+					<X>60</X><Y>540</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[x = walker.get(0).x;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793480405079</Id>
+					<Name><![CDATA[updateZ]]></Name>
+					<X>60</X><Y>560</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[z = walker.get(0).z;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793480407203</Id>
+					<Name><![CDATA[updateY]]></Name>
+					<X>60</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[int valor = walker.get(0).y;
+y = valor;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793480420580</Id>
+					<Name><![CDATA[updateW]]></Name>
+					<X>60</X><Y>580</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[w = walker.get(0).w;]]></Body>
 				</Function>
 			</Functions>
 
@@ -526,6 +636,173 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<Z>0</Z>
 					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
 
+			<Presentation>
+				<Control Type="Window3D">
+					<Id>1793479846741</Id>
+					<Name><![CDATA[window3d]]></Name>
+					<X>60</X><Y>200</Y>
+					<Width>500</Width>
+					<Height>300</Height>
+					<MakeDefaultViewArea>true</MakeDefaultViewArea>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ShowLabel>false</ShowLabel>
+					<FollowCamera>false</FollowCamera>
+					<NavigationType>full</NavigationType>
+					<FarClippingDistance>2000</FarClippingDistance>
+				</Control>
+				<Figure3D>
+					<Id>1793481592797</Id>
+					<Name><![CDATA[Origen]]></Name>
+					<X>310</X><Y>350</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<X>310</X><Y>350</Y><Z>0</Z>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ResourceReference>
+						<PackageName><![CDATA[caminataspolya]]></PackageName>
+						<ClassName><![CDATA[3d/sphere.dae]]></ClassName>
+					</ResourceReference>
+					<ColorTable>
+						<ColorMapping>
+							<Name><![CDATA[MA_material]]></Name>
+							<OriginalColor>-11447983</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[MA_material_27]]></Name>
+							<OriginalColor>-16764597</OriginalColor>
+							<Color>-16711936</Color>
+						</ColorMapping>
+					</ColorTable>
+					<AutoScale>true</AutoScale>
+					<Scale>0.75</Scale>
+					<Rotation>0.0</Rotation>
+					<AxisOrder>XYZ_AXIS_ORDER</AxisOrder>
+					<SelectedAnimationPose></SelectedAnimationPose>
+					<ApplyShading>true</ApplyShading>
+					<InternalLighting>OFF</InternalLighting>
+					<IgnoreSceneLights>false</IgnoreSceneLights>
+				</Figure3D>
+				<Figure3D>
+					<Id>1793480125568</Id>
+					<Name><![CDATA[esferaNegativa]]></Name>
+					<X>310</X><Y>350</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<X>310</X><Y>350</Y><Z>0</Z>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ResourceReference>
+						<PackageName><![CDATA[caminataspolya]]></PackageName>
+						<ClassName><![CDATA[3d/sphere.dae]]></ClassName>
+					</ResourceReference>
+					<ColorTable>
+						<ColorMapping>
+							<Name><![CDATA[MA_material]]></Name>
+							<OriginalColor>-11447983</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[MA_material_27]]></Name>
+							<OriginalColor>-16764597</OriginalColor>
+							<Color>-16776961</Color>
+						</ColorMapping>
+					</ColorTable>
+					<AutoScale>true</AutoScale>
+					<Scale>1.0</Scale>
+					<Rotation>0.0</Rotation>
+					<AxisOrder>XYZ_AXIS_ORDER</AxisOrder>
+					<SelectedAnimationPose></SelectedAnimationPose>
+					<ApplyShading>true</ApplyShading>
+					<InternalLighting>OFF</InternalLighting>
+					<IgnoreSceneLights>false</IgnoreSceneLights>
+					<XCode><![CDATA[310 + walker.get(0).x * 10]]></XCode>
+					<YCode><![CDATA[350 + walker.get(0).y * 10]]></YCode>
+					<ZCode><![CDATA[walker.get(0).z * 10]]></ZCode>
+					<VisibleCode><![CDATA[walker.get(0).w < 0;]]></VisibleCode>
+				</Figure3D>
+				<Figure3D>
+					<Id>1793480127047</Id>
+					<Name><![CDATA[esferaPositiva]]></Name>
+					<X>310</X><Y>350</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<X>310</X><Y>350</Y><Z>0</Z>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ResourceReference>
+						<PackageName><![CDATA[caminataspolya]]></PackageName>
+						<ClassName><![CDATA[3d/sphere.dae]]></ClassName>
+					</ResourceReference>
+					<ColorTable>
+						<ColorMapping>
+							<Name><![CDATA[MA_material]]></Name>
+							<OriginalColor>-11447983</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[MA_material_27]]></Name>
+							<OriginalColor>-16764597</OriginalColor>
+							<Color>-65536</Color>
+						</ColorMapping>
+					</ColorTable>
+					<AutoScale>true</AutoScale>
+					<Scale>1.0</Scale>
+					<Rotation>0.0</Rotation>
+					<AxisOrder>XYZ_AXIS_ORDER</AxisOrder>
+					<SelectedAnimationPose></SelectedAnimationPose>
+					<ApplyShading>true</ApplyShading>
+					<InternalLighting>OFF</InternalLighting>
+					<IgnoreSceneLights>false</IgnoreSceneLights>
+					<XCode><![CDATA[310 + walker.get(0).x * 10]]></XCode>
+					<YCode><![CDATA[350 + walker.get(0).y * 10]]></YCode>
+					<ZCode><![CDATA[walker.get(0).z * 10]]></ZCode>
+					<VisibleCode><![CDATA[walker.get(0).w > 0;]]></VisibleCode>
+				</Figure3D>
+				<Figure3D>
+					<Id>1793479879394</Id>
+					<Name><![CDATA[esferaCero]]></Name>
+					<X>310</X><Y>350</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<X>310</X><Y>350</Y><Z>0</Z>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ResourceReference>
+						<PackageName><![CDATA[caminataspolya]]></PackageName>
+						<ClassName><![CDATA[3d/sphere.dae]]></ClassName>
+					</ResourceReference>
+					<ColorTable>
+						<ColorMapping>
+							<Name><![CDATA[MA_material]]></Name>
+							<OriginalColor>-11447983</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[MA_material_27]]></Name>
+							<OriginalColor>-16764597</OriginalColor>
+							<Color>-1</Color>
+						</ColorMapping>
+					</ColorTable>
+					<AutoScale>true</AutoScale>
+					<Scale>1.0</Scale>
+					<Rotation>0.0</Rotation>
+					<AxisOrder>XYZ_AXIS_ORDER</AxisOrder>
+					<SelectedAnimationPose></SelectedAnimationPose>
+					<ApplyShading>true</ApplyShading>
+					<InternalLighting>OFF</InternalLighting>
+					<IgnoreSceneLights>false</IgnoreSceneLights>
+					<XCode><![CDATA[310 + walker.get(0).x * 10]]></XCode>
+					<YCode><![CDATA[350 + walker.get(0).y * 10]]></YCode>
+					<ZCode><![CDATA[walker.get(0).z * 10]]></ZCode>
+					<VisibleCode><![CDATA[walker.get(0).w == 0;]]></VisibleCode>
+				</Figure3D>
+			</Presentation>
 
 				</Level>
 			</Presentation>
@@ -771,12 +1048,11 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 				<Event>
 					<Id>1793207858920</Id>
 					<Name><![CDATA[eventoPaso]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>170</X><Y>100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
+					<ShowLabel>true</ShowLabel>
 					<Properties TriggerType="timeout" Mode="cyclic">
 						<Timeout Class="CodeUnitValue">
 							<Code><![CDATA[1]]></Code>
@@ -794,13 +1070,16 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[0.1]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
 					<Action><![CDATA[step();
-traceln("paso " + steps + ": (" + x + ", " + y + ", " + z + ", " + w + ")");]]></Action>
+get_Main().updateX();
+get_Main().updateY();
+get_Main().updateZ();
+get_Main().updateW();]]></Action>
 				</Event>
 			</Events>
 			<Functions>
@@ -834,6 +1113,26 @@ if (!returned && x == 0 && y == 0){
 	returnTime = steps;
 }]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[Color]]></ReturnType>
+					<Id>1793478749994</Id>
+					<Name><![CDATA[getColorForLevel]]></Name>
+					<X>50</X><Y>140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[if (w == 0){
+	return Color.WHITE;
+}else if (w > 0 ){
+	int intensidad = Math.min(255, 50 + w * 40);
+	return new Color(255, 255 - intensidad/2, 0);
+}else {
+	int intensidad = Math.min(255, 50 + w * 40);
+	return new Color(0, 255 - intensidad/2, 255);
+}]]></Body>
+				</Function>
 			</Functions>
 
 			<ContainerLinks>
@@ -856,6 +1155,20 @@ if (!returned && x == 0 && y == 0){
 				<Level>
 					<Id>1793207039944</Id>
 					<Name><![CDATA[level]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+
+
+				</Level>
+				<Level>
+					<Id>1793479767023</Id>
+					<Name><![CDATA[level1]]></Name>
 					<X>0</X><Y>0</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -976,6 +1289,14 @@ if (!returned && x == 0 && y == 0){
 			<BypassInitialScreen>true</BypassInitialScreen>
 		</SimulationExperiment>	
 	</Experiments>
+	<ModelResources>
+		<Resource>
+			<Id>1793479244343</Id>
+			<Path><![CDATA[3d/sphere.dae]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+			<Location>FILE_SYSTEM</Location>
+		</Resource>
+	</ModelResources>
     <RequiredLibraryReference>
 		<LibraryName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></LibraryName>
 		<VersionMajor>1</VersionMajor>

@@ -1,0 +1,82 @@
+Experimentos de AnyLogic para el TPI de Química (A + B ⇌ C)
+
+QUÉ ES IMPRESCINDIBLE Y QUÉ NO
+Los 4 escenarios del README (Paso 8) son E3, E4, E5 y E6. Los otros 5 no son escenarios:
+- E1 y E2: validación del modelo (Paso 6 del README, sección 5 del informe). Recomendados.
+- E7, E8 y E9: análisis de sensibilidad (Paso 9 del README). Opcionales si la cátedra no los pide.
+Si solo se muestran los 4 escenarios, alcanzan E3 a E6. Cada escenario también se puede mostrar como una corrida normal del experimento Simulation con el parámetro "escenario" y una captura del gráfico; el experimento con réplicas solo agrega la tabla numérica.
+Orden sugerido: E3 a E6, luego E1 y E2, luego E7 a E9 si hay tiempo.
+
+PASO 0 (hecho)
+El experimento Parameters Variation ya existe en el proyecto ("ParametersVariation"). Para crear uno por escenario: copiarlo y pegarlo en el árbol del proyecto (o New > Experiment > Parameters Variation) y renombrarlo (Esc1_Temperatura, Esc2_ReactivoLimitante, Esc3_Catalizador, Esc4_LeChatelier).
+
+CONFIGURACIÓN COMÚN (Parameters Variation)
+- Un experimento por tabla de abajo. Parámetros no listados: valor por defecto del modelo (Ea1 = 400, Ea2 = 600, NA0 = NB0 = 150, tEq = 100, etc.).
+- Varias semillas con las mismas iteraciones: marcar "Use replications" con las "Replications per iteration" indicadas y Randomness = "Random seed (unique simulation runs)".
+- Parámetro que varía entre iteraciones: tipo "Range" o "Several values"; el resto en "Fixed".
+- En cada Parameters Variation: desmarcar "Allow parallel evaluations" (las corridas guardan resultados en una lista compartida de Main que no es segura con hilos en paralelo).
+- Sin animación. Stop = "At specified time" con el tiempo indicado (batchMode = true corta solo al llegar a nTarget).
+- Acciones Java (Advanced > Java actions): "Initial experiment setup" (equivale a "Before experiment"), "After simulation run" y "After experiment". Los nombres cambian un poco según la versión. Si "After experiment" no existe en tu versión, poner la línea de runsReport al final de "After simulation run" dentro de: if (Main.runResults.size() == N_TOTAL) { ... } con N_TOTAL = iteraciones × réplicas.
+- Todos los códigos usan las utilidades de Main: Main.runsClear(), Main.runsAdd(...) y Main.runsReport(encabezado, colEstimada, colTeorica). La columna 0 es la clave del grupo. Usar Double.NaN para valores no disponibles. El reporte sale por la consola.
+
+E1. ARRHENIUS (código ya incluido en Main: arrhReport)
+- Variable: T = 100 a 300, paso 50. Réplicas: 5. Fijos: batchMode = true, nTarget = 100.
+- Stop: 3000 s (seguro; corta antes).
+- Initial experiment setup: Main.arrhResults.clear();
+- After simulation run:
+  Main.arrhResults.add(new double[] { root.T, root.k1MeasArea(), root.nReact, root.tV0End });
+  if (Main.arrhResults.size() == 25) { Main.arrhReport(root.Ea1, root.kB, root.masaA * root.masaB / (root.masaA + root.masaB), root.radioA + root.radioB); }
+- Esperado: pendiente de ln k vs 1/T ≈ −480 (Ea aparente ≈ 480) y de ln(k/√T) vs 1/T ≈ −400; k medida / k diluida ≈ 1.0–1.05; R² > 0.99.
+
+E2. VALIDACIÓN DE KEQ (10 réplicas, test t de Student)
+- Variable: ninguna (T = 200). Réplicas: 10. batchMode = false. Stop: 600 s.
+- Initial experiment setup: Main.runsClear();
+- After simulation run: Main.runsAdd(root.T, root.KeqEstAB(), root.KeqTeo(), root.sumC / Math.max(root.nSamp, 1), root.KeqEst());
+- After experiment: Main.runsReport("T,KeqExacta,KeqTeo,C_medio,KeqCocienteMedias", 1, 2);
+- Esperado (densCorr = false): Keq ≈ 9.1e-3 teórico y 9.6e-3 simulado (+6 %); C_medio ≈ 65–67. Se rechaza H0 si |t| > 2.262 (gl = 9).
+- Con densCorr = true, el test rechaza H0 (error ≈ −15 %).
+
+E3. ESCENARIO 1: EFECTO DE LA TEMPERATURA
+- Variable: T en Range de 100 a 400 con paso 100 (agrega T = 300, que sobra) o, si se prefiere, valores libres 100, 200 y 400. Réplicas: 10. tEq = 300. Stop: 600 s.
+- After simulation run: Main.runsAdd(root.T, root.tHalf < 0 ? Double.NaN : root.tHalf, root.tEqSD < 0 ? Double.NaN : root.tEqSD, root.sumC / Math.max(root.nSamp, 1), root.CeqTeo());
+- After experiment: Main.runsReport("T,tHalf,tEqSD_98,C_medio,C_eq_teo", 3, 4);
+- Esperado: t½ por EDO = 63.5, 4.7 y 1.2 s (agentes en la réplica: ≈55, 5.5 y 1.7 s); C_eq = 81.6, 65.3 y 61.3; t98 por EDO = 425, 29 y 7 s.
+
+E4. ESCENARIO 2: REACTIVO LIMITANTE
+- Fijos: NA0 = 200, NB0 = 50, T = 200. Réplicas: 10. Stop: 400 s.
+- After simulation run: Main.runsAdd(root.NA0, root.sumC / Math.max(root.nSamp, 1), root.CeqTeo(), root.sumA / Math.max(root.nSamp, 1), root.sumB / Math.max(root.nSamp, 1));
+- After experiment: Main.runsReport("NA0,C_medio,C_eq_teo,A_medio,B_medio", 1, 2);
+- Esperado: C ≈ 30 (teórico 30.3), A ≈ 170 y B ≈ 20. C no llega a 50 porque la reacción es reversible.
+
+E5. ESCENARIO 3: CATALIZADOR A t = 50 s
+- Variable: escenario en Range de 0 a 3 con paso 3 (da 0 y 3). Fijos: T = 100, tCat = 50. Réplicas: 10. Stop: 100 s.
+- After simulation run: Main.runsAdd(root.escenario, root.cC, root.CeqTeo());
+- After experiment: Main.runsReport("escenario,C_a_t100,C_eq_teo", 0, 0);
+- Esperado: C(100) ≈ 55 sin catalizador y ≈ 84 con catalizador. C_eq no cambia (81.6): el catalizador acelera, no desplaza el equilibrio.
+- Para el informe, además: una corrida visual con escenario = 3 y T = 100 y captura del gráfico (cambio brusco de pendiente de C a t = 50).
+- Importante: con T = 200 el sistema ya está en equilibrio antes de t = 50 y el catalizador no se nota.
+
+E6. ESCENARIO 4: LE CHATELIER
+- Fijos: escenario = 4, T = 200, t4Pulso = 150, nPulso = 100, t4Enfriar = 450, T4frio = 100, tEq = 150. Réplicas: 10. Stop: 900 s.
+- After simulation run: Main.runsAdd(root.T4frio, root.KeqEstAB(), root.KeqTeo(), root.sumC / Math.max(root.nSamp, 1), root.CeqTeo());
+- After experiment: Main.runsReport("T,KeqExacta,KeqTeo,C_medio,C_eq_teo", 1, 2);
+- Esperado: al final T = 100 y C_medio ≈ 107–110 (teórico 107.1). Antes del pulso C ≈ 66; tras el pulso de A, C sube a ≈ 90 (teórico 89.1) y B baja; al enfriar, C sube otra vez (lado exotérmico).
+- Para el informe, una corrida visual con captura del gráfico.
+
+E7. SENSIBILIDAD A Ea1 (k1)
+- Variable: Ea1 = 200, 300, 400, 500, 600, 800. Fijos: T = 200, batchMode = true, nTarget = 100. Réplicas: 5. Stop: 3000 s.
+- After simulation run: Main.runsAdd(root.Ea1, root.k1MeasArea(), root.k1Theory(), root.nReact);
+- After experiment: Main.runsReport("Ea1,k1_medida,k1_teorica,nReact", 1, 2);
+- Esperado: k1 cae de forma exponencial con Ea1 (Arrhenius); k1 medida ≈ k1 teórica.
+- Los rangos del README (50–250) partían de Ea = 100; acá están escalados ×4.
+
+E8. SENSIBILIDAD AL VOLUMEN
+- Variable: Ly = 300 y 150 (Lx = 400 fijo). Fijos: T = 200, batchMode = true, nTarget = 100. Réplicas: 8. Stop: 1000 s.
+- After simulation run: Main.runsAdd(root.Lx * root.Ly, root.k1MeasArea(), root.k1Theory(), root.v0Est(), root.v0Est() / (root.Lx * root.Ly));
+- After experiment: Main.runsReport("Area,k1_medida,k1_teorica,v0,v0_por_area", 1, 2);
+- Esperado: v0 (reacciones/s) ×2.3 y v0 por unidad de área ×4.5 al reducir el área a la mitad. El "se cuadruplica" del README vale para la velocidad por unidad de área (concentraciones).
+
+E9. SENSIBILIDAD A N (fluctuaciones)
+- Comparar N = 30 (NA0 = NB0 = 15) contra N = 300 (150 + 150) y N grande, manteniendo la densidad: N = 30 con Lx = 126 y Ly = 95; N = 1000 con Lx = 730 y Ly = 548 (O(N²): corre más lento). Cada N requiere cambiar a la vez NA0, NB0, Lx y Ly, así que se hace como un experimento por N o se agrega un parámetro de escala al modelo.
+- Réplicas: 10. Stop: 600 s. Columnas: N, KeqExacta, KeqCocienteMedias, KeqTeo, C_medio.
+- Esperado: a N = 30 el cociente de medias sobreestima Keq por Var(C)/(<A><B>) y el estimador exacto no; las fluctuaciones de C relativas a su media bajan al subir N.

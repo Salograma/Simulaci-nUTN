@@ -1,24 +1,56 @@
 Estado del TPI de Química (A + B ⇌ C en AnyLogic)
 
-El modelo base ya está armado y funcionando: agentes que chocan y reaccionan (directa e inversa), la parte de Dinámica de Sistemas corriendo en paralelo, los gráficos comparando agentes contra teoría, el cálculo de la constante de equilibrio y la medición de k1 con el experimento de Arrhenius.
+1. MODELO (QuimicaCinetica.alp)
 
-Cambios respecto del readme (hay que justificarlos en el informe):
+Hecho y guardado en el .alp:
+- Agentes Molecule (A, B, C): esferas duras con choques elásticos. Reacción directa A + B → C por umbral de energía (E_rel ≥ Ea1) y reacción inversa C → A + B por probabilidad 1 − exp(−k2·dt).
+- Dinámica de Sistemas en paralelo (stocks A_sd, B_sd, C_sd) con las EDO de la ley de acción de masas.
+- 3 gráficos (agentes vs SD, convergencia de C al equilibrio, constante de equilibrio), indicadores de texto, slider de T, botones de catalizador (activar/quitar) y de inyección de A y B.
+- Medición de k1 (reacciones directas / integral de A·B dt) y reporte de Arrhenius con los dos ajustes.
+- Utilidades de réplicas dentro de Main: runsAdd y runsReport (CSV, media y desvío por grupo, test t pareado).
+- Escenarios 3 y 4 automáticos con el parámetro "escenario" (0 = manual, 3 o 4) y sus parámetros tCat, t4Pulso, nPulso, t4Enfriar y T4frio.
+- Indicadores de velocidad instantánea: r_C y r_A (media móvil de 2 s sobre las reacciones directas e inversas por segundo) y r_C teórica (SD).
+- Parámetros decididos: densCorr = false y nu = 7.
 
-Usamos Ea1 = 400 y Ea2 = 600 en vez de 100 y 150. Con 100, la energía de activación es comparable a kT y no se ve un comportamiento de Arrhenius claro.
-El catalizador baja las dos energías de activación en la misma cantidad. Si solo bajara la directa, cambiaría el equilibrio, y un catalizador real no lo cambia.
-Agregamos un termostato para que el slider de temperatura realmente controle el sistema.
-k1 se mide como reacciones directas divididas por la integral de A·B, no con la fórmula de velocidad inicial del readme, que es mucho más ruidosa.
-La gráfica de Arrhenius se hace con dos ajustes: el del readme (ln k contra 1/T) y uno corregido (ln(k/√T) contra 1/T). La pendiente teórica es ≈ −480 en el primero y −400 en el segundo. La diferencia viene de la teoría de colisiones, no es un error.
+Correcciones aplicadas al .alp: masaC = 2 (era 1, rompía la conservación del momento), se quitó el traceln de depuración y los botones de inyección ahora llaman a resetStats() y reinician tHalf y tEqSD.
 
-Lo que falta:
+2. CAMBIOS RESPECTO DEL README (justificar en el informe)
 
-Agregar al modelo: un evento a t = 50 que active el catalizador (escenario 3) y los eventos del escenario 4 (inyectar un pulso de A en el equilibrio y después enfriar). Si no están los botones de catalizador e inyección del Paso 7, también faltan.
-Correr los experimentos:
-Escenario 1: T = 100, 200, 400, midiendo el tiempo de vida media.
-Escenario 2: NA0 = 200, NB0 = 50. Ojo: como la reacción es reversible, C no llega a 50. Se estabiliza en el equilibrio teórico y sobra algo de B. Eso es lo correcto y hay que reportarlo así.
-Sensibilidad: barrido de Ea1 (escalado, porque los rangos del readme partían de Ea = 100), volumen a la mitad con N constante, y N = 30 contra N = 1000.
-Validación de la constante de equilibrio con 10 réplicas y test de Student.
-Evidencia de verificación: captura del balance de átomos en 0 durante toda una corrida, y la prueba con T = 1 donde no aparece nada de C.
+- Ea1 = 400 y Ea2 = 600 en vez de 100 y 150. Con Ea = 100 y T = 100–500 la relación Ea/kT queda entre 0.2 y 1 y no se ve comportamiento de Arrhenius.
+- El catalizador baja Ea1 y Ea2 en la misma cantidad (catDelta = 240, el 60 % de Ea1). Si bajara solo Ea1, cambiaría Keq, y un catalizador real no lo cambia.
+- Se agregó un termostato de Andersen, para que el slider de T controle el sistema y la reacción 2 → 1 no enfríe el gas sin límite.
+- k1 se mide como reacciones directas / integral de A·B dt. La fórmula del README (ΔNc/Δt en un intervalo corto) es mucho más ruidosa.
+- Arrhenius con dos ajustes: ln k vs 1/T (pendiente teórica ≈ −480) y ln(k/√T) vs 1/T (pendiente teórica −400 = −Ea1). La diferencia viene del factor √T de la teoría de colisiones, no es un error.
+- Keq teórica = k1/k2 (en este modelo no está definida ΔG°), y el estimador exacto es <C>/<A·B>. El del README (<C>/(<A><B>)) tiene un sesgo de Var(C)/(<A><B>) que se nota con N chico.
+- Criterio de reacción: solo el umbral E_rel ≥ Ea. Usar además P = exp(−Ea/kT) cuenta la barrera dos veces.
+
+3. VERIFICACIÓN DE ECUACIONES (réplica independiente en Python; no es AnyLogic)
+
+- k1 medida / k1 diluida = 1.045, 1.040, 1.021, 1.047, 0.969 para T = 100, 150, 200, 250, 300 (±4 %): la fórmula k1 = (rA+rB)·√(2π·kB·T/μ)·exp(−Ea1/kB·T) es correcta.
+- Pendientes de Arrhenius medidas: −473 (teórica −480) y −393 (teórica −400), R² = 0.9995.
+- C en equilibrio a T = 200: 65.3 teórico (CeqTeo) contra 65.6–66.8 simulado.
+- Keq a T = 200: 9.6e-3 simulado contra 9.1e-3 teórico (+5.8 %, 3 réplicas).
+- La corrección de densidad (densCorr, factor de contacto de Henderson ≈ 1.24) NO se sostiene: la k1 medida queda a 0–5 % de la fórmula diluida. Con densCorr activa, Keq da −15 % respecto de la teoría. Decisión: densCorr = false (ya aplicado en el archivo).
+- Termostato: con nu = 1 la energía cinética media en equilibrio es 192 y no kT = 200 (la reacción consume energía cinética). Con nu = 5 es 198 y con nu = 10 es 199. Elegido: nu = 7.
+- Velocidad al reducir el reactor a la mitad (mismo N): las reacciones por segundo se multiplican por ≈2.3 y la velocidad por unidad de área por ≈4.5. El "×4" del README vale para la velocidad en concentraciones, no para el conteo de reacciones por segundo. El exceso sobre 4 es el efecto de la mayor densidad.
+
+4. LO QUE FALTA
+
+Modelo: sin pendientes.
+
+Experimentos (ver Experimentos_AnyLogic.txt). Imprescindibles: los 4 escenarios (E3 a E6). Recomendados: validación (E1 Arrhenius y E2 Keq). Opcionales: sensibilidad (E7 a E9).
+- El experimento Parameters Variation ya está creado ("ParametersVariation"); falta configurar uno por escenario.
+- Arrhenius: T = 100 a 300, 5 réplicas por temperatura, batchMode = true.
+- Validación de Keq: 10 réplicas con semillas distintas y test t de Student.
+- Escenario 1: T = 100, 200, 400 (t½ esperado por EDO: 63.5, 4.7 y 1.2 s).
+- Escenario 2: NA0 = 200, NB0 = 50. C NO llega a 50: se estabiliza en ≈30 y sobran ≈20 de B (reacción reversible).
+- Escenario 3: escenario = 3 con T = 100 (a T = 200 el sistema ya está en equilibrio a t = 50 y el catalizador no muestra nada).
+- Escenario 4: escenario = 4 (pulso de A a t = 150, enfriamiento a T = 100 a t = 450).
+- Sensibilidad: Ea1, volumen (Ly = 150 contra 300) y N (30 contra 1000; para N = 1000 hay que agrandar el reactor, con 1000 partículas en 400 × 300 la ocupación del área es 42 %).
+
+Evidencia de verificación:
+- Captura del balance de átomos en 0 durante toda una corrida.
+- Prueba con T = 1, donde no aparece nada de C.
+- Test de momento por evento (traceln en react y decompose en una corrida de prueba).
+
 Informe: las 8 secciones del Paso 10, con el anexo del código Java.
-
-Un aviso para el informe: el readme dice que al reducir el volumen a la mitad la velocidad se cuadruplica. Es una buena aproximación, pero la densidad sube y con ella una corrección que no estaba prevista, así que lo medido va a dar algo por encima de 4. Hay que anticiparlo en el texto.

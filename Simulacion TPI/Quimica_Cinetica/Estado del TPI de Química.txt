@@ -42,10 +42,10 @@ Experimentos (ver Experimentos_AnyLogic.txt). Imprescindibles: los 4 escenarios 
 - El experimento Parameters Variation ya está creado ("ParametersVariation"); falta configurar uno por escenario.
 - Arrhenius: T = 100 a 300, 5 réplicas por temperatura, batchMode = true.
 - Validación de Keq: 10 réplicas con semillas distintas y test t de Student.
-- Escenario 1: T = 100, 200, 400 (t½ esperado por EDO: 63.5, 4.7 y 1.2 s).
-- Escenario 2: NA0 = 200, NB0 = 50. C NO llega a 50: se estabiliza en ≈30 y sobran ≈20 de B (reacción reversible).
-- Escenario 3: escenario = 3 con T = 100 (a T = 200 el sistema ya está en equilibrio a t = 50 y el catalizador no muestra nada).
-- Escenario 4: escenario = 4 (pulso de A a t = 150, enfriamiento a T = 100 a t = 450).
+- Escenario 1: HECHO (T = 100, 200, 300, 400; resultados en la sección 5 y en Resultados_Quimica.xlsx). Pendiente opcional: repetir T = 100 con parada 1500 s y tEq 900 s.
+- Escenario 2: HECHO (NA0 = 200, NB0 = 50; resultados en la sección 6). C no llega a 50 (reacción reversible).
+- Escenario 3: HECHO (T = 100; resultados en la sección 7).
+- Escenario 4: HECHO (resultados en la sección 8). Recomendado: repetir con tEq mayor tras el enfriamiento.
 - Sensibilidad: Ea1, volumen (Ly = 150 contra 300) y N (30 contra 1000; para N = 1000 hay que agrandar el reactor, con 1000 partículas en 400 × 300 la ocupación del área es 42 %).
 
 Evidencia de verificación:
@@ -54,3 +54,64 @@ Evidencia de verificación:
 - Test de momento por evento (traceln en react y decompose en una corrida de prueba).
 
 Informe: las 8 secciones del Paso 10, con el anexo del código Java.
+
+5. RESULTADOS DEL ESCENARIO 1 (temperatura; 10 réplicas por T, semillas distintas, parada 600 s, tEq = 300 s)
+
+Planilla: Resultados_Quimica.xlsx (hojas Parametros, Esc1_Corridas con las 40 corridas, Esc1_Resumen con fórmulas).
+
+T   | t½ agentes (s)  | t½ EDO (s) | C medio (agentes) | C_eq teórico | error relativo | t pareado | decisión (t crít. 2.262)
+100 | 94.6 ± 16.1     | 81.7       | 65.04 ± 3.38      | 71.58        | -9.1 %         | -6.13     | se rechaza H0
+200 | 7.34 ± 1.66     | 5.9        | 53.81 ± 1.79      | 54.84        | -1.9 %         | -1.82     | no se rechaza
+300 | 2.58 ± 0.94     | 2.3        | 51.97 ± 1.31      | 51.53        | +0.8 %         | 1.05      | no se rechaza
+400 | 1.84 ± 0.57     | 1.4        | 51.54 ± 0.72      | 50.96        | +1.1 %         | 2.53      | se rechaza (diferencia de 1.1 %, irrelevante)
+
+Observaciones:
+- Los C_eq teóricos de la salida y los t98 de la SD coinciden con la EDO para Lx·Ly = 180000, correspondiente al valor por defecto del archivo (400 × 450). Confirmado: el experimento usa Lx = 400 y Ly = 450 (180000). Mantenerlos fijos en todo el informe.
+- T = 100: la SD llega al 98 % de C_eq recién a los 522 s, así que promediar entre 300 y 600 s mezcla la subida con el equilibrio. El rechazo de H0 es un artefacto de la ventana. Contra la EDO promediada en la misma ventana (68.71) la diferencia es -5.3 %. Repetir con parada 1500 s y tEq 900 s.
+- T >= 200: las medias de agentes quedan a menos de 2 % de la teoría.
+- El t½ de los agentes es 12 a 31 % más lento que el de la EDO (T = 400: 1.84 contra 1.4 s, con paso de muestreo de 0.1 s). La causa no está verificada; hipótesis: termostato, discretización de dt y fluctuaciones. Si se reporta, decirlo como diferencia observada, sin explicación asegurada.
+
+6. RESULTADOS DEL ESCENARIO 2 (reactivo limitante; NA0 = 200, NB0 = 50, 10 réplicas, parada 400 s)
+
+Planilla: hojas Esc2_Corridas y Esc2_Resumen de Resultados_Quimica.xlsx.
+
+- C medio (agentes) = 25.25 ± 0.43; C_eq teórico (EDO) = 25.68; diferencia -0.43 (-1.7 %); t pareado = -3.21 (crítico 2.262): se rechaza H0.
+- A medio = 174.75 y B medio = 24.75 (sobran ≈24.8 de B; el reactivo limitante es B). C llega al ≈50 % de B, no al 100 %, por la reversibilidad.
+- La diferencia es pequeña (1.7 %) pero consistente en signo: en el Escenario 1 con T = 200 también dio -1.9 %. Causa no verificada (con tEq = 100 s la ventana no incluye relajación; hipótesis restantes: termostato o discretización). En el informe: coincidencia a menos de 2 % con diferencia sistemática pequeña.
+- Parámetros: tEq = 100 s (promedio entre 100 y 400 s), anterior al cual la SD ya llegó al 98 % del equilibrio; la diferencia de -1.7 % no se explica por la ventana (causa no verificada).
+
+7. RESULTADOS DEL ESCENARIO 3 (catalizador; T = 100, parada 100 s, 10 réplicas por grupo)
+
+Planilla: hojas Esc3_Corridas y Esc3_Resumen.
+
+- C a t = 100 s: 38.8 ± 3.2 sin catalizador (54 % de C_eq = 71.58) contra 68.8 ± 3.0 con catalizador (96 % de C_eq).
+- Test de Welch (grupos independientes): t = 21.8, gl ≈ 18, crítico 2.11: se rechaza H0. El catalizador acelera el avance ≈1.8 veces en ese instante.
+- Esta corrida muestra el efecto en la velocidad, no que C_eq y Keq no cambian (parada a 100 s). Eso se muestra con el Escenario 4 y la validación de Keq.
+- Parámetros: tCat = 50 s, es decir el catalizador actuó solo los últimos 50 s.
+
+8. RESULTADOS DEL ESCENARIO 4 (pulso de A + enfriamiento a T = 100; 10 réplicas, parada 900 s)
+
+Planilla: hojas Esc4_Corridas y Esc4_Resumen.
+
+- Keq exacta = 0.01079 ± 0.00126 contra Keq teórica 0.01164: error -7.4 %; t pareado = -2.15 (crítico 2.262): no se rechaza H0, pero en el límite.
+- C medio = 93.91 contra C_eq teórico 96.24 (-2.4 %).
+- Hipótesis (no verificada): a T = 100 la relajación es lenta (SD al 98 % a los ≈520 s), así que con tEq corto la ventana incluye parte de la relajación y subestima C y Keq. Mismo patrón que el T = 100 del Escenario 1. Verificar repitiendo con tEq >= 300 s después del enfriamiento.
+- Esta corrida mide Keq solo al final; no compara Keq antes y después del pulso.
+- Parámetros: nPulso = 100, pulso a t = 150 s, enfriamiento a t = 450 s, tEq = 150 s (ventana 600-900 s).
+
+9. REPETICION DEL ESCENARIO 1 A T = 100 (ventana larga: parada 1500 s, tEq = 900 s, 10 réplicas)
+
+Planilla: hojas Esc1b_T100 y Esc1b_Resumen (comparación contra la ventana corta).
+
+- C medio = 71.42 ± 3.51 contra C_eq teórico 71.58: error -0.2 %, t = -0.15 (crítico 2.262): no se rechaza H0. Con la ventana corta era -9.1 % y se rechazaba: confirmado que era un artefacto de la ventana.
+- t½ = 80.0 ± 11.8 s contra 81.7 s de la EDO (ratio 0.98). La primera tanda dio 94.6 ± 16.1 s: las dos tandas difieren con t de Welch = 2.33 (crítico 2.12). Por eso el 'agentes 12-31 % más lentos que la EDO' no es firme a T = 100; para T = 200, 300 y 400 sigue siendo una sola tanda (+12 a +31 %) sin repetir.
+- Escenario 4 repetido: ver sección 10.
+
+10. REPETICION DEL ESCENARIO 4 (ventana larga: tEq = 450 s, parada 1500 s, ventana 900-1500 s, 10 réplicas)
+
+Planilla: hojas Esc4b_Corridas y Esc4b_Resumen (comparación contra la ventana corta).
+
+- Keq exacta = 0.01152 ± 0.00124 contra teórica 0.01164: error -1.0 %, t = -0.30 (crítico 2.262): no se rechaza H0. Con la ventana corta era -7.4 %.
+- C medio = 95.83 contra C_eq 96.24 (-0.4 %); antes -2.4 %.
+- Conclusión: el sesgo del Escenario 4 era de la ventana (relajación lenta a T = 100), no del modelo.
+- Estado: los 4 escenarios están hechos. Lo que queda abierto: t½ de los agentes 12-31 % mayor que la EDO a T = 200-400 (una sola tanda), y el sesgo de -1.7 / -1.9 % a T = 200 (Esc. 1 y 2), ambos sin explicación verificada. Falta la evidencia de verificación (balance de átomos, prueba T = 1) y el informe.

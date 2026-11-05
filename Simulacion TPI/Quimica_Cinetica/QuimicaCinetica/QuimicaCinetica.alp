@@ -646,6 +646,21 @@ totalB = NB0 + NC0;
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793901518536</Id>
+					<Name><![CDATA[t0]]></Name>
+					<X>1000</X><Y>-420</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="StockVariable">
 					<Id>1793385062690</Id>
 					<Name><![CDATA[A_sd]]></Name>
@@ -820,7 +835,7 @@ totalB = NB0 + NC0;
 				<Variable Class="Parameter">
 					<Id>1793383683619</Id>
 					<Name><![CDATA[T]]></Name>
-					<X>400</X><Y>-420</Y>
+					<X>1000</X><Y>40</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1700,22 +1715,23 @@ rFwdAvg += aEma * (nFwd / 0.1 - rFwdAvg);
 rRevAvg += aEma * (nRev / 0.1 - rRevAvg);
 nFwd = 0;
 nRev = 0;
+double tr = time() - t0;
 
 // Escenarios automaticos (escenario = 0 deja el control manual)
-if (escenario == 3 && !s3Done && time() >= tCat) {
+if (escenario == 3 && !s3Done && tr >= tCat) {
     catalystOn = true;
     resetStats();
     s3Done = true;
 }
 if (escenario == 4) {
-    if (!s4PulsoDone && time() >= t4Pulso) {
+    if (!s4PulsoDone && tr >= t4Pulso) {
         for (int i = 0; i < nPulso; i++) spawn(0);
         totalA += nPulso;
         A_sd += nPulso;
         resetStats();
         s4PulsoDone = true;
     }
-    if (!s4FrioDone && time() >= t4Enfriar) {
+    if (!s4FrioDone && tr >= t4Enfriar) {
         set_T(T4frio);
         resetStats();
         s4FrioDone = true;
@@ -1723,10 +1739,10 @@ if (escenario == 4) {
 }
 
 // t_1/2: primer instante en que C llega a la mitad de su valor de equilibrio
-if (tHalf < 0 && CeqTeo() > 0 && cC >= 0.5 * CeqTeo()) tHalf = time();
+if (tHalf < 0 && CeqTeo() > 0 && cC >= 0.5 * CeqTeo()) tHalf = tr;
 
 // guía de t_eq: primer instante en que la solución SD llega al 98 % del equilibrio
-if (tEqSD < 0 && CeqTeo() > 0 && C_sd >= 0.98 * CeqTeo()) tEqSD = time();
+if (tEqSD < 0 && CeqTeo() > 0 && C_sd >= 0.98 * CeqTeo()) tEqSD = tr;
 
 // acumular después del período de espera
 if (time() >= tStats) {
@@ -2147,6 +2163,56 @@ tStats = time() + tEq;]]></Body>
 					<Body><![CDATA[return nReact > 0 ? 100.0 / Math.sqrt(nReact) : 0;
 ]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793901636524</Id>
+					<Name><![CDATA[cargarEscenario]]></Name>
+					<X>1000</X><Y>-400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[e]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Vaciar el reactor
+while (molecules.size() > 0) remove_molecules(molecules.get(0));
+
+// Parámetros de cada escenario
+catalystOn = false;
+set_escenario(0);
+switch (e) {
+    case 1:  // Escenario 1: temperatura (cambiá T con el slider después)
+        set_T(100); set_NA0(150); set_NB0(150); set_tEq(300);
+        break;
+    case 2:  // Escenario 2: reactivo limitante
+        set_T(200); set_NA0(200); set_NB0(50);  set_tEq(100);
+        break;
+    case 3:  // Escenario 3: catalizador a tCat = 50 s
+        set_T(100); set_NA0(150); set_NB0(150); set_tEq(100);
+        set_escenario(3);
+        break;
+    case 4:  // Escenario 4: pulso de A y enfriamiento
+        set_T(200); set_NA0(150); set_NB0(150); set_tEq(450);
+        set_escenario(4);
+        break;
+}
+
+// Estado inicial
+for (int i = 0; i < NA0; i++) spawn(0);
+for (int i = 0; i < NB0; i++) spawn(1);
+totalA = NA0;  totalB = NB0;
+A_sd = NA0;  B_sd = NB0;  C_sd = 0;
+
+// Reiniciar banderas, contadores y estadísticas
+s3Done = false;  s4PulsoDone = false;  s4FrioDone = false;
+tHalf = -1;  tEqSD = -1;
+rFwdAvg = 0;  rRevAvg = 0;  nFwd = 0;  nRev = 0;
+t0 = time();
+resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
+				</Function>
 			</Functions>
 
 			<EmbeddedObjects>
@@ -2269,7 +2335,7 @@ tStats = time() + tEq;]]></Body>
     			<TimePlot>
 					<Id>1793387771288</Id>
 					<Name><![CDATA[plot]]></Name>
-					<X>920</X><Y>420</Y>
+					<X>440</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2290,14 +2356,14 @@ tStats = time() + tEq;]]></Body>
 						</RecurrenceCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>390</Width>
+					<Width>900</Width>
 					<Height>330</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>50</XOffset>
+						<XOffset>60</XOffset>
 						<YOffset>30</YOffset>
-						<Width>310</Width>
+						<Width>800</Width>
 						<Height>220</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
@@ -2380,14 +2446,14 @@ tStats = time() + tEq;]]></Body>
 						</RecurrenceCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>820</Width>
+					<Width>900</Width>
 					<Height>330</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>50</XOffset>
+						<XOffset>40</XOffset>
 						<YOffset>30</YOffset>
-						<Width>740</Width>
+						<Width>800</Width>
 						<Height>220</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
@@ -2500,7 +2566,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793387864298</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>1115</X><Y>420</Y>
+					<X>890</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2521,7 +2587,7 @@ tStats = time() + tEq;]]></Body>
     			<TimePlot>
 					<Id>1793387882593</Id>
 					<Name><![CDATA[plot1]]></Name>
-					<X>480</X><Y>420</Y>
+					<X>520</X><Y>760</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2542,15 +2608,15 @@ tStats = time() + tEq;]]></Body>
 						</RecurrenceCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>400</Width>
-					<Height>280</Height>
+					<Width>760.6349206349206</Width>
+					<Height>222.4891246778637</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>320</Width>
-						<Height>150</Height>
+						<Width>680.6349206349206</Width>
+						<Height>92.48912467786371</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
@@ -2611,7 +2677,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793387949695</Id>
 					<Name><![CDATA[text2]]></Name>
-					<X>680</X><Y>420</Y>
+					<X>900.318</X><Y>760.001</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2632,7 +2698,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388422341</Id>
 					<Name><![CDATA[text3]]></Name>
-					<X>20</X><Y>520</Y>
+					<X>20</X><Y>710</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2654,7 +2720,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388527169</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>20</X><Y>540</Y>
+					<X>20</X><Y>730</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2677,7 +2743,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388538163</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>20</X><Y>560</Y>
+					<X>20</X><Y>750</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2701,7 +2767,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388547594</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>20</X><Y>580</Y>
+					<X>20</X><Y>770</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2724,7 +2790,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388555921</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>20</X><Y>600</Y>
+					<X>20</X><Y>790</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2747,7 +2813,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388563467</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>20</X><Y>620</Y>
+					<X>20</X><Y>810</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2771,7 +2837,7 @@ tStats = time() + tEq;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793388832996</Id>
 					<Name><![CDATA[sliderT]]></Name>
-					<X>190</X><Y>510</Y>
+					<X>50</X><Y>480</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2795,7 +2861,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388914801</Id>
 					<Name><![CDATA[ParametroT]]></Name>
-					<X>340</X><Y>490</Y>
+					<X>200</X><Y>460</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2816,7 +2882,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388960866</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>190</X><Y>540</Y>
+					<X>50</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2838,7 +2904,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388960868</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>490</X><Y>540</Y>
+					<X>350</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2860,7 +2926,7 @@ tStats = time() + tEq;]]></Body>
 				<Text>
 					<Id>1793388960870</Id>
 					<Name><![CDATA[text11]]></Name>
-					<X>340</X><Y>540</Y>
+					<X>200</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3044,7 +3110,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793389536235</Id>
 					<Name><![CDATA[text12]]></Name>
-					<X>20</X><Y>500</Y>
+					<X>20</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3066,7 +3132,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393287473</Id>
 					<Name><![CDATA[text13]]></Name>
-					<X>20</X><Y>690</Y>
+					<X>20</X><Y>870</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3089,7 +3155,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393303375</Id>
 					<Name><![CDATA[text14]]></Name>
-					<X>20</X><Y>710</Y>
+					<X>20</X><Y>890</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3113,7 +3179,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393316061</Id>
 					<Name><![CDATA[text15]]></Name>
-					<X>20</X><Y>730</Y>
+					<X>20</X><Y>910</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3136,7 +3202,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000510</Id>
 					<Name><![CDATA[textRateC]]></Name>
-					<X>180</X><Y>690</Y>
+					<X>20</X><Y>930</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3159,7 +3225,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000520</Id>
 					<Name><![CDATA[textRateDirInv]]></Name>
-					<X>180</X><Y>710</Y>
+					<X>20</X><Y>950</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3182,7 +3248,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000530</Id>
 					<Name><![CDATA[textRateSD]]></Name>
-					<X>180</X><Y>730</Y>
+					<X>20</X><Y>970</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3205,7 +3271,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393349315</Id>
 					<Name><![CDATA[text16]]></Name>
-					<X>20</X><Y>660</Y>
+					<X>20</X><Y>850</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3223,6 +3289,90 @@ tEqSD = -1;]]></ActionCode>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793901779424</Id>
+					<Name><![CDATA[esc1]]></Name>
+					<X>100</X><Y>550</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="200" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[cargarEscenario(1);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 1: Temperatura]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793901815456</Id>
+					<Name><![CDATA[esc2]]></Name>
+					<X>100</X><Y>580</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="200" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[cargarEscenario(2);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 2: Reactivo Limitante]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793901818264</Id>
+					<Name><![CDATA[esc3]]></Name>
+					<X>100</X><Y>610</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="200" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[cargarEscenario(3);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 3: Catalizador]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793901821205</Id>
+					<Name><![CDATA[esc4]]></Name>
+					<X>100</X><Y>640</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="200" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[cargarEscenario(4);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 4: Le Chatelier]]></LabelText>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>
@@ -3503,8 +3653,8 @@ else             { mass = get_Main().masaC; rad = get_Main().radioC; }]]></Body>
 	<TimeAccuracy>1.0E-5</TimeAccuracy>
 	<Frame>
 		<Id>1793383542452</Id>
-		<Width>1366</Width>
-		<Height>768</Height>
+		<Width>1920</Width>
+		<Height>1080</Height>
 	</Frame>
 	<Database>
 		<Id>1793383542451</Id>
@@ -3559,7 +3709,7 @@ else             { mass = get_Main().masaC; rad = get_Main().radioC; }]]></Body>
 				<Text>
 					<Id>1793383542462</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>50</X><Y>30</Y>
+					<X>20</X><Y>10</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3569,7 +3719,146 @@ else             { mass = get_Main().masaC; rad = get_Main().radioC; }]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-12490271</Color>
-					<Text><![CDATA[QuimicaCinetica]]></Text>
+					<Text><![CDATA[Simulación híbrida de la reacción reversible A + B ⇌ C]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793919807220</Id>
+					<Name><![CDATA[text1]]></Name>
+					<X>20</X><Y>60</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Autores: Agustin Gil, Emanuel Salomón, Augusto Moratti, Facundo Speranza. 
+UTN Rosario, Ingeniería en Sistemas de Información.
+
+]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793919828251</Id>
+					<Name><![CDATA[text2]]></Name>
+					<X>20</X><Y>160</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Qué vas a ver 
+Un reactor 2D con moléculas A (azul), B (amarillo) y C (verde) que se mueven y chocan. Cuando una A choca con una B con energía suficiente, forman una C; 
+las C también se descomponen. Los gráficos comparan las moléculas simuladas una por una (líneas finas) con la solución teórica de las ecuaciones de acción de masas (líneas gruesas, "SD").
+
+]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>22</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793919964047</Id>
+					<Name><![CDATA[text3]]></Name>
+					<X>20</X><Y>260</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Como Empezar]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793919981533</Id>
+					<Name><![CDATA[text4]]></Name>
+					<X>20</X><Y>290</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[1. Elegí el experimento Simulation y dejá los parámetros por defecto.
+2. Iniciá la simulación. Las moléculas A y B reaccionan y aparece C.
+3. Para ver los escenarios del trabajo, usá los cuatro botones Escenario 1 a 4 de la pantalla]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793920003142</Id>
+					<Name><![CDATA[text5]]></Name>
+					<X>20</X><Y>390</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Controles]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793920003145</Id>
+					<Name><![CDATA[text6]]></Name>
+					<X>20</X><Y>430</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[- Slider de T: cambia la temperatura del reactor (50 a 500). Subirla acelera la reacción y reduce la cantidad de C en equilibrio.
+- Catalizador / Quitar catalizador: baja las energías de activación de ambos sentidos (acelera sin cambiar el equilibrio).
+- Inyectar +50 A / +50 B: perturba el equilibrio.
+- Escenario 1 a 4: cargan los parámetros de cada caso del informe y reinician el reactor.
+]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>24</Size>
@@ -3683,7 +3972,7 @@ else             { mass = get_Main().masaC; rad = get_Main().radioC; }]]></Body>
 				<FinalDate><![CDATA[1795996800000]]></FinalDate>
 				<FinalTime><![CDATA[100.0]]></FinalTime>
 			</ModelTimeProperties>
-			<BypassInitialScreen>true</BypassInitialScreen>
+			<BypassInitialScreen>false</BypassInitialScreen>
 		</SimulationExperiment>
 		<!--   =========  Parameter Variation Experiment   ========  -->
 		<ParamVariationExperiment ActiveObjectClassId="1793383542454">

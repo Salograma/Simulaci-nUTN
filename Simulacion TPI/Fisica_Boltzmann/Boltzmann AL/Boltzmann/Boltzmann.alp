@@ -465,7 +465,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[DataSet]]></Type>
+						<Type><![CDATA[DataSet]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[new DataSet(200)]]></Code>
 						</InitialValue>
@@ -480,7 +480,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[DataSet]]></Type>
+						<Type><![CDATA[DataSet]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[new DataSet(200)]]></Code>
 						</InitialValue>
@@ -495,7 +495,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[DataSet]]></Type>
+						<Type><![CDATA[DataSet]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[new DataSet(200)]]></Code>
 						</InitialValue>
@@ -510,7 +510,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[DataSet]]></Type>
+						<Type><![CDATA[DataSet]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[new DataSet(200)]]></Code>
 						</InitialValue>
@@ -525,7 +525,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double[]]]></Type>
+						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[null]]></Code>
 						</InitialValue>
@@ -540,7 +540,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double[]]]></Type>
+						<Type><![CDATA[double[]]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[null]]></Code>
 						</InitialValue>
@@ -550,6 +550,216 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					<Id>1793600000007</Id>
 					<Name><![CDATA[nSnapS]]></Name>
 					<X>1300</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793700000001</Id>
+					<Name><![CDATA[partition]]></Name>
+					<X>1400</X><Y>-320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793700000002</Id>
+					<Name><![CDATA[jouleOn]]></Name>
+					<X>1400</X><Y>-290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793700000003</Id>
+					<Name><![CDATA[tJoule]]></Name>
+					<X>1400</X><Y>-260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793700000004</Id>
+					<Name><![CDATA[fracLeft]]></Name>
+					<X>1400</X><Y>-230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793700000005</Id>
+					<Name><![CDATA[dsFrac]]></Name>
+					<X>1400</X><Y>-200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(1000)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000001</Id>
+					<Name><![CDATA[slopeT]]></Name>
+					<X>1500</X><Y>-320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000002</Id>
+					<Name><![CDATA[interceptT]]></Name>
+					<X>1500</X><Y>-290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000003</Id>
+					<Name><![CDATA[r2T]]></Name>
+					<X>1500</X><Y>-260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000004</Id>
+					<Name><![CDATA[jumpL]]></Name>
+					<X>1500</X><Y>-230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000005</Id>
+					<Name><![CDATA[jumpR]]></Name>
+					<X>1500</X><Y>-200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793800000006</Id>
+					<Name><![CDATA[dsFit]]></Name>
+					<X>1500</X><Y>-170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(10)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793900000001</Id>
+					<Name><![CDATA[qLm]]></Name>
+					<X>1600</X><Y>-320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793900000002</Id>
+					<Name><![CDATA[qRm]]></Name>
+					<X>1600</X><Y>-290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793900000003</Id>
+					<Name><![CDATA[nQ]]></Name>
+					<X>1600</X><Y>-260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -590,7 +800,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[250]]></Code>
+							<Code><![CDATA[1000]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1792869861398</Id>
@@ -807,7 +1017,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
+							<Code><![CDATA[1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1792870011955</Id>
@@ -1222,6 +1432,41 @@ updateHistogramSpecies();]]></Action>
 					<Action><![CDATA[chiSquare();]]></Action>
 				</Event>
 				<Event>
+					<Id>1793700000020</Id>
+					<Name><![CDATA[ev_frac]]></Name>
+					<X>20</X><Y>-230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TriggerType="timeout" Mode="cyclic">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</Timeout>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
+						</Rate>
+						<Id>1793700000021</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1792915200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[0.5]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+						<Condition><![CDATA[false]]></Condition>
+					</Properties>
+					<Action><![CDATA[int nl = 0;
+for (Particle p : particles) if (p.getX() < Lx / 2) nl++;
+fracLeft = particles.size() > 0 ? nl / (double) particles.size() : 0;
+if (jouleOn) dsFrac.add(time() - tJoule, fracLeft);]]></Action>
+				</Event>
+				<Event>
 					<Id>1793149918105</Id>
 					<Name><![CDATA[ev_snap]]></Name>
 					<X>20</X><Y>-200</Y>
@@ -1367,6 +1612,7 @@ accumulate();]]></Body>
 						<Type><![CDATA[Particle]]></Type>
 					</Parameter>
 					<Body><![CDATA[double x = p.getX(), y = p.getY(), r = p.radius;
+double xOld = x - p.vx * dt;                 // posicion previa (para el tabique)
 
 if (x < r) {
     x = r;
@@ -1383,6 +1629,16 @@ if (y < r) {
 } else if (y > Ly - r) {
     y = Ly - r;
     if (p.vy > 0) { impulseAcc += 2 * p.mass * p.vy; p.vy = -p.vy; }
+}
+if (partition) {                              // tabique elastico en x = Lx/2
+    double xp = Lx / 2;
+    if (xOld <= xp && x > xp - r) {
+        x = xp - r;
+        if (p.vx > 0) p.vx = -p.vx;
+    } else if (xOld > xp && x < xp + r) {
+        x = xp + r;
+        if (p.vx < 0) p.vx = -p.vx;
+    }
 }
 p.setXY(x, y);]]></Body>
 				</Function>
@@ -1558,6 +1814,7 @@ for (int i = 0; i < M; i++) {
     profT[i] = 0.9 * profT[i] + 0.1 * (s / M);     // suavizado extra: cada columna tiene pocas partículas
     dsProfile.add((i + 0.5) * Lx / M, profT[i]);
 }
+analyzeProfile();
 steps = 0;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -1595,7 +1852,13 @@ return new Color(c.getRed(), c.getGreen(), c.getBlue(), 120);]]></Body>
 if (tWin > 0) pressure = impulseAcc / (tWin * 2 * (Lxe + Lye));
 pIdeal = particles.size() * kB * Tmeas / (Lxe * Lye);     // P A = N kB T
 
-if (tWin > 0) { qL = qWall[0] / tWin; qR = qWall[1] / tWin; }
+if (tWin > 0) {
+    qL = qWall[0] / tWin; qR = qWall[1] / tWin;
+    nQ++;                                              // promedio acumulado, luego media movil (~50 s)
+    double aQ = Math.max(0.02, 1.0 / nQ);
+    qLm += aQ * (qL - qLm);
+    qRm += aQ * (qR - qRm);
+}
 qWall[0] = 0; qWall[1] = 0;
 
 impulseAcc = 0; tWin = 0;]]></Body>
@@ -1719,6 +1982,7 @@ N = newN;]]></Body>
 					<Body><![CDATA[cantAcc = null;
 nSnap = 0;
 cantAccL = null; cantAccH = null; nSnapS = 0;
+nQ = 0;
 statV.reset();
 vtSaved = false;]]></Body>
 				</Function>
@@ -1727,7 +1991,7 @@ vtSaved = false;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793600000010</Id>
 					<Name><![CDATA[updateHistogramSpecies]]></Name>
-					<X>860</X><Y>-400</Y>
+					<X>870</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1757,6 +2021,75 @@ if (nL > 0 && nH > 0) {
         dsTheoL.add(vc, (Math.exp(-lo*lo/(2*sigL*sigL)) - Math.exp(-hi*hi/(2*sigL*sigL))) / dv);
         dsTheoH.add(vc, (Math.exp(-lo*lo/(2*sigH*sigH)) - Math.exp(-hi*hi/(2*sigH*sigH))) / dv);
     }
+}]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793700000010</Id>
+					<Name><![CDATA[startJoule]]></Name>
+					<X>1400</X><Y>-400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Expansion libre de Joule: todo el gas en la mitad izquierda, tabique en x = Lx/2
+initParticles();
+for (Particle p : particles)
+    p.setXY(uniform(p.radius, Lx / 2 - p.radius), uniform(p.radius, Ly - p.radius));
+resetHistogram();
+dsFrac.reset();
+partition = true;
+jouleOn = true;
+tJoule = time();
+fracLeft = 1.0;
+dsFrac.add(0, 1.0);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793700000011</Id>
+					<Name><![CDATA[removePartition]]></Name>
+					<X>1400</X><Y>-370</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[partition = false;      // se retira el tabique: el gas se expande]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793800000010</Id>
+					<Name><![CDATA[analyzeProfile]]></Name>
+					<X>1500</X><Y>-400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[// Escenario 3: ajuste lineal de la zona central del perfil T(x) y salto de temperatura en las paredes
+dsFit.reset();
+if (wallMode == 1 && profT != null) {
+    int i0 = (int) Math.round(0.25 * M), i1 = (int) Math.round(0.75 * M);   // zona central
+    double n = i1 - i0, sx = 0, sy = 0, sxx = 0, sxy = 0, syy = 0;
+    for (int i = i0; i < i1; i++) {
+        double x = (i + 0.5) * Lx / M, y = profT[i];
+        sx += x; sy += y; sxx += x * x; sxy += x * y; syy += y * y;
+    }
+    double den = n * sxx - sx * sx;
+    if (den > 0) {
+        slopeT = (n * sxy - sx * sy) / den;
+        interceptT = (sy - slopeT * sx) / n;
+        double ssTot = syy - sy * sy / n;
+        double ssRes = syy - interceptT * sy - slopeT * sxy;
+        r2T = ssTot > 0 ? 1 - ssRes / ssTot : 0;
+        jumpL = TL - interceptT;                          // T pared izq - T del gas extrapolada en x = 0
+        jumpR = TR - (interceptT + slopeT * Lx);          // T pared der - T del gas extrapolada en x = Lx
+        dsFit.add(0, interceptT);
+        dsFit.add(Lx, interceptT + slopeT * Lx);
+    }
+} else {
+    slopeT = 0; interceptT = 0; r2T = 0; jumpL = 0; jumpR = 0;
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -2190,8 +2523,8 @@ return c > 0 ? Math.sqrt(sum / c) : 0;]]></Body>
 					<LineColor/>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>80</Width>
-					<Height>60</Height>
+					<Width>600</Width>
+					<Height>400</Height>
 					<WidthCode><![CDATA[Lx / M]]></WidthCode>
 					<HeightCode><![CDATA[Ly / M]]></HeightCode>
 					<Rotation>0.0</Rotation>
@@ -2689,6 +3022,17 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>2.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Ajuste lineal (centro)]]></Title>
+					<Id>1793800000030</Id>
+					<Expression><![CDATA[dsFit]]></Expression>
+					<Color>-16776961</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<SamplesToKeep>100</SamplesToKeep>
@@ -3289,7 +3633,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 ]]></HorScaleToExpression>
 					<HorScaleType>FIXED</HorScaleType>
     			</Plot>
-				<Plot>
+    			<Plot>
 					<Id>1793600000020</Id>
 					<Name><![CDATA[plotEspecies]]></Name>
 					<X>1400</X><Y>560</Y>
@@ -3342,7 +3686,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
-					<DatasetExpression>
+					<DatasetExpression>  
 						<Title><![CDATA[Liviana obs]]></Title>
 					<Id>1793600000022</Id>
 					<Expression><![CDATA[dsObsL]]></Expression>
@@ -3353,7 +3697,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
-					<DatasetExpression>
+					<DatasetExpression>  
 						<Title><![CDATA[Pesada obs]]></Title>
 					<Id>1793600000023</Id>
 					<Expression><![CDATA[dsObsH]]></Expression>
@@ -3364,7 +3708,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
-					<DatasetExpression>
+					<DatasetExpression>  
 						<Title><![CDATA[Liviana teo]]></Title>
 					<Id>1793600000024</Id>
 					<Expression><![CDATA[dsTheoL]]></Expression>
@@ -3375,7 +3719,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
-					<DatasetExpression>
+					<DatasetExpression>  
 						<Title><![CDATA[Pesada teo]]></Title>
 					<Id>1793600000025</Id>
 					<Expression><![CDATA[dsTheoH]]></Expression>
@@ -3390,7 +3734,7 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
 					<HorScaleToExpression><![CDATA[vMaxFixed]]></HorScaleToExpression>
 					<HorScaleType>FIXED</HorScaleType>
-				</Plot>
+    			</Plot>
 				<Text>
 					<Id>1793153474546</Id>
 					<Name><![CDATA[text19]]></Name>
@@ -3438,6 +3782,275 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 					<Font>
 						<Name>Franklin Gothic Medium</Name>
 						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793963190833</Id>
+					<Name><![CDATA[startJoule]]></Name>
+					<X>630</X><Y>540</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="210" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[startJoule();]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="11" Style="0"/>
+						<LabelText><![CDATA[Experimento de Joule]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793963266858</Id>
+					<Name><![CDATA[removePartition]]></Name>
+					<X>630</X><Y>580</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="210" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[removePartition();]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="SansSerif" Size="11" Style="0"/>
+						<LabelText><![CDATA[Sacar tabique]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Line>
+					<Id>1793963435808</Id>
+					<Name><![CDATA[line]]></Name>
+					<X>300</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<VisibleCode><![CDATA[partition]]></VisibleCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<BeginArrowSize>1</BeginArrowSize>
+					<BeginArrowStyle>0</BeginArrowStyle>
+					<EndArrowSize>1</EndArrowSize>
+					<EndArrowStyle>0</EndArrowStyle>
+					<Dx>0</Dx>
+					<Dy>400</Dy>
+					<Dz>0</Dz>
+				</Line>
+				<Text>
+					<Id>1793964198686</Id>
+					<Name><![CDATA[text21]]></Name>
+					<X>20</X><Y>590</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[text]]></Text>
+					<TextCode><![CDATA["Fracción izquierda: " + format(fracLeft)
+]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+    			<Plot>
+					<Id>1793964250847</Id>
+					<Name><![CDATA[plot3]]></Name>
+					<X>880</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793964250845</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794038400000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>260</Width>
+					<Height>210</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>180</Width>
+						<Height>120</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[Fracción de partículas a la izquierda]]></Title>
+					<Id>1793964252825</Id>
+					<Expression><![CDATA[dsFrac]]></Expression>
+					<Color>-8097537</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
+					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
+					<HorScaleType>AUTO</HorScaleType>
+    			</Plot>
+				<Text>
+					<Id>1793800000021</Id>
+					<Name><![CDATA[textQ]]></Name>
+					<X>20</X><Y>610</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA[wallMode == 1 ? "<qL> = " + format(qLm) + "   <qR> = " + format(qRm) + "   suma = " + format(qLm + qRm) + "  (estacionario: suma ≈ 0)" : "Escenario 3: activar paredes térmicas"]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793800000022</Id>
+					<Name><![CDATA[textPerfil]]></Name>
+					<X>20</X><Y>628</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA[wallMode == 1 ? "Perfil central: dT/dx = " + format(slopeT) + " por px   R² = " + format(r2T) : ""]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793800000023</Id>
+					<Name><![CDATA[textSalto]]></Name>
+					<X>20</X><Y>646</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA[wallMode == 1 ? "Salto de T en la pared: izq = " + format(jumpL) + "   der = " + format(jumpR) : ""]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793800000024</Id>
+					<Name><![CDATA[textJoule1]]></Name>
+					<X>880</X><Y>1015</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA[partition ? "Tabique puesto: fracción izquierda = 1 (constante)." : "Tabique retirado: la fracción tiende a 0.5."]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1793800000025</Id>
+					<Name><![CDATA[textJoule2]]></Name>
+					<X>880</X><Y>1032</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Joule (Q = W = 0): Tmeas y E total se conservan: " + format(Tmeas) + " / " + format(Etot)]]></TextCode>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>14</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>

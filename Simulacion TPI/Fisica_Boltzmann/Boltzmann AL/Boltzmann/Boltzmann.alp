@@ -457,6 +457,111 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
+					<Id>1793600000001</Id>
+					<Name><![CDATA[dsObsL]]></Name>
+					<X>1300</X><Y>-320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(200)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000002</Id>
+					<Name><![CDATA[dsObsH]]></Name>
+					<X>1300</X><Y>-290</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(200)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000003</Id>
+					<Name><![CDATA[dsTheoL]]></Name>
+					<X>1300</X><Y>-260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(200)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000004</Id>
+					<Name><![CDATA[dsTheoH]]></Name>
+					<X>1300</X><Y>-230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[DataSet]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new DataSet(200)]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000005</Id>
+					<Name><![CDATA[cantAccL]]></Name>
+					<X>1300</X><Y>-200</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double[]]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[null]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000006</Id>
+					<Name><![CDATA[cantAccH]]></Name>
+					<X>1300</X><Y>-170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double[]]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[null]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793600000007</Id>
+					<Name><![CDATA[nSnapS]]></Name>
+					<X>1300</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
 					<Id>1793463644612</Id>
 					<Name><![CDATA[vtSaved]]></Name>
 					<X>1040</X><Y>-470</Y>
@@ -1049,7 +1154,8 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 						</RecurrenceCode>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
-					<Action><![CDATA[updateHistogram();]]></Action>
+					<Action><![CDATA[updateHistogram();
+updateHistogramSpecies();]]></Action>
 				</Event>
 				<Event>
 					<Id>1792869753494</Id>
@@ -1612,8 +1718,46 @@ N = newN;]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[cantAcc = null;
 nSnap = 0;
+cantAccL = null; cantAccH = null; nSnapS = 0;
 statV.reset();
 vtSaved = false;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793600000010</Id>
+					<Name><![CDATA[updateHistogramSpecies]]></Name>
+					<X>860</X><Y>-400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double sigL = Math.sqrt(kB * Tmeas / 1.0), sigH = Math.sqrt(kB * Tmeas / m1);
+double dv = vMaxFixed / nBins;
+int[] cL = new int[nBins], cH = new int[nBins];
+int nL = 0, nH = 0;
+for (Particle p : particles) {
+    boolean heavy = Math.abs(p.mass - m1) < 1e-9;
+    int b = (int) (Math.sqrt(p.vx * p.vx + p.vy * p.vy) / dv);
+    if (heavy) { nH++; if (b < nBins) cH[b]++; }
+    else       { nL++; if (b < nBins) cL[b]++; }
+}
+dsObsL.reset(); dsObsH.reset(); dsTheoL.reset(); dsTheoH.reset();
+if (nL > 0 && nH > 0) {
+    if (cantAccL == null || cantAccL.length != nBins) {
+        cantAccL = new double[nBins]; cantAccH = new double[nBins]; nSnapS = 0;
+    }
+    nSnapS++;
+    for (int b = 0; b < nBins; b++) {
+        cantAccL[b] += cL[b] / (double) nL;      // fraccion de la especie por bin, por foto
+        cantAccH[b] += cH[b] / (double) nH;
+        double lo = b * dv, hi = (b + 1) * dv, vc = 0.5 * (lo + hi);
+        dsObsL.add(vc, cantAccL[b] / (nSnapS * dv));     // densidad de probabilidad f(v)
+        dsObsH.add(vc, cantAccH[b] / (nSnapS * dv));
+        dsTheoL.add(vc, (Math.exp(-lo*lo/(2*sigL*sigL)) - Math.exp(-hi*hi/(2*sigL*sigL))) / dv);
+        dsTheoH.add(vc, (Math.exp(-lo*lo/(2*sigH*sigH)) - Math.exp(-hi*hi/(2*sigH*sigH))) / dv);
+    }
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -3145,6 +3289,108 @@ if (value == 1) wallMode = 0;]]></ActionCode>
 ]]></HorScaleToExpression>
 					<HorScaleType>FIXED</HorScaleType>
     			</Plot>
+				<Plot>
+					<Id>1793600000020</Id>
+					<Name><![CDATA[plotEspecies]]></Name>
+					<X>1400</X><Y>560</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793600000021</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1793174400000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>230</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>220</Width>
+						<Height>130</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>40</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>
+						<Title><![CDATA[Liviana obs]]></Title>
+					<Id>1793600000022</Id>
+					<Expression><![CDATA[dsObsL]]></Expression>
+					<Color>-14774017</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>
+						<Title><![CDATA[Pesada obs]]></Title>
+					<Id>1793600000023</Id>
+					<Expression><![CDATA[dsObsH]]></Expression>
+					<Color>-10496</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>
+						<Title><![CDATA[Liviana teo]]></Title>
+					<Id>1793600000024</Id>
+					<Expression><![CDATA[dsTheoL]]></Expression>
+					<Color>-16776961</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>
+						<Title><![CDATA[Pesada teo]]></Title>
+					<Id>1793600000025</Id>
+					<Expression><![CDATA[dsTheoH]]></Expression>
+					<Color>-3137392</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<SamplesToKeep>200</SamplesToKeep>
+					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
+					<HorScaleToExpression><![CDATA[vMaxFixed]]></HorScaleToExpression>
+					<HorScaleType>FIXED</HorScaleType>
+				</Plot>
 				<Text>
 					<Id>1793153474546</Id>
 					<Name><![CDATA[text19]]></Name>

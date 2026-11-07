@@ -123,7 +123,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480302556</Id>
 					<Name><![CDATA[y]]></Name>
-					<X>170</X><Y>520</Y>
+					<X>60</X><Y>520</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -138,7 +138,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480453096</Id>
 					<Name><![CDATA[x]]></Name>
-					<X>170</X><Y>540</Y>
+					<X>60</X><Y>540</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -153,7 +153,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480454466</Id>
 					<Name><![CDATA[z]]></Name>
-					<X>170</X><Y>560</Y>
+					<X>60</X><Y>560</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -168,7 +168,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480455700</Id>
 					<Name><![CDATA[w]]></Name>
-					<X>170</X><Y>580</Y>
+					<X>60</X><Y>580</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -180,6 +180,108 @@
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793887528158</Id>
+					<Name><![CDATA[entradasW0]]></Name>
+					<X>150</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793969980803</Id>
+					<Name><![CDATA[pFinal]]></Name>
+					<X>430</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1793969913541</Id>
+					<Name><![CDATA[dimensionSel]]></Name>
+					<X>280</X><Y>520</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[3]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1793969913539</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1793969918371</Id>
+					<Name><![CDATA[Npasos]]></Name>
+					<X>280</X><Y>550</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[10000]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1793969918369</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1793969921503</Id>
+					<Name><![CDATA[Mreplicas]]></Name>
+					<X>280</X><Y>580</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[2000]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1793969921501</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
@@ -187,7 +289,7 @@
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793208417993</Id>
 					<Name><![CDATA[retornoMC]]></Name>
-					<X>160</X><Y>60</Y>
+					<X>300</X><Y>-140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -234,7 +336,7 @@ return (double) retornos / M;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793365478860</Id>
 					<Name><![CDATA[verificarIsotropia]]></Name>
-					<X>460</X><Y>60</Y>
+					<X>455</X><Y>-120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -270,7 +372,7 @@ for (int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793366339065</Id>
 					<Name><![CDATA[estadisticasPosicion]]></Name>
-					<X>300</X><Y>60</Y>
+					<X>300</X><Y>-160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -328,7 +430,7 @@ return resultado;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793366960349</Id>
 					<Name><![CDATA[validarPolya]]></Name>
-					<X>160</X><Y>100</Y>
+					<X>300</X><Y>-120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -363,7 +465,7 @@ for (int d = 1; d <= 4; d++) {
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793388800531</Id>
 					<Name><![CDATA[estadisticasR2]]></Name>
-					<X>300</X><Y>100</Y>
+					<X>455</X><Y>-160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -415,7 +517,7 @@ return new double[] { media, standardError };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793388934577</Id>
 					<Name><![CDATA[verificarDifusion]]></Name>
-					<X>460</X><Y>100</Y>
+					<X>610</X><Y>-160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -447,7 +549,7 @@ return new double[] { media, standardError };]]></Body>
 					<ReturnType><![CDATA[long[]]]></ReturnType>
 					<Id>1793392203436</Id>
 					<Name><![CDATA[contarVisitasOrigen]]></Name>
-					<X>300</X><Y>140</Y>
+					<X>455</X><Y>-140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -496,7 +598,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793392748096</Id>
 					<Name><![CDATA[verificarParidad]]></Name>
-					<X>460</X><Y>140</Y>
+					<X>610</X><Y>-140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -524,7 +626,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480350551</Id>
 					<Name><![CDATA[updateX]]></Name>
-					<X>60</X><Y>540</Y>
+					<X>460</X><Y>-80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -536,7 +638,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480405079</Id>
 					<Name><![CDATA[updateZ]]></Name>
-					<X>60</X><Y>560</Y>
+					<X>460</X><Y>-60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -548,7 +650,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480407203</Id>
 					<Name><![CDATA[updateY]]></Name>
-					<X>60</X><Y>520</Y>
+					<X>460</X><Y>-100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -561,20 +663,138 @@ y = valor;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480420580</Id>
 					<Name><![CDATA[updateW]]></Name>
-					<X>60</X><Y>580</Y>
+					<X>460</X><Y>-40</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[w = walker.get(0).w;]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793887522194</Id>
+					<Name><![CDATA[W0]]></Name>
+					<X>660</X><Y>-70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[entradasW0 = walker.get(0).entradasW0;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1793970099437</Id>
+					<Name><![CDATA[calcularCurva]]></Name>
+					<X>610</X><Y>-120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[int d = dimensionSel;
+int bins = Npasos / 2;
+long[] primeros = new long[bins + 1];
+
+for (int rep = 0; rep < Mreplicas; rep++){
+	int x = 0, y = 0, z = 0, w = 0;
+	
+	for (int s = 1; s <= Npasos; s++){
+		int dir = uniform_discr(0, 2 * d - 1);
+		
+		if (dir == 0) x++;
+        else if (dir == 1) x--;
+        else if (dir == 2) y++;
+        else if (dir == 3) y--;
+        else if (dir == 4) z++;
+        else if (dir == 5) z--;
+        else if (dir == 6) w++;
+        else if (dir == 7) w--;
+        
+        if (x == 0 && y == 0 && z == 0 && w == 0) {
+            primeros[s / 2]++;
+            break;
+        }
+	}
+}
+
+curvaRetorno.reset();
+long acumulado = 0;
+int salto = Math.max(1, bins / 200);
+
+for (int k = 1; k <= bins; k++){
+	acumulado += primeros[k];
+	if(k % salto == 0 || k == bins){
+		curvaRetorno.add(2.0 * k, (double) acumulado / Mreplicas);
+	}
+}
+pFinal = (double) acumulado / Mreplicas;
+
+double[] teorico = {1.0, 1.0, 0.340537, 0.193206};
+curvaPolya.reset();
+curvaPolya.add(0, teorico[d - 1]);
+curvaPolya.add(Npasos, teorico[d - 1]);
+plot1.updateData();]]></Body>
+				</Function>
 			</Functions>
+			<AnalysisData>
+    			<DataSet>
+					<Id>1793970017445</Id>
+					<Name><![CDATA[curvaRetorno]]></Name>
+					<X>430</X><Y>550</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793970017443</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794038400000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1793970022151</Id>
+					<Name><![CDATA[curvaPolya]]></Name>
+					<X>430</X><Y>580</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793970022149</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794038400000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>2</SamplesToKeep>
+				</DataSet>
+			</AnalysisData>
 
 			<EmbeddedObjects>
 				<EmbeddedObject>
 					<Id>1793207772691</Id>
 					<Name><![CDATA[walker]]></Name>
-					<X>100</X><Y>60</Y>
+					<X>300</X><Y>-60</Y>
 					<Label><X>-30</X><Y>-30</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -802,6 +1022,187 @@ y = valor;]]></Body>
 					<ZCode><![CDATA[walker.get(0).z * 10]]></ZCode>
 					<VisibleCode><![CDATA[walker.get(0).w == 0;]]></VisibleCode>
 				</Figure3D>
+    			<TimePlot>
+					<Id>1793885635215</Id>
+					<Name><![CDATA[plot]]></Name>
+					<X>60</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793885635213</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1793952000000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[0.1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>300</Width>
+					<Height>200</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>30</XOffset>
+						<YOffset>10</YOffset>
+						<Width>260</Width>
+						<Height>140</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<TimeWindowsMovementType>MOVEMENT_WITH_TIME</TimeWindowsMovementType>		
+					<TimeWindowUnits>MODEL_TIME_UNIT</TimeWindowUnits>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[w(t)]]></Title>
+					<Id>1793885636688</Id>
+					<Expression><![CDATA[get.walker(0).w]]></Expression>
+					<Color>-13447886</Color>
+					<Expression2><![CDATA[walker.get(0).w]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[0]]></Title>
+					<Id>1793887892951</Id>
+					<Expression><![CDATA[curvaRetorno]]></Expression>
+					<Color>-65536</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>true</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<TimeWindowExpression><![CDATA[100]]></TimeWindowExpression>
+					<FillAreaUnderLine>false</FillAreaUnderLine>
+					<LabelFormat>MODEL_TIME_UNITS</LabelFormat>
+    			</TimePlot>
+    			<Plot>
+					<Id>1793971317014</Id>
+					<Name><![CDATA[plot1]]></Name>
+					<X>560</X><Y>200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1793971317012</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794038400000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>420</Width>
+					<Height>340</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>340</Width>
+						<Height>250</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[P(retorno <= N) simulada]]></Title>
+					<Id>1793971318936</Id>
+					<Expression><![CDATA[curvaRetorno]]></Expression>
+					<Color>-16711681</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>2.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Valor de Polya]]></Title>
+					<Id>1793971442280</Id>
+					<Expression><![CDATA[curvaPolya]]></Expression>
+					<Color>-14774017</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
+					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
+					<HorScaleType>AUTO</HorScaleType>
+    			</Plot>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1793971588533</Id>
+					<Name><![CDATA[button]]></Name>
+					<X>620</X><Y>160</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[calcularCurva();]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Calcular]]></LabelText>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>
@@ -1019,6 +1420,21 @@ y = valor;]]></Body>
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1793884054048</Id>
+					<Name><![CDATA[entradasW0]]></Name>
+					<X>280</X><Y>20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1793207039947</Id>
 					<Name><![CDATA[dimension]]></Name>
@@ -1076,6 +1492,7 @@ y = valor;]]></Body>
 						<Condition><![CDATA[false]]></Condition>
 					</Properties>
 					<Action><![CDATA[step();
+get_Main().W0();
 get_Main().updateX();
 get_Main().updateY();
 get_Main().updateZ();
@@ -1093,7 +1510,8 @@ get_Main().updateW();]]></Action>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[int dir = uniform_discr(0, 2 * dimension - 1);
+					<Body><![CDATA[int wAntes = w;
+int dir = uniform_discr(0, 2 * dimension - 1);
 
 
 if (dir == 0) x++;
@@ -1108,10 +1526,15 @@ else if (dir == 7) w--;
 
 steps++;
 
-if (!returned && x == 0 && y == 0){
+if (!returned && x == 0 && y == 0 && z == 0 && w == 0){
 	returned = true;
 	returnTime = steps;
-}]]></Body>
+};
+
+if(!returned && wAntes != 0 && w == 0){
+	entradasW0++;
+}
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -1270,6 +1693,15 @@ if (!returned && x == 0 && y == 0){
 			</Presentation>
 
 			<Parameters>
+				<Parameter>
+					<ParameterName><![CDATA[dimensionSel]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[Npasos]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[Mreplicas]]></ParameterName>
+				</Parameter>
 			</Parameters>
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>

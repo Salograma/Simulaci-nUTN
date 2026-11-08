@@ -7,7 +7,7 @@
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.9.10.202609231424" AlpVersion="8.9.10">
 <Model>
 	<Id>1792867900068</Id>
-	<Name><![CDATA[Boltzmann_EXP]]></Name>
+	<Name><![CDATA[Boltzmann]]></Name>
 	<EngineVersion>6</EngineVersion>
 	<JavaPackageName><![CDATA[boltzmann]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Second]]></ModelTimeUnit>
@@ -1453,7 +1453,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 				<Variable Class="Parameter">
 					<Id>1792870011957</Id>
 					<Name><![CDATA[wallMode]]></Name>
-					<X>680</X><Y>-80</Y>
+					<X>660</X><Y>-70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1765,7 +1765,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 				<Variable Class="Parameter">
 					<Id>1796000000020</Id>
 					<Name><![CDATA[rPart]]></Name>
-					<X>650</X><Y>-90</Y>
+					<X>790</X><Y>-80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1789,7 +1789,7 @@ for (double u = 0; u <= 5; u += 0.05) dsHTheo.add(u, u * Math.exp(-u*u/2));]]></
 				<Variable Class="Parameter">
 					<Id>1796000000030</Id>
 					<Name><![CDATA[tPrep]]></Name>
-					<X>700</X><Y>-90</Y>
+					<X>730</X><Y>-90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3174,7 +3174,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<EmbeddedObject>
 					<Id>1792868667390</Id>
 					<Name><![CDATA[particles]]></Name>
-					<X>120</X><Y>-40</Y>
+					<X>20</X><Y>-50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3392,7 +3392,7 @@ bAcc[11] += fracLeft;]]></Body>
 						<Title><![CDATA[Observacion]]></Title>
 					<Id>1792873915529</Id>
 					<Expression><![CDATA[dsObs]]></Expression>
-					<Color>-4565549</Color>
+					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
@@ -3418,7 +3418,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792874962120</Id>
 					<Name><![CDATA[text3]]></Name>
-					<X>25</X><Y>410</Y>
+					<X>0</X><Y>405</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3440,7 +3440,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792874992937</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>25</X><Y>425</Y>
+					<X>0</X><Y>420</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3462,7 +3462,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792874998556</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>25</X><Y>440</Y>
+					<X>0</X><Y>435</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3484,7 +3484,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792875003071</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>25</X><Y>455</Y>
+					<X>0</X><Y>450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3506,7 +3506,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792875007866</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>25</X><Y>470</Y>
+					<X>0</X><Y>465</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3528,7 +3528,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792875012967</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>25</X><Y>485</Y>
+					<X>0</X><Y>480</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3550,7 +3550,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792875018221</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>25</X><Y>500</Y>
+					<X>0</X><Y>495</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3572,7 +3572,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1792875023305</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>25</X><Y>515</Y>
+					<X>0</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3929,7 +3929,7 @@ bAcc[11] += fracLeft;]]></Body>
 						<DefaultValueCode><![CDATA[250]]></DefaultValueCode>
 						<Orientation>HORIZONTAL</Orientation>
 						<MinValue><![CDATA[50]]></MinValue>
-						<MaxValue><![CDATA[1000]]></MaxValue>
+						<MaxValue><![CDATA[2000]]></MaxValue>
 						<Step><![CDATA[10]]></Step>
 						<LinkTo>false</LinkTo>
 					</ExtendedProperties>
@@ -4027,7 +4027,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793149992235</Id>
 					<Name><![CDATA[text18]]></Name>
-					<X>25</X><Y>575</Y>
+					<X>0</X><Y>570</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4257,7 +4257,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -4268,7 +4268,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -4279,7 +4279,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -4289,7 +4289,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Color>-3137392</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
+						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
@@ -4360,7 +4360,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -4371,7 +4371,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>2.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
@@ -4381,7 +4381,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
+						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
@@ -4392,7 +4392,7 @@ bAcc[11] += fracLeft;]]></Body>
 					<Color>-3137392</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
+						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
@@ -4404,7 +4404,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793153474546</Id>
 					<Name><![CDATA[text19]]></Name>
-					<X>25</X><Y>590</Y>
+					<X>0</X><Y>585</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4429,7 +4429,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793153742918</Id>
 					<Name><![CDATA[text20]]></Name>
-					<X>25</X><Y>605</Y>
+					<X>0</X><Y>600</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4482,7 +4482,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793964198686</Id>
 					<Name><![CDATA[text21]]></Name>
-					<X>25</X><Y>620</Y>
+					<X>0</X><Y>615</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4576,7 +4576,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793800000021</Id>
 					<Name><![CDATA[textQ]]></Name>
-					<X>25</X><Y>695</Y>
+					<X>0</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4599,7 +4599,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793800000022</Id>
 					<Name><![CDATA[textPerfil]]></Name>
-					<X>25</X><Y>710</Y>
+					<X>0</X><Y>705</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4622,7 +4622,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793800000023</Id>
 					<Name><![CDATA[textSalto]]></Name>
-					<X>25</X><Y>680</Y>
+					<X>0</X><Y>675</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4645,7 +4645,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793800000024</Id>
 					<Name><![CDATA[textJoule1]]></Name>
-					<X>25</X><Y>640</Y>
+					<X>0</X><Y>635</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4668,7 +4668,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1793800000025</Id>
 					<Name><![CDATA[textJoule2]]></Name>
-					<X>25</X><Y>660</Y>
+					<X>0</X><Y>655</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4734,7 +4734,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1795000000009</Id>
 					<Name><![CDATA[tVxy]]></Name>
-					<X>25</X><Y>530</Y>
+					<X>0</X><Y>525</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4756,7 +4756,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1795000000010</Id>
 					<Name><![CDATA[tChoque]]></Name>
-					<X>25</X><Y>545</Y>
+					<X>0</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4778,7 +4778,7 @@ bAcc[11] += fracLeft;]]></Body>
 				<Text>
 					<Id>1795000000011</Id>
 					<Name><![CDATA[tChiRej]]></Name>
-					<X>25</X><Y>560</Y>
+					<X>0</X><Y>555</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5265,7 +5265,7 @@ wallMode = value;]]></ActionCode>
 					<VisibleCode><![CDATA[escenario == 2]]></VisibleCode>
 					<ShowLegend>true</ShowLegend>
 					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleToExpression><![CDATA[2.5]]></VerScaleToExpression>
 					<VerScaleType>AUTO</VerScaleType>
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
@@ -5291,10 +5291,10 @@ wallMode = value;]]></ActionCode>
 						<LineWidth>1.0</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
+					<SamplesToKeep>300</SamplesToKeep>
 					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
-					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
-					<HorScaleType>AUTO</HorScaleType>
+					<HorScaleToExpression><![CDATA[150]]></HorScaleToExpression>
+					<HorScaleType>FIXED</HorScaleType>
     			</Plot>
     			<Plot>
 					<Id>1793989576713</Id>

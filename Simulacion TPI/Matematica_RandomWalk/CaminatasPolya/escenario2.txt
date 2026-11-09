@@ -1,0 +1,6 @@
+P(visita w=0) = 0.9952
+P(retorno) = 0.1943
+P(retorno | visita w=0) = 0.1952371382636656
+Visitas medias al plano w=0 = 158.1152
+Visitas medias al origen = 0.2404  IC95%=[0.2296752381931159, 0.2511247618068841]  (Polya: u-1 = 0.239467)
+Fraccion de visitas al plano que caen en el origen = 0.0015204104349233977

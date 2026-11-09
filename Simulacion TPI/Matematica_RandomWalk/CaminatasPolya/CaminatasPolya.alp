@@ -756,6 +756,102 @@ caminante.returned = false;
 caminante.returnTime = 0;
 caminante.entradasW0 = 0;]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double[]]]></ReturnType>
+					<Id>1794195442903</Id>
+					<Name><![CDATA[curvaAcumulada]]></Name>
+					<X>800</X><Y>-160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[int bins = N / 2;
+long[] primeros = new long[bins + 1];
+
+for (int rep = 0; rep < M; rep++) {
+    int x = 0, y = 0, z = 0, w = 0;
+
+    for (int s = 1; s <= N; s++) {
+        int dir = uniform_discr(0, 2 * d - 1);
+
+        if (dir == 0) x++;
+        else if (dir == 1) x--;
+        else if (dir == 2) y++;
+        else if (dir == 3) y--;
+        else if (dir == 4) z++;
+        else if (dir == 5) z--;
+        else if (dir == 6) w++;
+        else if (dir == 7) w--;
+
+        if (x == 0 && y == 0 && z == 0 && w == 0) {
+            primeros[s / 2]++;
+            break;
+        }
+    }
+}
+
+double[] acumulada = new double[bins + 1];
+long suma = 0;
+
+for (int k = 1; k <= bins; k++) {
+    suma += primeros[k];
+    acumulada[k] = (double) suma / M;
+}
+
+return acumulada;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1794195697871</Id>
+					<Name><![CDATA[escenario1]]></Name>
+					<X>800</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[DataSet[] datasets = { curva1D, curva2D, curva3D, curva4D };
+double[] teorico = {1.0, 1.0, 0.340537, 0.193206};
+int bins = N / 2;
+int salto = Math.max(1, bins / 200);
+
+for (int d = 1; d <= 4; d++) {
+    double[] acum = curvaAcumulada(d, M, N);
+
+    datasets[d - 1].reset();
+    for (int k = salto; k <= bins; k += salto) {
+        datasets[d - 1].add(2.0 * k, acum[k]);
+    }
+
+    double p = acum[bins];
+    double standardError = Math.sqrt(p * (1 - p) / M);
+    traceln("d=" + d + "  p=" + p
+        + "  IC95%=[" + (p - 1.96 * standardError)
+        + ", " + (p + 1.96 * standardError) + "]"
+        + "  Polya=" + teorico[d - 1]);
+}]]></Body>
+				</Function>
 			</Functions>
 			<AnalysisData>
     			<DataSet>
@@ -807,6 +903,106 @@ caminante.entradasW0 = 0;]]></Body>
 					</RecurrenceProperties>
 					<FreezeXAxis>true</FreezeXAxis>
 					<SamplesToKeep>2</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1794196930645</Id>
+					<Name><![CDATA[curva1D]]></Name>
+					<X>820</X><Y>150</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1794196930643</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1794196942658</Id>
+					<Name><![CDATA[curva2D]]></Name>
+					<X>820</X><Y>172.5</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1794196942656</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1794196944311</Id>
+					<Name><![CDATA[curva3D]]></Name>
+					<X>820.5</X><Y>194</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1794196944309</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1794196945398</Id>
+					<Name><![CDATA[curva4D]]></Name>
+					<X>821.5</X><Y>217</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1794196945396</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
 				</DataSet>
 			</AnalysisData>
 
@@ -1128,7 +1324,7 @@ caminante.entradasW0 = 0;]]></Body>
     			<Plot>
 					<Id>1793971317014</Id>
 					<Name><![CDATA[plot1]]></Name>
-					<X>560</X><Y>200</Y>
+					<X>60</X><Y>740</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1209,7 +1405,7 @@ caminante.entradasW0 = 0;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793971588533</Id>
 					<Name><![CDATA[button]]></Name>
-					<X>620</X><Y>160</Y>
+					<X>100</X><Y>700</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1230,13 +1426,13 @@ caminante.entradasW0 = 0;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067240015</Id>
 					<Name><![CDATA[reiniciarCaminante]]></Name>
-					<X>150</X><Y>540</Y>
+					<X>120</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="130" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -1517,6 +1713,129 @@ caminante.entradasW0 = 0;]]></Body>
 					</Font>
 					<Alignment>CENTER</Alignment>
 				</Text>
+    			<Plot>
+					<Id>1794196344204</Id>
+					<Name><![CDATA[plotEscenario1]]></Name>
+					<X>600</X><Y>230</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1794196344202</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>360</Width>
+					<Height>260</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>280</Width>
+						<Height>170</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[1D]]></Title>
+					<Id>1794196346998</Id>
+					<Expression><![CDATA[curva1D]]></Expression>
+					<Color>-3137392</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[2D]]></Title>
+					<Id>1794196385466</Id>
+					<Expression><![CDATA[curva2D]]></Expression>
+					<Color>-32944</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[3D]]></Title>
+					<Id>1794196393015</Id>
+					<Expression><![CDATA[curva3D]]></Expression>
+					<Color>-13447886</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[4D]]></Title>
+					<Id>1794196404557</Id>
+					<Expression><![CDATA[curva4D]]></Expression>
+					<Color>-16776961</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
+					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
+					<HorScaleType>AUTO</HorScaleType>
+    			</Plot>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1794196435018</Id>
+					<Name><![CDATA[escenariaio1]]></Name>
+					<X>650</X><Y>195</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[escenario1(10000,10000)]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 1]]></LabelText>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>

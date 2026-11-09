@@ -115,8 +115,8 @@ Para contrastar la simulación, se documentan las soluciones analíticas exactas
 
 3. **Probabilidad finita de retorno en $N$ pasos ($P(T \le N)$):**
    - En dimensiones recurrentes (1D y 2D), aunque $P_{ret} = 1$ para $N \to \infty$, la convergencia es lenta:
-     - En 1D: $P(T \le N) = 1 - \frac{1}{\sqrt{\pi N}} + O(N^{-3/2})$. Para $N = 10\,000$, $P \approx 98.87\%$.
-     - En 2D: $P(T \le N) \sim 1 - \frac{\pi}{\ln N}$. Converge de forma logarítmica (muy lenta: para $N=1000$ aún ronda el $70\%$).
+     - En 1D: $P(T \le N) = 1 - \sqrt{\frac{2}{\pi N}} + O(N^{-3/2})$ (equivalente a $1 - \frac{1}{\sqrt{\pi N/2}}$). Para $N = 10\,000$, $P \approx 99.20\%$.
+     - En 2D: $P(T \le N) \sim 1 - \frac{\pi}{\ln N}$. Es solo la asintótica gruesa (sin valor exacto simple) y converge de forma logarítmica, muy lenta: en la simulación, con $N = 10\,000$ se obtiene $\hat{p} \approx 0.74$ y con $N = 20\,000$ todavía queda lejos de 1.
    - En 3D y 4D, $P(T \le N)$ se satura muy rápidamente cerca de sus asíntotas ($34\%$ y $19\%$).
 
 ---

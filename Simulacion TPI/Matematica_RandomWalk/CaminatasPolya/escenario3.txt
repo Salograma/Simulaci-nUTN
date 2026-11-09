@@ -1,0 +1,24 @@
+Escenario 3: d=3, M=10000, N=10000
+  P(retorno) = 0.3418
+  T medio entre los que vuelven = 88.7121123464014
+  T <= 2: 0.1643 del total | 0.48069046225863077 de los que vuelven
+  T <= 4: 0.2061 del total | 0.6029842012873026 de los que vuelven
+  T <= 6: 0.2301 del total | 0.6732007021650088 de los que vuelven
+  T <= 10: 0.2527 del total | 0.7393212404915155 de los que vuelven
+  T <= 20: 0.2772 del total | 0.8110005851375073 de los que vuelven
+  T <= 50: 0.3007 del total | 0.879754242246928 de los que vuelven
+  T <= 100: 0.3133 del total | 0.9166179052077238 de los que vuelven
+  T <= 1000: 0.3348 del total | 0.9795201872440024 de los que vuelven
+  T <= 10000: 0.3418 del total | 1.0 de los que vuelven
+Escenario 3: d=4, M=10000, N=10000
+  P(retorno) = 0.1997
+  T medio entre los que vuelven = 7.85678517776665
+  T <= 2: 0.1308 del total | 0.6549824737105658 de los que vuelven
+  T <= 4: 0.1561 del total | 0.7816725087631448 de los que vuelven
+  T <= 6: 0.1677 del total | 0.8397596394591887 de los que vuelven
+  T <= 10: 0.1796 del total | 0.899349023535303 de los que vuelven
+  T <= 20: 0.1887 del total | 0.9449173760640961 de los que vuelven
+  T <= 50: 0.1958 del total | 0.9804707060590886 de los que vuelven
+  T <= 100: 0.1981 del total | 0.9919879819729595 de los que vuelven
+  T <= 1000: 0.1996 del total | 0.99949924887331 de los que vuelven
+  T <= 10000: 0.1997 del total | 1.0 de los que vuelven

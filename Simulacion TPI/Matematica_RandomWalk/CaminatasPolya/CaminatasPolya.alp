@@ -852,6 +852,135 @@ for (int d = 1; d <= 4; d++) {
         + "  Polya=" + teorico[d - 1]);
 }]]></Body>
 				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1794198009076</Id>
+					<Name><![CDATA[escenario2]]></Name>
+					<X>957</X><Y>-161</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[int d = 4;
+long visitasPlano = 0;
+long visitasOrigen = 0;
+double sumaOrigenCuad = 0;
+int conVisitaPlano = 0;
+int conRetorno = 0;
+
+for (int rep = 0; rep < M; rep++) {
+    int x = 0, y = 0, z = 0, w = 0;
+    int vPlano = 0;
+    int vOrigen = 0;
+
+    for (int s = 1; s <= N; s++) {
+        int dir = uniform_discr(0, 2 * d - 1);
+
+        if (dir == 0) x++;
+        else if (dir == 1) x--;
+        else if (dir == 2) y++;
+        else if (dir == 3) y--;
+        else if (dir == 4) z++;
+        else if (dir == 5) z--;
+        else if (dir == 6) w++;
+        else if (dir == 7) w--;
+
+        if (w == 0) {
+            vPlano++;
+            if (x == 0 && y == 0 && z == 0) vOrigen++;
+        }
+    }
+
+    visitasPlano += vPlano;
+    visitasOrigen += vOrigen;
+    sumaOrigenCuad += (double) vOrigen * vOrigen;
+    if (vPlano > 0) conVisitaPlano++;
+    if (vOrigen > 0) conRetorno++;
+}
+
+double pVisita = (double) conVisitaPlano / M;
+double pRetorno = (double) conRetorno / M;
+double pCondicional = (double) conRetorno / conVisitaPlano;
+double mediaPlano = (double) visitasPlano / M;
+double mediaOrigen = (double) visitasOrigen / M;
+double fraccion = (double) visitasOrigen / visitasPlano;
+
+double varianzaOrigen = sumaOrigenCuad / M - mediaOrigen * mediaOrigen;
+double standardError = Math.sqrt(varianzaOrigen / M);
+
+traceln("P(visita w=0) = " + pVisita);
+traceln("P(retorno) = " + pRetorno);
+traceln("P(retorno | visita w=0) = " + pCondicional);
+traceln("Visitas medias al plano w=0 = " + mediaPlano);
+traceln("Visitas medias al origen = " + mediaOrigen
+    + "  IC95%=[" + (mediaOrigen - 1.96 * standardError)
+    + ", " + (mediaOrigen + 1.96 * standardError) + "]  (Polya: u-1 = 0.239467)");
+traceln("Fraccion de visitas al plano que caen en el origen = " + fraccion);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1794198326172</Id>
+					<Name><![CDATA[escenario3]]></Name>
+					<X>960</X><Y>-130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[int[] limites = {2, 4, 6, 10, 20, 50, 100, 1000, 10000};
+long[] cuenta = new long[limites.length];
+long retornos = 0;
+double sumaT = 0;
+
+for (int m = 0; m < M; m++) {
+    int x = 0, y = 0, z = 0, w = 0;
+    for (int t = 1; t <= N; t++) {
+        int dir = uniform_discr(0, 2 * d - 1);
+        if (dir == 0) x++; else if (dir == 1) x--;
+        else if (dir == 2) y++; else if (dir == 3) y--;
+        else if (dir == 4) z++; else if (dir == 5) z--;
+        else if (dir == 6) w++; else w--;
+        if (x == 0 && y == 0 && z == 0 && w == 0) {
+            retornos++;
+            sumaT += t;
+            for (int k = 0; k < limites.length; k++) {
+                if (t <= limites[k]) cuenta[k]++;
+            }
+            break;   // primer retorno: corta esta caminata
+        }
+    }
+}
+
+traceln("Escenario 3: d=" + d + ", M=" + M + ", N=" + N);
+traceln("  P(retorno) = " + (double) retornos / M);
+traceln("  T medio entre los que vuelven = " + sumaT / retornos);
+for (int k = 0; k < limites.length; k++) {
+    if (limites[k] > N) break;
+    traceln("  T <= " + limites[k] + ": " + (double) cuenta[k] / M
+          + " del total | " + (double) cuenta[k] / retornos + " de los que vuelven");
+}]]></Body>
+				</Function>
 			</Functions>
 			<AnalysisData>
     			<DataSet>
@@ -907,7 +1036,7 @@ for (int d = 1; d <= 4; d++) {
     			<DataSet>
 					<Id>1794196930645</Id>
 					<Name><![CDATA[curva1D]]></Name>
-					<X>820</X><Y>150</Y>
+					<X>800</X><Y>-120</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -932,7 +1061,7 @@ for (int d = 1; d <= 4; d++) {
     			<DataSet>
 					<Id>1794196942658</Id>
 					<Name><![CDATA[curva2D]]></Name>
-					<X>820</X><Y>172.5</Y>
+					<X>800</X><Y>-97.5</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -957,7 +1086,7 @@ for (int d = 1; d <= 4; d++) {
     			<DataSet>
 					<Id>1794196944311</Id>
 					<Name><![CDATA[curva3D]]></Name>
-					<X>820.5</X><Y>194</Y>
+					<X>800.5</X><Y>-76</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -982,7 +1111,7 @@ for (int d = 1; d <= 4; d++) {
     			<DataSet>
 					<Id>1794196945398</Id>
 					<Name><![CDATA[curva4D]]></Name>
-					<X>821.5</X><Y>217</Y>
+					<X>801.5</X><Y>-53</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1716,7 +1845,7 @@ for (int d = 1; d <= 4; d++) {
     			<Plot>
 					<Id>1794196344204</Id>
 					<Name><![CDATA[plotEscenario1]]></Name>
-					<X>600</X><Y>230</Y>
+					<X>500</X><Y>740</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1737,15 +1866,15 @@ for (int d = 1; d <= 4; d++) {
 						</RecurrenceCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>360</Width>
-					<Height>260</Height>
+					<Width>420</Width>
+					<Height>340</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>280</Width>
-						<Height>170</Height>
+						<Width>340</Width>
+						<Height>250</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
@@ -1819,7 +1948,7 @@ for (int d = 1; d <= 4; d++) {
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794196435018</Id>
 					<Name><![CDATA[escenariaio1]]></Name>
-					<X>650</X><Y>195</Y>
+					<X>540</X><Y>700</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1834,6 +1963,49 @@ for (int d = 1; d <= 4; d++) {
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LabelText><![CDATA[Escenario 1]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1794198068152</Id>
+					<Name><![CDATA[escenariaio2]]></Name>
+					<X>710</X><Y>190</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[escenario2(10000,10000)]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 2]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1794198370011</Id>
+					<Name><![CDATA[escenariaio3]]></Name>
+					<X>836</X><Y>190</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[escenario3(3, 10000, 10000);
+escenario3(4, 10000, 10000);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Escenario 3]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 			</Presentation>

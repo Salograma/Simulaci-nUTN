@@ -3690,7 +3690,7 @@ bAcc[11] += fracLeft;]]></Body>
     			<Plot>
 					<Id>1792875928354</Id>
 					<Name><![CDATA[plot1]]></Name>
-					<X>1300</X><Y>600</Y>
+					<X>1300</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4506,7 +4506,7 @@ bAcc[11] += fracLeft;]]></Body>
     			<Plot>
 					<Id>1793964250847</Id>
 					<Name><![CDATA[plot3]]></Name>
-					<X>1600</X><Y>840</Y>
+					<X>1600</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4800,7 +4800,7 @@ bAcc[11] += fracLeft;]]></Body>
     			<Plot>
 					<Id>1795000000006</Id>
 					<Name><![CDATA[plotE]]></Name>
-					<X>1300</X><Y>840</Y>
+					<X>1300</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5126,7 +5126,7 @@ wallMode = value;]]></ActionCode>
     			<Plot>
 					<Id>1793989216313</Id>
 					<Name><![CDATA[plotEkSp]]></Name>
-					<X>700</X><Y>600</Y>
+					<X>1300</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5218,7 +5218,7 @@ wallMode = value;]]></ActionCode>
     			<Plot>
 					<Id>1793989419189</Id>
 					<Name><![CDATA[plotRatio]]></Name>
-					<X>1000</X><Y>600</Y>
+					<X>1600</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5299,7 +5299,7 @@ wallMode = value;]]></ActionCode>
     			<Plot>
 					<Id>1793989576713</Id>
 					<Name><![CDATA[plotFlujos]]></Name>
-					<X>1600</X><Y>600</Y>
+					<X>1600</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5790,9 +5790,9 @@ return get_Main().heatColor(v() / vth / 2.0);       // R = 0..2 -> azul..rojo]]>
 
 			<Presentation>
 				<Text>
-					<Id>1792867900080</Id>
+					<Id>1794241785800</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>50</X><Y>30</Y>
+					<X>20</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5802,7 +5802,155 @@ return get_Main().heatColor(v() / vth / 2.0);       // R = 0..2 -> azul..rojo]]>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-12490271</Color>
-					<Text><![CDATA[Boltzmann]]></Text>
+					<Text><![CDATA[Simulación de Gas ideal bidimensional]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785804</Id>
+					<Name><![CDATA[text1]]></Name>
+					<X>20</X><Y>70</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Autores: Agustin Gil, Emanuel Salomón, Augusto Moratti, Facundo Speranza. 
+UTN Rosario, Ingeniería en Sistemas de Información.
+
+]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785807</Id>
+					<Name><![CDATA[text2]]></Name>
+					<X>20</X><Y>170</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Qué vas a ver 
+Un recinto bidimensional con N discos que se mueven y se chocan, coloreado dependiendo de su velocidad (rojo: mas rapido, azul: mas lento), con un mapa de calor de la Temperatura/Densidad
+ dentro del recinto, las respectivas graficas para los escenarios y sus controles.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>22</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785812</Id>
+					<Name><![CDATA[text3]]></Name>
+					<X>20</X><Y>270</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Como Empezar]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785814</Id>
+					<Name><![CDATA[text4]]></Name>
+					<X>20</X><Y>300</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[1. Elegí el experimento Simulation y dejá los parámetros por defecto.
+2. Iniciá la simulación
+3. Para ver los escenarios del trabajo, usá los cuatro botones Escenario 1 a 4 de la pantalla]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785816</Id>
+					<Name><![CDATA[text5]]></Name>
+					<X>20</X><Y>400</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Controles]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1794241785818</Id>
+					<Name><![CDATA[text6]]></Name>
+					<X>20</X><Y>440</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[- Slider de T: cambia la temperatura del reactor (100 a 5000).
+- Slider de N: cambia el numero de particulas dentro del recinto (50 a 2000) . 
+- Inicio del gas: En equilibrio o con todas la misma rapidez.
+- Boton de Paredes: Cambiar entre paredes adiabaticas y termicas.
+- Mapa de calor: Cambia el mapa del calor en el recinto para ver temperatura o densidad.
+- Escenario 1 a 4: cargan los parámetros de cada caso del informe y reinician el reactor.
+
+Botones
+- Reiniciar: Reinicia los historiales para empezar a cargar nuevos escenarios.
+- Experimento de Joule: comienza el experimento de Joule, dejando solo 50% de el recinto con particulas. Luego de un tiempo, se saca el tabique para mostrar 
+el experimento
+- Guardar Histograma: Guarda los 3 histogramas para las graficas.
+
+
+Si estas en el escenario 3 se agregaran dos nuevos sliders en la pantalla, estos sliders sirven para cambiar la temperatura en la pared derecha o izquierda.
+]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>24</Size>
@@ -5901,7 +6049,7 @@ return get_Main().heatColor(v() / vth / 2.0);       // R = 0..2 -> azul..rojo]]>
 				<FinalDate><![CDATA[1795478400000]]></FinalDate>
 				<FinalTime><![CDATA[100.0]]></FinalTime>
 			</ModelTimeProperties>
-			<BypassInitialScreen>true</BypassInitialScreen>
+			<BypassInitialScreen>false</BypassInitialScreen>
 		</SimulationExperiment>
 		<!--   =========  Parameter Variation Experiment   ========  -->
 		<ParamVariationExperiment ActiveObjectClassId="1792867900072">

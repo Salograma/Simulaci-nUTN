@@ -1554,7 +1554,7 @@ for (int k = 0; k < limites.length; k++) {
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067240015</Id>
-					<Name><![CDATA[reiniciarCaminante]]></Name>
+					<Name><![CDATA[restartCaminante]]></Name>
 					<X>120</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>

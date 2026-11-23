@@ -210,6 +210,21 @@
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1796100000005</Id>
+					<Name><![CDATA[resumenTexto]]></Name>
+					<X>3830</X><Y>284</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["Presione \"Ejecutar corridas\" para calcular."]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1793969913541</Id>
 					<Name><![CDATA[dimensionSel]]></Name>
@@ -282,7 +297,7 @@
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
-			<Variable Class="Parameter">
+				<Variable Class="Parameter">
 					<Id>1796100000001</Id>
 					<Name><![CDATA[nCorridas]]></Name>
 					<X>3620</X><Y>200</Y>
@@ -304,7 +319,7 @@
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
 						</ParameterEditor>
-					</Properties>
+					</Properties>                 
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1796100000003</Id>
@@ -328,22 +343,7 @@
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
 						</ParameterEditor>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1796100000005</Id>
-					<Name><![CDATA[resumenTexto]]></Name>
-					<X>3830</X><Y>284</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[String]]></Type>
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA["Presione \"Ejecutar corridas\" para calcular."]]></Code>
-						</InitialValue>
-					</Properties>
+					</Properties>                 
 				</Variable>
 			</Variables>
 			<Functions>
@@ -1203,7 +1203,7 @@ for (int b : bases) {
     resumir("semillas " + b + " a " + (b + nCorridas - 1), pCorridas(d, M, N, b), teoricoRetorno(d, N));
 }]]></Body>
 				</Function>
-			<Function AccessType="default" StaticFunction="false">
+				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1796100000016</Id>
@@ -1645,7 +1645,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<FreezeXAxis>true</FreezeXAxis>
 					<SamplesToKeep>300</SamplesToKeep>
 				</DataSet>
-			    			<DataSet>
+    			<DataSet>
 					<Id>1796100000006</Id>
 					<Name><![CDATA[curvaICinf]]></Name>
 					<X>4040</X><Y>144</Y>
@@ -2110,6 +2110,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>600</Width>
 					<Height>360</Height>
 					<BackgroundColor/>
@@ -2141,6 +2142,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
 						<Title><![CDATA[Media de las n corridas]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curvaRetorno]]></Expression>
 					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2151,6 +2153,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[IC 95 %: límite inferior]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curvaICinf]]></Expression>
 					<Color>-8411175</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2161,6 +2164,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[IC 95 %: límite superior]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curvaICsup]]></Expression>
 					<Color>-8411175</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2171,6 +2175,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[Valor teórico]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curvaPolya]]></Expression>
 					<Color>-65536</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2519,6 +2524,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>600</Width>
 					<Height>360</Height>
 					<BackgroundColor/>
@@ -2550,6 +2556,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
 						<Title><![CDATA[d = 1 (recurrente)]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curva1D]]></Expression>
 					<Color>-3137392</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2560,6 +2567,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[d = 2 (recurrente)]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curva2D]]></Expression>
 					<Color>-32944</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2570,6 +2578,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[d = 3 (transitoria)]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curva3D]]></Expression>
 					<Color>-13447886</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2580,6 +2589,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[d = 4 (transitoria)]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[curva4D]]></Expression>
 					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2733,6 +2743,7 @@ escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 					</RecurrenceProperties>
+					<EmbeddedIcon>false</EmbeddedIcon>
 					<Width>600</Width>
 					<Height>360</Height>
 					<BackgroundColor/>
@@ -2764,6 +2775,7 @@ escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
 						<Title><![CDATA[P(T ≤ N) de cada corrida]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[datosCorridas]]></Expression>
 					<Color>-12156236</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2774,6 +2786,7 @@ escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[Media de las corridas]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[mediaCorridas]]></Expression>
 					<Color>-29696</Color>
 					<Expression2><![CDATA[0]]></Expression2>
@@ -2784,6 +2797,7 @@ escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 					</DatasetExpression>
 					<DatasetExpression>  
 						<Title><![CDATA[Valor teórico]]></Title>
+					<Id>0</Id>
 					<Expression><![CDATA[polyaCorridas]]></Expression>
 					<Color>-65536</Color>
 					<Expression2><![CDATA[0]]></Expression2>

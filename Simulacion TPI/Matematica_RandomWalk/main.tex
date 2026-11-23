@@ -117,13 +117,21 @@ Si $u$ es el número esperado de visitas al origen, contando el instante inicial
 \end{center}
 Como el caminante vuelve al origen solo en pasos pares, $P(T=2)=\frac{1}{2d}$ ($\frac{1}{6}$ en 3D y $\frac{1}{8}$ en 4D).
 
-\textbf{Horizonte finito.} Una simulación solo puede seguir $N$ pasos, por lo que estima $P(T\leq N)<p_0$. En 1D el valor exacto es $P(T\leq N)=1-\frac{(2n)!}{(n!)^2}\,4^{-n}\approx1-\sqrt{\frac{2}{\pi N}}$, con $n=N/2$, que da $0.992$ para $N=10000$. En 2D la convergencia a $1$ es logarítmica y no existe fórmula exacta simple.
-
-\textbf{Estimador Monte Carlo.} Con $M$ réplicas independientes de $N$ pasos, $\hat p=\frac{R}{M}$, donde $R$ es el número de réplicas que volvieron al origen. El error estándar es $\sqrt{\hat p(1-\hat p)/M}$, el intervalo de confianza del 95 \% es $\hat p\pm1.96\sqrt{\hat p(1-\hat p)/M}$ y el estadístico de la prueba $Z$ contra Pólya es
+\textbf{Horizonte finito.} Una simulación solo puede seguir $N$ pasos, por lo que estima $P(T\leq N)<p_0$. En 1D el valor exacto es $P(T\leq N)=1-\frac{(2n)!}{(n!)^2}\,4^{-n}\approx1-\sqrt{\frac{2}{\pi N}}$, con $n=N/2$, que da $0.99202$ para $N=10000$. En 3D y 4D, por el teorema central del límite local, la probabilidad de estar en el origen en un paso par $n$ es $u_n\approx2\left(\frac{d}{2\pi n}\right)^{d/2}$, y la probabilidad de un primer retorno posterior al paso $N$ es
 \begin{center}
-    $$Z=\frac{\hat p-p_0}{\sqrt{p_0(1-p_0)/M}}$$
+    $$P(N<T<\infty)\approx(1-p_0)^2\sum_{n>N,\ n\ \mathrm{par}}u_n\approx(1-p_0)^2\left(\frac{d}{2\pi}\right)^{d/2}\frac{N^{1-d/2}}{d/2-1},$$
 \end{center}
-que se rechaza si $|Z|>1.96$. Solo es aplicable en $d=3,4$, porque con $p_0=1$ el denominador se anula.
+de modo que el valor de referencia para $N=10000$ es $P(T\leq N)\approx0.33767$ en 3D ($0.0029$ por debajo de $p_0$) y $0.19318$ en 4D (corrección despreciable). En 2D la convergencia a $1$ es logarítmica y no existe fórmula exacta simple.
+
+\textbf{Estimador Monte Carlo y corridas independientes.} Una \textbf{corrida} simula $M$ caminatas independientes de $N$ pasos con su propia semilla y estima $\hat p_i=\frac{R_i}{M}$, donde $R_i$ es el número de caminatas que volvieron al origen. El experimento se repite en $n\geq100$ corridas independientes (la corrida $i$ usa la semilla $s_0+i-1$) y la unidad de análisis es la corrida. Se informa la media $\bar p=\frac{1}{n}\sum_i\hat p_i$, el desvío entre corridas $s$, el intervalo de confianza del 95 \%
+\begin{center}
+    $$\bar p\pm t_{0.975,\,n-1}\frac{s}{\sqrt n}\qquad(t_{0.975,\,99}=1.984)$$
+\end{center}
+y el estadístico de la prueba $t$ de una muestra contra el valor de referencia $p_{ref}$
+\begin{center}
+    $$t=\frac{\bar p-p_{ref}}{s/\sqrt n},$$
+\end{center}
+que rechaza si $|t|>t_{0.975,\,n-1}$. Como $p_{ref}$ se usa el valor a horizonte finito: exacto en 1D y corregido en 3D y 4D. En 2D no hay un valor de referencia finito y solo se informa el intervalo. El desvío entre corridas debe coincidir con el error binomial de una corrida, $\sqrt{\bar p(1-\bar p)/M}$, lo que sirve además como control de que las semillas producen corridas independientes.
 
 \textbf{Deriva.} Si cada paso tiene un sesgo $\delta$ hacia una dirección, en 1D la probabilidad de retorno pasa a ser $1-\delta$ (horizonte infinito); en 2D no hay fórmula cerrada.
 
@@ -224,7 +232,7 @@ La validación compara cada modelo con su teoría analítica usando replicas ind
     \hline
     Gas Ideal & Distribución de velocidades contra Maxwell-Boltzmann 2D; $\langle v\rangle$ contra $1.2533\cdot \sqrt{T}$; cociente de $\langle E_k\rangle$ y de $v_{rms}$ entre especies & $X^2$ de bondad de ajuste con 10 bins equiprobables ($k-2$ grados de libertad), medida como fracción de fotos que rechazan contra el $5 \%$ esperado por azar; $t$ de Student pareado por réplica (10 réplicas, valor crítico 2.262; 5 réplicas en el Escenario 3, valor crítico 2.776) contra el valor teórico \\
     \hline
-    Caminatas & Probabilidad de retorno contra Pólya ($p_0=0.340537$ en 3D, $0.193206$ en 4D); media de coordenadas contra 0; $E[R_n^2]$ contra $n$ & Intervalo de confianza del 95 \% de $\hat p$ y prueba $Z$ para proporciones ($|Z|<1.96$); en 1D y 2D, donde $p_0=1$, solo se compara con el valor a horizonte finito \\
+    Caminatas & Probabilidad de retorno contra Pólya corregida a horizonte finito ($0.33767$ en 3D y $0.19318$ en 4D con $N=10000$) y contra el valor exacto en 1D; media de coordenadas contra 0; $E[R_n^2]$ contra $n$ & $t$ de Student de una muestra sobre $n=100$ corridas independientes (una semilla por corrida, 99 grados de libertad, valor crítico 1.984) e intervalo de confianza del 95 \% de la media; en 2D solo se informa el intervalo \\
     \hline
 \end{tabularx}
 \end{table}
@@ -300,7 +308,15 @@ Cada escenario se corrió con un experimento de 'Parameters Variation' de AnyLog
 
 \subsection{Caminatas aleatorias de 1D a 4D}
 \subsubsection{Modelo de agentes}
-Cada caminante es un agente `Walker' con coordenadas enteras $(x,y,z,w)$, un contador de pasos, un indicador de retorno y el tiempo del primer retorno. En cada paso elige con distribución uniforme discreta una de las $2d$ direcciones y suma $\pm1$ a una coordenada; las coordenadas que exceden la dimensión quedan en 0. El primer instante en que las cuatro coordenadas valen 0 se guarda como $T$. Una unidad de tiempo equivale a un paso. El modelo se implementó en AnyLogic 8.9.10 (Personal Learning Edition) y cuenta con una vista 3D del caminante y un gráfico de la curva acumulada $\hat P(T\leq n)$.
+Cada caminante es un agente `Walker' con coordenadas enteras $(x,y,z,w)$, un contador de pasos, un indicador de retorno y el tiempo del primer retorno. En cada paso elige con distribución uniforme discreta una de las $2d$ direcciones y suma $\pm1$ a una coordenada; las coordenadas que exceden la dimensión quedan en 0. El primer instante en que las cuatro coordenadas valen 0 se guarda como $T$. Una unidad de tiempo equivale a un paso. El modelo se implementó en AnyLogic 8.9.10 (Personal Learning Edition).
+
+La interfaz se organiza en tres grupos, a los que se accede con un menú de pestañas:
+\begin{itemize}
+    \item \textbf{Vistas}: animación 3D del caminante (la cuarta coordenada $w$ se representa con el color), su estado (dimensión, pasos dados, posición, retorno) y el gráfico de $w(t)$.
+    \item \textbf{Estadísticas}: parámetros del experimento ($d$, $N$, $M$ y la cantidad de corridas $n$), botones de cada escenario y de los análisis de sensibilidad, la curva $P(T\leq N)$ con su banda de confianza, el resultado de cada corrida, la comparación entre dimensiones y un resumen numérico.
+    \item \textbf{Lógica}: parámetros, variables, conjuntos de datos y funciones agrupados según su rol (corridas y estadística, núcleo Monte Carlo, verificación, escenarios y animación), y los botones de verificación y validación.
+\end{itemize}
+El modelo está publicado en AnyLogic Cloud: \url{COMPLETAR-LINK-ANYLOGIC-CLOUD}.
 
 \begin{table}[h]
 \centering
@@ -312,26 +328,29 @@ Cada caminante es un agente `Walker' con coordenadas enteras $(x,y,z,w)$, un con
     \hline
     Dimensiones $d$ & 1, 2, 3, 4 \\
     \hline
-    Réplicas $M$ & 10 000 en los escenarios (50 000 en la validación de arranque) \\
+    Caminatas por corrida $M$ & 1 000 \\
     \hline
-    Pasos $N$ por réplica & 10 000 \\
+    Corridas independientes $n$ & 100 (mínimo exigido; hasta 1 000 desde la interfaz) \\
+    \hline
+    Pasos $N$ por caminata & 10 000 \\
     \hline
     Nivel de confianza & 95 \% \\
     \hline
-    Semillas & Fija por defecto; 10 semillas distintas (1007, 2007, \ldots, 10007) en el análisis de sensibilidad \\
+    Semillas & Una por corrida: la corrida $i$ usa $s_0+i-1$, con $s_0=12345$ (semillas 12 345 a 12 444). En el análisis de sensibilidad, tres familias disjuntas de 100 semillas ($s_0$, $s_0+10^6$ y $s_0+2\cdot10^6$) \\
     \hline
 \end{tabularx}
 \end{table}
 
 \subsubsection{Estadísticas del modelo}
 \begin{itemize}
-    \item \textbf{Probabilidad de retorno}: $\hat p=\frac{R}{M}$ con intervalo $\hat p\pm1.96\sqrt{\hat p(1-\hat p)/M}$ y prueba $Z$ contra $p_0$ (solo en 3D y 4D).
-    \item \textbf{Curva acumulada}: $\hat P(T\leq n)$ para $n=1,\ldots,N$.
+    \item \textbf{Probabilidad de retorno}: $\hat p_i=\frac{R_i}{M}$ en cada corrida; media $\bar p$, desvío entre corridas, intervalo de confianza del 95 \% con $t$ de Student y prueba $t$ contra el valor de referencia a horizonte finito.
+    \item \textbf{Curva acumulada}: $P(T\leq n)$ para $n=2,4,\ldots,N$, promediada sobre las $n$ corridas, con su banda de confianza del 95 \% punto a punto.
+    \item \textbf{Datos por corrida}: cada experimento guarda un archivo \texttt{.csv} con una fila por corrida (número de corrida, semilla y resultados), que alimenta la planilla de cálculo.
     \item \textbf{Entradas al nivel $w=0$} (`entradasW0'): cuenta las transiciones de $w\neq0$ a $w=0$ antes del primer retorno. No es un retorno al origen: la coordenada $w$ es por sí sola una caminata recurrente de una dimensión, de modo que el contador crece sin cota aunque el caminante nunca regrese al origen.
 \end{itemize}
 
 \subsubsection{Escenarios y diseño experimental}
-Todos los escenarios usan $M=10000$ réplicas y $N=10000$ pasos; la unidad de análisis es la proporción $\hat p$ sobre las $M$ réplicas.
+Todos los escenarios repiten el experimento en $n=100$ corridas independientes de $M=1000$ caminatas de $N=10000$ pasos cada una ($10^5$ caminatas por punto), con una semilla distinta por corrida. La unidad de análisis es la corrida.
 
 \begin{table}[h]
 \centering
@@ -352,7 +371,7 @@ Todos los escenarios usan $M=10000$ réplicas y $N=10000$ pasos; la unidad de an
 \end{tabularx}
 \end{table}
 
-Además se hizo un análisis de sensibilidad a $N$ (100 a 20 000), a $M$ (100 a 50 000) y a la semilla (10 semillas).
+Además se hizo un análisis de sensibilidad a $N$ (100 a 20 000 pasos), a $M$ (100 a 1 000 caminatas por corrida) y a la semilla (tres familias disjuntas de 100 semillas), siempre con $n=100$ corridas por punto.
 
 \subsection{Cinética Química}
 

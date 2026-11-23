@@ -1,0 +1,1048 @@
+\documentclass{article}
+
+\usepackage{arxiv}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{textcomp} % support for Unicode minus sign
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{tabularx}
+\usepackage{array}
+\newcolumntype{Y}{>{\centering\arraybackslash}X} % columna X centrada
+\graphicspath{ {./images/} }
+
+
+\title{Del comportamiento microscópico a la ley macroscópica: tres modelos de simulación estocástica en AnyLogic}
+
+\author{
+  Agustin Gil \\
+  Ingenieria en Sistemas de Informacion\\
+  Universidad Tecnologica Nacional\\
+  Rosario, Zeballos 1341 \\
+  \texttt{agussv360@gmail.com} \\
+  \And
+   Emanuel Salomón \\
+  Ingeniería en Sistemas de Información\\
+  Universidad Tecnológica Nacional\\
+  Rosario, Zeballos 1341\\
+  \texttt{salomonemanuelutn@gmail.com}\\
+  \And
+  Augusto Moratti \\
+  Ingenieria en Sistemas de Informacion\\
+  Universidad Tecnologica Nacional\\
+  Rosario, Zeballos 1341 \\
+  \texttt{augus.m0804@gmail.com} \\
+\And
+ Facundo Speranza \\
+  Ingenieria en Sistemas de Informacion\\
+  Universidad Tecnologica Nacional\\
+  Rosario, Zeballos 1341 \\
+  \texttt{facundosperanza21@hotmail.com} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Se presentan tres modelos de simulación desarrollados en AnyLogic en los que un comportamiento macroscópico emerge de reglas microscópicas estocásticas, y en los que ese comportamiento se contrasta de forma cuantitativa con su teoría analítica: (i) un gas ideal bidimensional de discos duros, cuya distribución de velocidades se compara con la de Maxwell-Boltzmann; (ii) caminatas aleatorias en retículos de una a cuatro dimensiones, cuya probabilidad de retorno al origen se compara con el teorema de Pólya; y (iii) una reacción química reversible $A + B \rightleftharpoons C$, modelada de forma híbrida con agentes y dinámica de sistemas, cuyo equilibrio y cuya cinética se comparan con la ley de acción de masas y con la ecuación de Arrhenius. En los tres casos el modelo se construyó con un enfoque basado en agentes, se verificó con invariantes del sistema (conservación y balances) y se validó con réplicas independientes y pruebas de hipótesis contra el valor teórico.
+\end{abstract}
+
+\keywords{Simulación \and Modelo basado en agentes \and Dinámica de sistemas \and Monte Carlo \and Distribución de Maxwell-Boltzmann \and Teorema de Pólya \and Cinética Química \and AnyLogic}
+
+\section{Marco teórico}
+
+\subsection{Gas Ideal Bidimensional}
+Se simula un gas de N discos de un recinto bidimensional de $L_x\times L_y=600\times 400$. Se trabaja en unidades reducidas con constante de Boletan $k_B=1$ y masa de referencia 1; la temperatura $T$ es entonces igual a la energía cinética media por partícula y no esta expresada en Kelvin. Las longitudes están en unidades del modelo.
+
+Para un gas ideal en dos dimensiones, la densidad de probabilidad del modulo de la velocidad es \\
+\begin{center}
+    $$f(v) = \frac{m\,v}{k_BT}\exp\!\left(-\frac{m v^2}{2k_BT}\right),\qquad F(v)=1-\exp\!\left(-\frac{m v^2}{2k_BT}\right)$$
+\end{center}
+De ella resultan \\
+\begin{center}
+    $$v_p=\sqrt{\frac{k_BT}{m}},\qquad \langle v\rangle=\sqrt{\frac{\pi k_BT}{2m}}=1.2533\,v_p,\qquad v_{rms}=\sqrt{\frac{2k_BT}{m}},\qquad \langle E_k\rangle=k_BT.$$
+\end{center}
+
+con $m=1$, la velocidad media es $\langle v\rangle=1.2533\cdot \sqrt{T}$. La energía cinemática media es $k_BT$ para cualquier masa (en 2D hay dos grados de libertad y cada uno aporta $\frac{1}{2}k_BT$), por lo que dos especies en equilibrio con la misma temperatura tienen igual $\langle E_k\rangle$ y cociente de velocidades cuadráticas medias
+\begin{center}
+    $$\frac{v_{rms,liv}}{v_{rms,pes}}=\sqrt{\frac{m_{pes}}{m_{liv}}}=\sqrt{m_1}\quad(m_{liv}=1).$$
+\end{center}
+
+\subsubsection{Paredes Adiabaticas vs. Térmicas}
+Las paredes adiabaticas y termicas son fronteras termodinámicas que determinan si un sistema puede intercambiar calor en su entorno.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Paredes Adiabaticas vs. Térmicas}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | }
+    \hline
+    \textbf{Característica} & \textbf{Pared Adiabatica} & \textbf{Pared térmica}  \\
+    \hline
+    Transferencia de calor $Q$ & Cero, no entra ni sale calor & Permitida, el calor fluye entre ambos lados \\
+    \hline
+    Función principal & Aislar térmicamente el sistema del exterior & Permitir la interacción térmica entre sistemas \\
+    \hline
+    Equilibrio térmico & Impide que los sistemas separados por esta pared igualen sus temperaturas & Permite que los sistemas separados alcancen la misma temperatura con el tiempo \\
+    \hline
+    Cambios de temperatura & Solo ocurren si se realiza trabajo mecánico & Ocurren naturalmente por el flujo de calor desde el cuerpo mas caliente al mas frio \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\textbf{Paredes Adiabáticas:} Se emplean cuando el objetivo es conservar la energía interna de un sistema sin que el medio exterior interfiera. En la realidad física no existe una pared perfectamente adiabática, pero los sistemas de vacío (como las paredes dobles de un termo Stanley) son la aproximación más cercana para evitar la conducción y convección.
+\textbf{Paredes Térmicas:} Se utilizan cuando el objetivo es disipar, transferir o absorber calor de manera eficiente. Los sistemas diseñados con paredes diatérmicas buscan intencionalmente el equilibrio térmico con el exterior para evitar sobrecalentamientos (como un disipador de CPU) o para cocinar alimentos (como una sartén).
+
+\subsubsection{Conducción de calor}
+Con una pared izquierda a $T_L$ y una derecha a $T_R$, y paredes superior e inferior adiabaticas, la ley de Fourier predice en el estado estacionario, un flujo de energía uniforme y, si la conductividad $k$ es constante, un perfil lineal de pendiente $\frac{T_R-T_L}{L_x}$. con $T_L=2500$, $T_R=500$ y $L_x=600$, la pendiente es $-3.33$. En un gas de discos duros $k$ crece como $\sqrt{T}$; en ese caso es $T^{\frac{3}{2}}$ lo que varia linealmente. Ademas, si el camino libre medio no es pequeño frente al recinto aparecen saltos de temperatura en las paredes. El numero de Knudsen se calcula como $K_n=\frac{\lambda}{L_x}$ con $\lambda=\frac{L_x\cdot L_y}{\sqrt{2}\cdot N\cdot 2r}$
+
+\subsubsection{Expansión de libre de Joule (Joule-Gay-Lussac)}
+Un gas ideal confinado en la mitad izquierda se libera al quitar un tabique. Como no hay interacciones de largo alcance ni trabajo externo, la energía total se conserva y la temperatura final es igual a la inicial; lo que evoluciona es la densidad, hasta que la fracción de partículas a la izquierda llega a 0.5 con N partículas, la desviación estándar de esa fracción en equilibrio es $\sigma=\frac{0.5}{\sqrt{N}}$ (distribución binomial)
+
+\subsection{Caminatas aleatorias de 1D a 4D}
+Se simula una caminata aleatoria simple sobre el retículo entero $\mathbb{Z}^d$, con $d=1,2,3,4$. El caminante parte del origen y en cada paso elige con igual probabilidad una de las $2d$ direcciones vecinas y avanza una unidad. Sea $T$ el primer instante en que vuelve al origen. El teorema de Pólya establece que la probabilidad de retorno $p_0=P(T<\infty)$ vale $1$ en $d=1$ y $d=2$ (caminata \textbf{recurrente}) y es estrictamente menor que $1$ para $d\geq3$ (caminata \textbf{transitoria}).
+
+Si $u$ es el número esperado de visitas al origen, contando el instante inicial, vale $p_0=1-\frac{1}{u}$. Con las integrales de Watson resulta $u_3\approx1.516386$ y $u_4\approx1.239467$, de donde
+\begin{center}
+    $$p_0^{(3D)}=0.340537,\qquad p_0^{(4D)}=0.193206.$$
+\end{center}
+Como el caminante vuelve al origen solo en pasos pares, $P(T=2)=\frac{1}{2d}$ ($\frac{1}{6}$ en 3D y $\frac{1}{8}$ en 4D).
+
+\textbf{Horizonte finito.} Una simulación solo puede seguir $N$ pasos, por lo que estima $P(T\leq N)<p_0$. En 1D el valor exacto es $P(T\leq N)=1-\frac{(2n)!}{(n!)^2}\,4^{-n}\approx1-\sqrt{\frac{2}{\pi N}}$, con $n=N/2$, que da $0.992$ para $N=10000$. En 2D la convergencia a $1$ es logarítmica y no existe fórmula exacta simple.
+
+\textbf{Estimador Monte Carlo.} Con $M$ réplicas independientes de $N$ pasos, $\hat p=\frac{R}{M}$, donde $R$ es el número de réplicas que volvieron al origen. El error estándar es $\sqrt{\hat p(1-\hat p)/M}$, el intervalo de confianza del 95 \% es $\hat p\pm1.96\sqrt{\hat p(1-\hat p)/M}$ y el estadístico de la prueba $Z$ contra Pólya es
+\begin{center}
+    $$Z=\frac{\hat p-p_0}{\sqrt{p_0(1-p_0)/M}}$$
+\end{center}
+que se rechaza si $|Z|>1.96$. Solo es aplicable en $d=3,4$, porque con $p_0=1$ el denominador se anula.
+
+\textbf{Deriva.} Si cada paso tiene un sesgo $\delta$ hacia una dirección, en 1D la probabilidad de retorno pasa a ser $1-\delta$ (horizonte infinito); en 2D no hay fórmula cerrada.
+
+\subsection{Química Cinética}
+Se simula un reactor cerrado de volumen constante, representado por un recinto bidimensional de $L_x \times L_y=400\times 450$ con paredes elásticas y no reactivas. Intervienen tres especies: los reactivos $A$ y $B$ y el producto $C$. Se trabaja en unidades reducidas con constante de Boltzmann $K_B=1$; la temperatura $T$ es una magnitud reducida y no esta expresada en Kelvin.
+
+Las ecuaciones de acción de masas, escritas para el numero de moléculas son:
+\begin{center}
+$\frac{dA}{dt}=-k_{1c}AB+k_2C$;\quad$\frac{dB}{dt}=-k_{1c}AB+k_2C$;\quad$\frac{dC}{dt}=k_{1c}AB-k_2C$, con $k_{1c}=\frac{k_1}{L_xL_y}$.
+\end{center}
+En el equilibrio se cumple que $K_{eq}=\frac{C_{eq}}{A_{eq}B_{eq}}=\frac{k_{1c}}{k_2}$. Como el modelo no define una energía libre de reacción, esa relación es la definición de $K_{eq}$ que se adopta como teórica. Dados $a=N_{A,0}+N_{C,0}$ y $b=N_{B,0}+N_{C,0}$, el numero de $C$ en el equilibrio sale de resolver $K(a-C)(b-C)=C$.
+
+Para discos duros en dos dimensiones con umbral de energía en la linea de centros, la teoría de colisiones da:
+\begin{center}
+$k_1(T)=(r_A+r_B)\sqrt{\frac{2\pi k_bT}{\mu}}e^{\frac{-E_{a,1}}{k_BT}}$,\quad  $k_2(T)=\mathcal{A}_2e^{\frac{-E_{a,2}}{k_BT}}$
+\end{center}
+donde $\mu$ es la masa reducida de $A$ y $B$. El factor $\sqrt{T}$ del pre-exponencial de $k_1$ implica que $ln\space k_1$ contra $\frac{1}{T}$ tiene pendiente aproximada $-480$ con los parámetros usados y que $ln\space \frac{k_1}{\sqrt{T}}$ contra $\frac{1}{T}$ tiene pendiente exacta $\frac{-E_{a,1}}{k_B}=-400$.
+
+\textbf{Constante de Boltzmann}: Es la constante física que relaciona temperatura absoluta y energía; a medida que vayamos aumentando la temperatura del gas, las partículas dentro del recipiente comenzarán a moverse más rápido. Esto se deberá a que, al suministrar calor (energía), estamos aumentando la energía cinética de cada una de las partículas. Justamente, la contante de Boltzmann nos anticipa exactamente cuánto aumentará esa energía cinética por cada grado que aumente la temperatura. $k=1,380649\times 10^{-23}\space J/K$.\quad \textit{el modelo lo utiliza como $k=1$}
+
+\textbf{Termostato de Andersen}: Es un método de dinámica molecular que mantiene un sistema a temperatura constante simulando el contacto con un baño térmico. En cada paso de tiempo, cada molécula, con probabilidad $1-e^{-vdt}$, 
+'choca con el baño' y recibe una velocidad nueva maestreada de la distribución de Maxwell a la temperatura $T$ deseada. el parámetro $v$ es la frecuencia con que esto ocurre.
+\textit{\textbf{Para que se usa en el modelo}}: La reacción $A+B \rightarrow C$ transforma dos moléculas en una y, para ocurrir, exige que el choque tenga energía por encima de la barrera. Ambas cosas sacan energía cinética del gas: sin un termostato, el sistema se enfriaría a medida que avanza la reacción y la temperatura dejaría de ser una variable controlada. La constante $k_1$ y $k_2$ dependen de $T$ y las ecuaciones diferenciales de referencia se resuelven a $T$ fija.
+\textit{\textbf{Como se eligió $v$}}: Se midió la energía cinética media en equilibrio a $T=200$. con $v=1$ resulto $192$, con $v=5$ resulto $198$ y con $v=10$ resulto $199$, se adopto $v=7$ 
+
+\textbf{Catalizador}: Es una sustancia que acelera una reacción al ofrecer un camino con menor energía de activación, sin consumirse y sin cambiar la posición del equilibrio. El catalizador se representa como un cambio de parámetros, baja $E_{a,1}$ y $E_{a,2}$ en la misma cantidad.
+
+\textbf{Prueba $t$ de Welch}: Es una prueba de hipótesis para comparar las medias de dos grupos independientes sin suponer que tienen la misma varianza. El estadístico es
+\begin{center}
+$t=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{s_1^2/ n_1+s_2^2/ n_2}}$
+\end{center}
+Los grados de libertad se calculan con la aproximación de Welch-Satterthwaite, que los ajusta según las varianzas y los tamaños de los grupos. La hipótesis nula es que las dos medias son iguales.
+\textit{\textbf{Para que se usa en el modelo}}: Escenario 3, el numero de moléculas de $C$ a $t=100s$ en el grupo sin catalizador contra el grupo con catalizador
+
+\section{Objetivos}
+
+\subsection{Objetivo General}
+Construir y analizar tres modelos de simulación en AnyLogic en los que fenómenos macroscópicos bien caracterizados teóricamente (una distribución de velocidades en equilibrio, una transición de recurrencia a transitoriedad y un equilibrio químico con dependencia térmica) emerjan de reglas microscópicas individuales estocásticas, y cuantificar mediante réplicas independientes y pruebas estadísticas el grado de acuerdo entre cada simulación y su teoría analítica.
+
+\subsection{Objetivos específicos comunes}
+\begin{itemize}
+    \item Modelar cada sistema con un enfoque basado en agentes, de modo que la ley macroscópica no esté impuesta sino que resulte de la interacción de entidades individuales.
+    \item Verificar cada modelo con invariantes propios del sistema (conservación de energía o de momento, balance de átomos, paridad de retornos) antes de usarlo para estudiar escenarios.
+    \item Validar cada modelo contra el valor o la distribución teórica con réplicas independientes y una prueba de hipótesis apropiada al tipo de dato.
+    \item Estudiar escenarios que cambian los parámetros del sistema y comprobar que la respuesta del modelo concuerda con la teoría.
+    \item Identificar y documentar qué discrepancias provienen del modelo y cuáles del procedimiento de estimación.
+\end{itemize}
+
+\subsection{Objetivos específicos por modelo}
+\begin{itemize}
+    \item \textbf{Gas ideal bidimensional (Física):} Construir un modelo en el que la distribución de velocidades emerja de choques elásticos entre discos y con las paredes. Verificar que el modelo conserva la energía y el momento en los choques y que las partículas no salen del recinto. Validar la distribución de velocidades contra Maxwell-Boltzmann. 
+    \item \textbf{Caminatas aleatorias de 1D a 4D (Matemática):} Construir un modelo en el que cada caminante sea un agente que se mueve sobre $\mathbb{Z}^d$ con $d=1$ a $4$, y estimar por Monte Carlo la probabilidad de retorno al origen. Verificar la isotropía, la varianza difusiva y la paridad de los retornos. Validar la transición de recurrencia a transitoriedad contra el teorema de Pólya ($p_0=0.340537$ en 3D y $0.193206$ en 4D) y estudiar la distribución del tiempo de retorno, el espacio de nivel $w=0$ en 4D y el efecto de una deriva.
+    \item \textbf{Cinética de $A+B\rightleftharpoons C$ (Química):} Modelar la reacción reversible con agentes y dinámica de sistemas en paralelo, y evaluar el efecto de la temperatura, del reactivo limitante, de un catalizador y de perturbaciones del equilibrio sobre la velocidad y la posición del equilibrio.
+\end{itemize}
+
+\section{Metodología}
+
+\subsection{Metodología Común}
+
+\subsubsection{Enfoque de modelado}
+Los tres sistemas se modelan con agentes individuales (moléculas, caminantes) cuyo estado evoluciona por reglas locales con componente aleatoria. La magnitud macroscópica de interés no se programa: se mide a partir del conjunto de agentes.
+Los modelos se implementaron en AnyLogic 8.9 con lógica en Java.
+
+\subsubsection{Definición del sistema y supuestos}
+Cada modelo parte de una definición explicita de sistema: entidades y atributos, variables de entrada y salida, limites espaciales y temporales y supuestos simplificados. Los sistemas son aislados, con partículas o caminantes homogéneos y reglas de interacción simples:
+\begin{itemize}
+    \item \textbf{Gas Ideal:} Discos duros con choques elásticos en un recinto con paredes rígidas.
+    \item \textbf{Caminatas:} Salto de Markov isotropico sobre el retículo $Z^d$, sin auto-evitacion.
+    \item \textbf{Reacción Química:} Discos duros con choques elásticos y reacción por umbral de energía cinética relativa; reaccion inversa por probabilidad de \textbf{Arrhenius}, termostato de \textbf{Andersen}.
+\end{itemize}
+Los modelos usan \textbf{unidades reducidas} ($k_B=1$), por lo que las temperaturas y las energías no están expresadas en unidades del Sistema Internacional.
+
+\subsubsection{Parametrización}
+Los parámetros de cada modelo se eligen para que el comportamiento teórico sea observable y se documenten con su justificación. Cuando el valor propuesto en el diseño inicial no permitía observar el fenómeno, se cambio y se registro el motivo.
+
+\subsubsection{Verificación}
+La verificación comprueba que el código implementa el modelo conceptual, con invariantes propios de cada sistema:
+\begin{itemize}
+    \item \textbf{Química:} Balance de átomos $c_A+c_C=N_A$ y $c_B+c_C=N_B$ calculado en cada paso con el recuento real de agentes, conservación del momento en la reacción directa e inversa, ausencia de producto de temperatura muy baja
+    \item \textbf{Gas Ideal:} Conservación de la energía total en choques elásticos con tolerancia de 0.1 \%; el modelo calcula, en cada choque, el momento y la energía del par antes y después y guarda el error máximo, y muestra en cada paso la desviación relativa de la energía total $\frac{\Delta E}{E_0}$. En los experimentos con paredes adiabáticas la derivada máxima fue de $3.3 \times 10^{-9} ppm$ ($3.3 \times 10^{-15}$ en relativo, el orden del redondeo de la doble precisión). Se verifica además que las posiciones se mantienen dentro del recinto y que las velocidades medias $\langle V_x\rangle$ y $\langle V_y\rangle$ son nulas dentro de $\pm \frac{2\sigma}{\sqrt{N}}$. 
+    \item \textbf{Caminatas aleatorias:} Paridad estricta de los retornos (ningún retorno en paso impar) y varianza difusiva $\langle R_n^2 \rangle=n$
+\end{itemize}
+\textit{En el modelo químico, las ecuaciones y los resultados se contrastaron ademas con una implementación independiente de las mismas reglas escrita en Python.} \\
+\textit{En el gas ideal no hay una implementación independiente de las reglas; la verificación se apoya en los invariantes calculados por el propio modelo.}
+
+\subsubsection{Validación Estadística}
+La validación compara cada modelo con su teoría analítica usando replicas independientes (semillas aleatorias distintas) y la prueba de hipótesis que corresponde al tipo de dato. La unidad de análisis es siempre la replica, porque las observaciones dentro de una misma corrida están autocorrelacionadas. El nivel de significación es $\alpha=0.05$
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Pruebas estadísticas por modelo}
+\begin{tabularx}{\textwidth}{| >{\centering\arraybackslash}p{2.2cm} | Y | Y |}
+    \hline
+    \textbf{Modelo} & \textbf{Magnitud contrastada} & \textbf{Prueba} \\
+    \hline
+    Química & Moléculas de $C$ en equilibrio, constante de equilibrio, constante cinética & $t$ de Student pareado por réplica (10 réplicas, valor crítico 2.262), Welch entre grupos independientes \\
+    \hline
+    Gas Ideal & Distribución de velocidades contra Maxwell-Boltzmann 2D; $\langle v\rangle$ contra $1.2533\cdot \sqrt{T}$; cociente de $\langle E_k\rangle$ y de $v_{rms}$ entre especies & $X^2$ de bondad de ajuste con 10 bins equiprobables ($k-2$ grados de libertad), medida como fracción de fotos que rechazan contra el $5 \%$ esperado por azar; $t$ de Student pareado por réplica (10 réplicas, valor crítico 2.262; 5 réplicas en el Escenario 3, valor crítico 2.776) contra el valor teórico \\
+    \hline
+    Caminatas & Probabilidad de retorno contra Pólya ($p_0=0.340537$ en 3D, $0.193206$ en 4D); media de coordenadas contra 0; $E[R_n^2]$ contra $n$ & Intervalo de confianza del 95 \% de $\hat p$ y prueba $Z$ para proporciones ($|Z|<1.96$); en 1D y 2D, donde $p_0=1$, solo se compara con el valor a horizonte finito \\
+    \hline
+\end{tabularx}
+\end{table}
+\textit{Con pocas réplicas y varianza entre réplicas muy baja, una prueba puede rechazar la hipótesis nula por diferencias de 1 \% sin relevancia práctica. Por eso, además del estadístico, se informa siempre el error relativo.}
+\textit{En el gas ideal, el test $X^2$ aplicado a una sola foto rechaza el $5$ \% de las veces aun cuando el gas sigue la distribución teórica, por lo que se informa la fracción de rechazos sobre todas las fotos y no el resultado de una sola. Además, con paredes adiabáticas la temperatura de cada corrida queda fijada por la muestra inicial de velocidades, de modo que la comparación se hace también contra la temperatura efectivamente medida.}
+\subsubsection{Escenarios y análisis de sensibilidad}
+Cada modelo se estudia en cuatro escenarios que modifican sus parámetros o perturban el sistema, y de cada uno se comparan los resultados contra la predicción teórica. En todos se fija de antemano la \textbf{Ventana de promedio:} se estiman las magnitudes de equilibrio solo después de que el sistema relajo, porque promediar durante el transitorio produce discrepancias aparentes.
+\subsubsection{Registro y documentación}
+Los resultados de todas las corridas se registran en una planilla de calculo, con una hoja de parámetros, una hoja de datos por corrida y una hoja de resumen con las pruebas estadísticas calculadas con formulas. Se documentan en el informe los cambios respecto del diseño inicial, las decisiones de modelado y las diferencias que no se lograron explicar.
+
+\subsection{Gas Ideal Bidimensional}
+\subsubsection{Modelo de agentes}
+Cada partícula es un agente 'Particle' con posición, velocidad, masa, radio y un contador de choques. El agente principal 'Main' contiene la población, el recinto y los parámetros. La física corre en un evento de tipo Timeout recurrente de periodo $dt=0.005s$ (ev\textunderscore step), que llama a 'StepPhysics()' 
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Parámetros}
+\begin{tabularx}{\textwidth}{ | Y | Y | }
+    \hline
+    \textbf{Parámetro} & \textbf{Valor} \\
+    \hline
+    Recinto $L_x \times L_y$ & $600 \times 400$ \\
+    \hline
+    Paso de integración $dt$ & 0.005 s \\
+    \hline
+    $K_B$, masa de referencia & 1, 1 \\
+    \hline
+    Radio de las partículas & 5 (Escenario 1,2 y 4) \\  & 2.5 (Escenario 3) \\
+    \hline
+    N & 250 (Escenario 1,2) \\  & 500 a 2000 (Escenario 3) \\  & 100 a 1000 (Escenario 4) \\
+    \hline
+    Condición inicial en los experimentos & Velocidades maestreadas de la distribución de Maxwell \\
+    \hline
+    Mapa de calor & $M \times M$ celdas, $M=10$ (Escenario 3 $M=20$) \\
+    \hline
+    Histograma & 50 bins, eje fijo hasta $v=300$, promedio móvil exponencial $(\alpha=0.01)$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\subsubsection{Estadísticas del modelo}
+\begin{itemize}
+    \item \textbf{Temperatura medida}: $T_{med}=\frac{\langle E_k \rangle}{k_B}$, calculada sobre todas las partículas en cada instante. Con paredes adiabaticas la energía total se conserva, así que $T_{med}$ queda fija por la muestra inicial de velocidades. 
+    \item \textbf{Test $X^2$ de bondad de ajuste}: Se dividen las velocidades en $k=10\space bins$ equiprobables bajo la distribución teórica.
+    \item \textbf{Ley de escala}: Se ajusta $\langle v \rangle=a\cdot\sqrt{T}$ sin ordenada al origen sobre las medias por temperatura y se compara con $\sqrt{\frac{\pi}{2}}=$
+    \item \textbf{Perfil de temperatura}: Se mide la temperatura media por columna del mapa de calor y se ajusta una recta sobre la zona central (de $0.25\cdot M$ a $0.75\cdot M$). Se reportan la pendiente, el $R^2$ y los saltos de pared.
+    \item \textbf{Flujos}: $q_L$ y $q_R$ son la energía entregada o absorbida por unidad de tiempo en cada pared, promediadas en la ventana de medición. En un estado estacionario con paredes superior e inferior adiabaticas, $q_L + q_R=0$
+    \item \textbf{Expansión}: Se mide la fracción de partículas a la izquierda, $f_{izq}(t)$. Se definen $t_\frac{1}{2}$ como el primer instante después de retirar el tabique en que $f_{izq}\leq0,75$ y $t_{eq}$ como el primero en que $|f_{izq}-0.5|\leq 2\sigma=\frac{1}{\sqrt{N}}$. La fracción final es el promedio de $f_{izq}$ de la ventana final.
+\end{itemize}
+
+\subsubsection{Escenarios y diseño experimental}
+Cada escenario se corrió con un experimento de 'Parameters Variation' de AnyLogic que barre un parámetro, con replicas de semilla aleatoria por punto. El modelo acumula las salidas por si solo y promedia en una ventana posterior a un transitorio. En cada grupo se compara la medio de las replicas con el valor teórico mediante una prueba $t$ de Student pareada por replica, con $\alpha=0.05$, la unidad de análisis es la replica
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Escenarios del modelo Gas Ideal Bidimensional}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{Escenario} & \textbf{Parametro} & \textbf{Replicas} & \textbf{Parada} & \textbf{Ventana} & \textbf{Configuracion} \\
+    \hline
+    Temperatura & $T=500$ a $4500$, paso $500$ & $10$ & $60 s$ & $10$ a $60 s$ & $N=250$, Paredes adiabaticas, $r=5$ \\
+    \hline
+    Mezcla de masas & $m_1=1$ a $8$, paso $1$ & $10$ & $60 s$ & $10$ a $60 s$ & $N=250$, $N_1=50$ (especie pesada), $T=1250$, $r=5$ \\
+    \hline
+    Gradiente térmico & $N=500$, $1000$, $1500$, $2000$ & $5$ & $200s$ & $100$ a $200 s$ & Paredes térmicas, $T_L=2500$, $T_R=500$, $r=2.5$, $M=20$ \\
+    \hline
+    Expansión de Joule & $N=100$, $400$, $700$, $1000$ & $10$ & $100 s$ & $60$ a $100 s$ (Fracción final) & Tabique retirado a los $2 s$, Paredes adiabaticas, $r=5$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\subsection{Caminatas aleatorias de 1D a 4D}
+\subsubsection{Modelo de agentes}
+Cada caminante es un agente `Walker' con coordenadas enteras $(x,y,z,w)$, un contador de pasos, un indicador de retorno y el tiempo del primer retorno. En cada paso elige con distribución uniforme discreta una de las $2d$ direcciones y suma $\pm1$ a una coordenada; las coordenadas que exceden la dimensión quedan en 0. El primer instante en que las cuatro coordenadas valen 0 se guarda como $T$. Una unidad de tiempo equivale a un paso. El modelo se implementó en AnyLogic 8.9.10 (Personal Learning Edition) y cuenta con una vista 3D del caminante y un gráfico de la curva acumulada $\hat P(T\leq n)$.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Parámetros del modelo de caminatas}
+\begin{tabularx}{\textwidth}{ | Y | Y | }
+    \hline
+    \textbf{Parámetro} & \textbf{Valor} \\
+    \hline
+    Dimensiones $d$ & 1, 2, 3, 4 \\
+    \hline
+    Réplicas $M$ & 10 000 en los escenarios (50 000 en la validación de arranque) \\
+    \hline
+    Pasos $N$ por réplica & 10 000 \\
+    \hline
+    Nivel de confianza & 95 \% \\
+    \hline
+    Semillas & Fija por defecto; 10 semillas distintas (1007, 2007, \ldots, 10007) en el análisis de sensibilidad \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\subsubsection{Estadísticas del modelo}
+\begin{itemize}
+    \item \textbf{Probabilidad de retorno}: $\hat p=\frac{R}{M}$ con intervalo $\hat p\pm1.96\sqrt{\hat p(1-\hat p)/M}$ y prueba $Z$ contra $p_0$ (solo en 3D y 4D).
+    \item \textbf{Curva acumulada}: $\hat P(T\leq n)$ para $n=1,\ldots,N$.
+    \item \textbf{Entradas al nivel $w=0$} (`entradasW0'): cuenta las transiciones de $w\neq0$ a $w=0$ antes del primer retorno. No es un retorno al origen: la coordenada $w$ es por sí sola una caminata recurrente de una dimensión, de modo que el contador crece sin cota aunque el caminante nunca regrese al origen.
+\end{itemize}
+
+\subsubsection{Escenarios y diseño experimental}
+Todos los escenarios usan $M=10000$ réplicas y $N=10000$ pasos; la unidad de análisis es la proporción $\hat p$ sobre las $M$ réplicas.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Escenarios del modelo de caminatas}
+\begin{tabularx}{\textwidth}{ | Y | Y | }
+    \hline
+    \textbf{Escenario} & \textbf{Configuración} \\
+    \hline
+    1. Comparación dimensional & $d=1,2,3,4$; $\hat p$ e intervalo de confianza contra Pólya y curva acumulada \\
+    \hline
+    2. Espacio de nivel $w=0$ en 4D & Visitas medias al plano $w=0$ y al origen, corriendo los $N$ pasos sin cortar en el primer retorno \\
+    \hline
+    3. Distribución del tiempo de retorno & $d=3$ y $d=4$; fracción acumulada de retornos con $T\leq t$ y $T$ medio de los que vuelven \\
+    \hline
+    4. Deriva & $d=1$ y $d=2$; $\delta=0,0.01,0.05,0.1,0.2,0.5$ en 1D y $\delta=0,0.05,0.1,0.2,0.5$ en 2D \\
+    \hline
+\end{tabularx}
+\end{table}
+
+Además se hizo un análisis de sensibilidad a $N$ (100 a 20 000), a $M$ (100 a 50 000) y a la semilla (10 semillas).
+
+\subsection{Cinética Química}
+
+\subsubsection{Modelo de agentes}
+Cada molécula es un agente con especie, masa, radio y velocidad. Los parámetros son: 
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Parámetros del Agente molécula}
+\begin{tabularx}{\textwidth}{ | Y | Y | }
+    \hline
+    \textbf{Parámetro} & \textbf{Valor} \\
+    \hline
+    Masas de $A$, $B$, $C$ & 1, 1, 2  \\
+    \hline
+    Radios de $A$, $B$, $C$ & 4, 4, 6 \\
+    \hline
+    $N_{A,0} = N_{B, 0}$,$N_{C,0}$ & 150, 0  \\
+    \hline
+    $E_{a,1}$ & 400 \\
+    \hline
+    $E_{a,2}$ & 600 (reacción exotermica, $\Delta H=-200$ \\
+    \hline
+    $\mathcal{A}_2$ & 1 $S^{-1}$ \\
+    \hline
+    Temperatura de referencia & 200 \\
+    \hline
+    Paso de integración $dt$ & 0.02 $s$ \\
+    \hline
+    Frecuencia del termostato $\nu$ & 7 $S^{-1}$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+Los valores de $E_a$ superan a los 100 y 150 de un planteo inicial porque con esas barreras el cociente de $E_a/k_{BT}$ queda entre 0.2 y 1 en el rango de temperaturas de interés, y no se manifiesta el comportamiento de Arrhenius.
+\textbf{Dinámica:} En cada paso de tiempo las moléculas se desplazan y rebotan en las paredes; luego se aplica el termostato, la reacción inversa y la detección de choques.
+\begin{itemize}
+    \item \textbf{Termostato de Andersen:} Con probabilidad $1 - e^{-\nu\,dt}$ por paso, una molécula re-samplea su velocidad de una distribución de Maxwell (cada componente $\sim N(0, k_BT/m)$). Sin termostato, la reacción $A+B\to C$, que reduce el número de partículas, enfriaría el gas sin límite y la temperatura dejaría de ser la variable controlada. Con $\nu = 1$ la energía cinética media en equilibrio resultaba 192 en lugar de $k_BT = 200$; con $\nu = 5$ resultaba 198 y con $\nu = 10$, 199. Se eligió $\nu = 7$.
+    \item \textbf{Reacción directa:} Cuando $A$ y $B$ chocan, la energía cinética relativa en la dirección normal es $E_{rel} = \frac{1}{2}\mu\,(\vec v_{rel}\cdot\hat n)^2$. Si $E_{rel} \ge E_{a,1}$, ambas moléculas se transforman en una $C$ ubicada en el centro de masa, con la velocidad del centro de masa, de modo que se conserva el momento lineal; de lo contrario rebotan elásticamente. Se usa únicamente el criterio de umbral, porque agregar una probabilidad $e^{-E_{a,1}/k_BT}$ contaría la barrera dos veces.
+    \item \textbf{Reacción inversa:} Cada $C$ se descompone en un paso con probabilidad $1 - e^{-k_2\,dt}$. Los productos $A$ y $B$ nacen separados a una distancia $r_A + r_B + 0.1$, para que no se solapen, con una velocidad relativa muestreada de la distribución de Maxwell y la velocidad del centro de masa de $C$.
+    \item \textbf{Choques elásticos:} Se resuelven por el impulso a lo largo de la normal, con separación del solapamiento.
+    \item \textbf{Catalizador:} Reduce $E_{a,1}$ y $E_{a,2}$ en la misma cantidad (240, el 60 \% de $E_{a,1}$). Si bajara solo $E_{a,1}$ cambiaría $K_{eq}$, y un catalizador real acelera ambos sentidos sin modificar el equilibrio.
+\end{itemize}
+\textbf{Corrección de densidad:} Se probó corregir $k_1$ con el factor de contacto de Henderson para discos duros ($\approx 1.24$ a esta ocupación). La constante medida se mantuvo entre 0 y 5 \% de la fórmula diluida y, con la corrección activa, $K_{eq}$ resultaba 15 \% menor que la teórica. Por eso la corrección se descartó.
+\subsubsection{Modelo macroscópico y estadístico}
+Tres costos $A_{sd}$, $B_{sd}$, $C_{sd}$ resuelven las ecuaciones de acción de masas con las mismas constantes de $k_{1c}$ y $k_2$ y se trafican junto a los conteos de agentes.
+A partir de una espera de $tEq$, el modelo acumula $\langle A \rangle$, $\langle B \rangle$, $\langle C \rangle$ y $\langle A\cdot B \rangle$ cada 0.1 seg. La constante de equilibrio se estima como
+
+$$\hat{K}_{eq}=\frac{\langle C\rangle}{\langle A \cdot B\rangle}$$
+
+que es exacta por el balance $k_1 \langle AB\rangle=k_2\langle C\rangle$. El cociente $\frac{\langle C\rangle}{\langle A\rangle \langle B\rangle}$ sobrestima $K$ que es un factor $1+\mathrm{Cov}(A,B)=\mathrm{Var}(C)$; el efecto es chico con $N=150$ pero grande con un $N$ pequeño. El tiempo de media reacción $t_{1/2}$ es el primer instante en que $C$ se alcanza la mitad de su valor de equilibrio teórico.
+
+La constante cinética se mide como el numero de reacciones directas dividido por $\int{AB} \,dt$ lo que reduce mucho el ruido frente a la estimación por pendiente inicial en un intervalo corto.
+
+\subsubsection{Escenarios y diseño experimental}
+Cada escenario se corrió con 10 replicas independientes (semillas aleatorias distintas). En cada uno se compara la media de las replicas con el valor teórico mediante una prueba $t$ de Student pareada por la replica (9 grados de libertad, valor critico de 2.262 al 5\%), salvo en el Escenario 3, que compara dos grupos independientes con la prueba de Welch. Las observaciones de una misma corrido están autocorrelacionadas, por lo que la unidad de análisis es la replica.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Escenarios del modelo}
+\begin{tabularx}{\textwidth}{ | Y | Y | }
+    \hline
+    \textbf{Escenario} & \textbf{Configuración} \\
+    \hline
+    1. Temperatura & $T=100,200,300,400$; $tEq=300s$; parada 600s; \\ & Repetición a $T=100$ con $tEq=900s$ y parada 1500s  \\
+    \hline
+    2. Reactivo limitante & $N_A=200$, $N_B=50$; $tEq=100s$; Parada 400s \\
+    \hline
+    3. Catalizador & $T=100$; catalizador activado a $t=50s$ parada 100s; comparación con un grupo sin catalizador \\
+    \hline
+    4. Perturbaciones & $T=200$; pulso de 100 moléculas $A$ a $t=150s$; enfriamiento a $T=100$ a $t=450s$. Primera versión: $tEq=150s$; parada $900s$. \\ & Repetición  $tEq=450s$; parada $1500s$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\section{Resultados}
+
+\subsection{Gas Ideal Bidimensional}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Resultados/Gas Ideal Bidimensional/recinto_1.png}
+    \caption{Recinto con las partículas coloreadas por velocidad y el mapa de calor}
+\end{figure}
+
+\subsubsection{Escenario 1: Efecto de la temperatura}
+\textbf{Que se estudia y que se espera.} Se mantiene el recinto a una temperatura inicial fija y se mide la rapidez media después de un transitorio. La teoría predice que la distribución se ensancha con $T$, que $\langle v \rangle=1.2533\cdot\sqrt{T}$ y que $v_{rms}=\sqrt{2T}$. Se evalúa cada punto contra la teoría con una prueba $t$ pareada por replica, se ajusta $a$ en $\langle v\rangle=a\cdot\sqrt{T}$ y se cuenta la fracción de fotos que rechazan el test de $X^2$ 
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 1}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{T} & \textbf{$\langle v\rangle$ medio $\pm sd$} & \textbf{$\langle v\rangle$ teórico} & \textbf{Error} & \textbf{$t$} & \textbf{$T$ medida} & \textbf{Fracción $X^2$ rechaza}  \\
+    \hline
+    $500$ & $28.37 \pm 0.95$ & $28.02$ & $+1.24 \%$ & $1.16$ & $512.6$ & $0.8 \%$ \\
+    \hline
+    $1000$ & $39.79 \pm 1.22$ & $39.63$ & $+0.40 \%$ & $0.41$ & $1008.7$ & $3.3 \%$ \\
+    \hline
+    $1500$ & $49.17 \pm 1.54$ & $48.54$ & $+1.30 \%$ & $1.30$ & $1540.0$ & $5.0 \%$ \\
+    \hline
+    $2000$ & $55.77 \pm 1.63$ & $56.05$ & $-0.50 \%$ & $-0.54$ & $1982.0$ & $7.5 \%$ \\
+    \hline
+    $2500$ & $62.26 \pm 1.81$ & $62.67$ & $-0.65 \%$ & $-0.71$ & $2458.2$ & $5.8 \%$ \\
+    \hline
+    $3000$ & $68.99 \pm 1.71$ & $68.65$ & $+0.49 \%$ & $0.62$ & $3023.5$ & $5.0 \%$ \\
+    \hline
+    $3500$ & $74.24 \pm 2.61$ & $74.15$ & $+0.13 \%$ & $0.12$ & $3509.6$ & $4.2 \%$ \\
+    \hline
+    $4000$ & $77.21 \pm 1.77$ & $79.27$ & $-2.59 \%$ & $-3.68$ & $3795.6$ & $6.7 \%$ \\
+    \hline
+    $4500$ & $83.84 \pm 3.19$ & $84.08$ & $-0.28$ \% & $-0.23$ & $4470.7$ & $2.5 \%$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_dsV.png}
+    \caption{$\langle v\rangle$ contra $\sqrt{T}$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_TBaja.png} \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_TAlta.png}
+    \caption{Histograma de velocidades contra la curva de Maxwell-Boltzmann, a $T=500$ y a $T=4000$}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_dsHT1.png} 
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_dsHT2.png}
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc1_dsHT3.png}
+    \caption{colapso de dsH1, dsH2 y dsH3 con 3 diferentes temperaturas (500, 2500, 4500)}
+\end{figure}
+
+El ajuste da $a = 1.2481 \pm 0.0042$ contra $1.2533$ teórico $(t = -1.24)$: No se rechaza que la pendiente sea la teórica. La fracción de fotos en que el test $X^2$ rechaza $H_0$ fue de $4.5\%$ (Alrededor de 1080 fotos: 9 temperaturas $\times$ 10 réplicas $\times$ 12 fotos), compatible con el 5 \% esperado por azar.
+
+Contra la temperatura nominal, el único punto que rechaza es $T = 4000$, con una diferencia de $-2.6$ \%. Esa diferencia no es un fallo del modelo: con paredes adiabáticas la energía se conserva, así que la temperatura de cada corrida queda fijada por la muestra de 250 velocidades iniciales, que fluctúa un $\frac{1}{\sqrt{250}}$ (3.2 \% en $\langle v\rangle$, que es la dispersión observada entre réplicas). A $T = 4000$ la temperatura medida promedió $3795.5$ ($-5.1$\% respecto de la nominal); si se compara cada corrida contra su propia temperatura medida, el rechazo desaparece ($t = 0.29$), pero aparecen diferencias de 0.23 \% en $T = 2500$ y 0.11 \% en $T = 4500$ que sí rechazan ($t = 4.76$ y $2.62$). Son diferencias estadísticamente detectables y sin relevancia práctica, y con nueve puntos es esperable que alguno rechace por azar.
+
+\subsubsection{Escenario 2: Mezcla de dos masas}
+\textbf{Que se estudia y que se espera.} Se mezclan 200 partículas livianas (masa 1) con 50 pesadas (masa $m_1$) a $T=1250$ y se varia $m_1$ de 1 a 8. La equiparticion predice que la energía cinética media de las dos especies es la misma y que el cociente de $v_{rms}$ es $\sqrt{m_1}$. El caso $m_1=1$ es un control trivial: las dos especias son idénticas y el cociente vale 1 por construcción.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 2}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$m_1$} & \textbf{$\langle E_k\rangle$ liviana / $\langle E_k\rangle$ pesada} & \textbf{$t$} & \textbf{$v_{rms}$ liviana / pesada} & \textbf{Teoría $\sqrt{m_1}$ }& \textbf{Error} & \textbf{t} & \textbf{Fracción $X^2$ Rechaza} \\
+    \hline
+    $1$ (control) & $1$ & - & $1$ & $1$ & - & - & $4.2$\% \\
+    \hline
+    2 & $0.989 \pm 0.025$ & -1.35 & 1.407 & 1.414 & -0.54 \% & -1.37 & 4.2 \% \\
+    \hline
+    3 & $1.003 \pm 0.044$ & 0.21 & 1.734 & 1.732 & +0.12 \% & 0.18 & 5.8 \% \\
+    \hline
+    4 & $1.016 \pm 0.047$ & 1.10 & 2.016 & 2.000 & +0.79 \% & 1.08 & 4.2 \% \\
+    \hline
+    5 & $1.007 \pm 0.047$ & 0.44 & 2.243 & 2.236 & +0.30 \% & 0.41 & 2.5 \% \\
+    \hline
+    6 & $0.995 \pm 0.019$ & -0.78 & 2.444 & 2.449 & -0.23 \% & -0.79 & 5.8 \% \\
+    \hline
+    7 & $1.029 \pm 0.050$ & 1.84 & 2.683 & 2.646 & +1.41 \% & 1.80 & 6.7 \% \\
+    \hline
+    8 & $0.996 \pm 0.047$ & -0.26 & 2.822 & 2.828 & -0.22 \% & -0.30 & 2.5 \% \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc2_esEsp.png}     
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc2_COv.png}
+    \caption{Energía cinética media por especie y Cociente de $v_{rms}$ entre especies}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Resultados/Gas Ideal Bidimensional/esc2_hisEsp.png}
+    \caption{Histograma por especie}
+\end{figure}
+
+\textbf{Ninguno} de los 14 test rechaza la hipótesis nula, y el mayor error relativo es $1.4 \%$. La fracción de fotos $X^2$ que rechazan es $4.5 \%$, compatible con el $5\%$. El resultado cumple la equiparticion: las partículas pesadas tienen la misma energía cinética media que las livianas y por eso son mas lentas en un factor $\sqrt{m_1}$
+
+\subsubsection{Escenario 3: gradiente térmico y conducción}
+\textbf{Que se estudia y que se espera.} Con la pared izquierda a $T_L=2500$ y la derecha a $T_R=500$, se espera un perfil de temperatura que decrece entre las paredes y un balance en estado estacionario. Se varia $N$ para cambiar el camino libre medio: a mayor $N$, menor $K_n$ y mas cerca del régimen de conducción continua. Se usan 5 replicas por punto y una ventana de 100 a 200 segundos.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 3}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | Y | Y | Y |}
+    \hline
+    \textbf{N} & \textbf{Kn} & \textbf{Pendiente central} & \textbf{$R^2$} & \textbf{$q_L$} & \textbf{$q_R$} & \textbf{$q_L+q_R$} & \textbf{$t$} & \textbf{$\frac{q_L+q_R}{q_L}$} \\
+    \hline
+    500 & 0.113 & -3.05 & 0.76 & 9453 & -9165 & $288 \pm 427$ & 1.51 & +3.0\% \\
+    \hline
+    1000 & 0.057 & -3.21 & 0.89 & 11071 & -10984 & $87 \pm 1013$ & 0.19 & +0.8 \% \\
+    \hline
+    1500 & 0.038 & -3.05 & 0.93 & 13373 & -13493 & $-120 \pm 732$ & -0.37 & -0.9 \% \\
+    \hline
+    2000 & 0.028 & -3.25 & 0.96 & 16486 & -15596 & $890 \pm 652$ & 3.05 & +5.4 \% \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Saltos de pared por N}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y |}
+    \hline
+    \textbf{N} & \textbf{Salto en pared izquierda} & \textbf{Salto en pared derecha} \\
+    \hline
+    500 & $-112 \pm 119$ & $-284 \pm 64$ \\
+    \hline
+    1000 & $-61 \pm 120$ & $-138 \pm 51 $ \\
+    \hline
+    1500 & $+19 \pm 69$ & $-152 \pm 40$ \\
+    \hline
+    2000 & $-15 \pm 92$ & $-64 \pm 33$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Resultados/Gas Ideal Bidimensional/esc3_mapa.png}
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc3_Tx.png}
+    \caption{Perfil T(x) con el ajuste lineal sobre la zona central, a N = 1000}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc3_n1000.png} 
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc3_n2000.png}
+    \caption{flujos $q_L$, $q_R$ y su suma contra el tiempo, a N = 1000 y a N = 2000}
+\end{figure}
+
+El $R^2$ del ajuste lineal crece de 0.76 a 0.96 con N, es decir, el perfil se parece mas a una recta cuando el gas es mas denso. Las pendientes (-3.05 a -3.25, promedio -3.14) están cerca de la ideal de -3.33, El balance de flujos $q_L+q_r=0$ no se rechaza para $N\leq1500$, con una diferencia de hasta 3\% de $q_L$ y se rechaza para $N=2000$
+Hay tres resultados que no son concluyentes:
+\begin{itemize}
+    \item \textbf{Saltos de pared:} Los saltos medidos son negativos y de magnitud comparable a su dispersión, y pueden ser en buena parte sesgo del método. Extrapolar una recta a un perfil que en realidad es curvo produce saltos aparentes. Para separar el salto físico del sesgo habría que ajustar $T^{3/2}$ o usar las columnas pegadas a las paredes.
+    \item \textbf{Pendiente central: } Con $k \propto \sqrt{T}$, la pendiente de $T$ en el centro del recinto seria de unos $-3.1$, no de $-3.33$. Las pendientes medidas (promedio -3.14) son compatibles con ese valor, de modo que su diferencia con -3.33 no es necesariamente un salto de pared.
+    \item \textbf{N=2000: } El rechazo de $q_L + q_r=0$ (+5.4\%), Es compatible con un gas que todavía se esta calentando al terminar la ventana: la relajación térmica es mas lenta cuando hay mas partículas
+\end{itemize}
+
+\subsubsection{Escenario 4: Expansión libre de Joule}
+\textbf{Que se estudia y que se espera.} El gas arranca en la mitad izquierda con el tabique cerrado y se lo libera a $t=2seg$. La teoría predice que la energía total se conserva, que la fracción de partículas a la izquierda tiende a 0.5 y que el tiempo de equilibrio es el que tarda el gas en recorrer el recinto. Se varia N de 100 a 1000 con 10 replicas por punto. 
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 4}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y |}
+    \hline
+    \textbf{N} & \textbf{$t_{1/2}$} & \textbf{$t_{eq}$} & \textbf{Fraccion final izquierda} & \textbf{t vs. 0.5} & \textbf{Deriva maxima de energia \textit{(ppm)}} \\
+    \hline
+    100 & $5.5\pm0.9$ & $8,9\pm1.7$ & $0.4973\pm0.0359$ & $-0.24$ & $1.3\times10^{-9}$ \\
+    \hline
+    400 & $4.3\pm0.4$ & $7.3\pm0.4$ & $0.5094\pm0.0073$ & 4.06 & $1.9\times10^{-9}$ \\
+    \hline
+    700 & $3.5\pm0.0$ & $6.0\pm0.5$ & $0.5049\pm0.0045$ & 3.48 & $3.3\times10^{-9}$ \\
+    \hline
+    1000 & $2.5\pm0.0$ & $4.8\pm0.5$ & $0.5104\pm0.0044$ & 7.49 & $2.4\times10^{-9}$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc4_bef.png}
+    \includegraphics[width=0.4\linewidth]{Resultados/Gas Ideal Bidimensional/esc4_aft.png}
+    \caption{$f_{izq}$ contra el tiempo, antes y despues de el quite de Tabique}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Resultados/Gas Ideal Bidimensional/esc4_dens1.png}
+    \includegraphics[width=0.5\linewidth]{Resultados/Gas Ideal Bidimensional/esc4_dens2.png}
+    \includegraphics[width=0.5\linewidth]{Resultados/Gas Ideal Bidimensional/esc4_dens3.png}
+    \caption{Mapas de densidad en tres instantes (antes de retirar el tabique, durante la expansión y en equilibrio}
+\end{figure}
+
+La energía se conserva en todas las corridas (deriva por debajo de $3.3\times10^{-9}$ ppm). Quedan dos resultados sin explicacion
+\begin{itemize}
+    \item \textbf{Fracción final: }Con N=100 la fracción final es compatible con 0.5, pero con $N\geq400$ quedan entre 0.5 y 1 \% por encima de 0.5, con el mismo signo en los tres valores de N, y la prueba lo rechaza. Con una dispersión entre replicas tan bajas, un sesgo 0.5 a 1 \% es estadisticamente detectable, pero es pequeño en la practica
+    \item  \textbf{Tiempos: }$t_{1/2}$ baja de 5.5 s (N=100) a 2.5 s (N=1000) y $t_{eq}$ de 8.9 a 4.8 s, lo contrario de lo que daría una difusión de partículas independientes. \textit{Hipótesis: con N alto el gas es denso y se expande como un fluido, a la velocidad del sonido y no por difusión libre.}
+\end{itemize}
+
+\subsection{Caminatas aleatorias de 1D a 4D}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Resultados/Caminatas/panel_3d_curva.png}
+    \caption{Curva $\hat P(T\leq n)$ simulada en 3D ($M=2000$, $N=10000$) contra el valor de Pólya ($0.3405$), tomada del panel de control}
+\end{figure}
+
+\subsubsection{Verificación}
+\textbf{Isotropía} ($M=10000$, $N=1000$): la media de cada coordenada contiene al 0 dentro de su intervalo de confianza del 95 \% en las 10 coordenadas evaluadas (1D a 4D), con errores estándar medidos de 0.31, 0.22, 0.18 y 0.16 contra 0.316, 0.224, 0.183 y 0.158 esperados.
+
+\textbf{Varianza difusiva} ($N=1000$): $E[R_N^2]=N$ se cumple en 4 de 4 dimensiones con $M=100000$ (valores 994.4, 996.5, 996.6 y 1001.9). Con $M=10000$, 3 de 4 dimensiones pasan; en 1D da $970.7$ ($Z\approx-2.15$), que con $M=100000$ pasa a $-1.27$, por lo que se atribuye al azar.
+
+\textbf{Paridad} ($M=10000$, $N=1000$): no hubo ninguna visita al origen en paso impar en ninguna dimensión (0 visitas impares contra 243 097, 20 785, 5 063 y 2 506 pares en 1D, 2D, 3D y 4D).
+
+\subsubsection{Escenario 1: Comparación dimensional}
+\textbf{Que se estudia y que se espera.} Se estima $\hat P(T\leq N)$ en cada dimensión con $M=10000$ y $N=10000$. La teoría predice un valor cercano a 1 en 1D y 2D (con $0.992$ en 1D por el horizonte finito) y los valores de Pólya en 3D y 4D.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Resultados Escenario 1 (corrida 3)}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$d$} & \textbf{$\hat p$} & \textbf{IC 95 \%} & \textbf{Pólya} & \textbf{$Z$} \\
+    \hline
+    1 & $0.9932$ & $[0.9916, 0.9948]$ & $1$ ($0.992$ finito) & - \\
+    \hline
+    2 & $0.7488$ & $[0.7403, 0.7573]$ & $1$ & - \\
+    \hline
+    3 & $0.3458$ & $[0.3365, 0.3551]$ & $0.340537$ & $+1.11$ \\
+    \hline
+    4 & $0.1987$ & $[0.1909, 0.2065]$ & $0.193206$ & $+1.39$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Resultados/Caminatas/escenario1_plot_corrida3.png}
+    \caption{Curva acumulada $\hat P(T\leq n)$ en 1D, 2D, 3D y 4D, para la misma corrida de la tabla}
+\end{figure}
+
+El modelo reproduce la transición de Pólya: en 3D y 4D $\hat p$ contiene al valor teórico en su intervalo y $|Z|<1.96$. En 1D coincide con el valor de horizonte finito ($0.992$) y en 2D $\hat p$ queda lejos de 1 solo porque la convergencia es logarítmica en $N$. En otras corridas de $M$ y semillas iguales, el 4D dio $0.1977$, $0.203$ ($Z\approx+2.4$) y $0.1907$; el valor aislado de $0.203$ se atribuye a variación entre réplicas (ver el análisis de semillas).
+
+\subsubsection{Escenario 2: Espacio de nivel \texorpdfstring{$w=0$}{w=0} en 4D}
+\textbf{Que se estudia y que se espera.} Se pregunta qué tan frecuente es volver al plano $w=0$ frente al origen completo en 4D. Se corren los $N=10000$ pasos sin cortar en el primer retorno y se cuentan las visitas.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Resultados Escenario 2}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | }
+    \hline
+    \textbf{Medida} & \textbf{Valor} & \textbf{Referencia} \\
+    \hline
+    $\hat P$(visita $w=0$) & $0.9952$ & $\approx1$ \\
+    \hline
+    $\hat P$(retorno) & $0.1943$ & $0.193206$ ($Z\approx+0.28$) \\
+    \hline
+    $\hat P$(retorno $|$ visita $w=0$) & $0.1952$ & - \\
+    \hline
+    Visitas medias al plano $w=0$ & $158.1$ & - \\
+    \hline
+    Visitas medias al origen & $0.2404$ ($[0.2297,0.2511]$) & $u_4-1=0.239467$ \\
+    \hline
+    Fracción de visitas al plano que caen en el origen & $0.0015$ ($\approx1$ de cada 660) & - \\
+    \hline
+\end{tabularx}
+\end{table}
+
+El plano $w=0$ se visita en casi todas las réplicas y con frecuencia alta (unas 158 veces en promedio), pero el origen completo se visita solo 0.24 veces: apenas 1 de cada 660 visitas al plano cae en el origen. La probabilidad de retorno condicionada a haber visitado el plano ($0.1952$) casi no difiere de la incondicional ($0.1943$), de modo que visitar $w=0$ no aumenta la chance de volver al origen. Esto es lo que mide `entradasW0'.
+
+\subsubsection{Escenario 3: Distribución del tiempo de retorno}
+\textbf{Que se estudia y que se espera.} Se estudia en qué pasos ocurre el retorno. Se espera que gran parte de los retornos sea inmediata, con $P(T=2)=\frac{1}{2d}$.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Fracción de réplicas con $T\leq t$ (sobre el total / sobre las que vuelven)}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$t$} & \textbf{3D total} & \textbf{3D que vuelven} & \textbf{4D total} & \textbf{4D que vuelven} \\
+    \hline
+    2 & 0.1643 & 0.481 & 0.1308 & 0.655 \\
+    \hline
+    10 & 0.2527 & 0.739 & 0.1796 & 0.899 \\
+    \hline
+    100 & 0.3133 & 0.917 & 0.1981 & 0.992 \\
+    \hline
+    1000 & 0.3348 & 0.980 & 0.1996 & 0.9995 \\
+    \hline
+    10000 & 0.3418 & 1.000 & 0.1997 & 1.000 \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Medidas del tiempo de retorno}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{Medida} & \textbf{3D medido} & \textbf{3D teórico} & \textbf{4D medido} & \textbf{4D teórico} \\
+    \hline
+    $\hat P$(retorno) & $0.3418$ & $0.340537$ ($Z\approx+0.27$) & $0.1997$ & $0.193206$ ($Z\approx+1.64$) \\
+    \hline
+    $P(T=2)$ & $0.1643$ & $1/6=0.1667$ ($Z\approx-0.64$) & $0.1308$ & $1/8=0.125$ ($Z\approx+1.75$) \\
+    \hline
+    $T$ medio de los que vuelven & $88.7$ & - & $7.86$ & - \\
+    \hline
+\end{tabularx}
+\end{table}
+
+En ninguno de los dos casos se rechaza la teoría. Los retornos son rápidos o no ocurren: en 4D el 99.2 \% de los que vuelven lo hacen antes del paso 100 y el $T$ medio es 7.9, contra 88.7 en 3D, que tiene una cola más pesada de retornos tardíos.
+
+\subsubsection{Escenario 4: Deriva}
+\textbf{Que se estudia y que se espera.} Se agrega un sesgo $\delta$ hacia una dirección. En 1D, la probabilidad de retorno teórica es $1-\delta$ (horizonte infinito); en 2D no hay fórmula.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{Resultados Escenario 4}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$d$} & \textbf{$\delta$} & \textbf{$\hat p$} & \textbf{IC 95 \%} & \textbf{$1-\delta$} & \textbf{$Z$} \\
+    \hline
+    1 & 0.00 & 0.9929 & $[0.9913, 0.9945]$ & 1 & - \\
+    \hline
+    1 & 0.01 & 0.9876 & $[0.9854, 0.9898]$ & 0.99 & $-2.41$ \\
+    \hline
+    1 & 0.05 & 0.9487 & $[0.9444, 0.9530]$ & 0.95 & $-0.60$ \\
+    \hline
+    1 & 0.10 & 0.9019 & $[0.8961, 0.9077]$ & 0.90 & $+0.63$ \\
+    \hline
+    1 & 0.20 & 0.8032 & $[0.7954, 0.8110]$ & 0.80 & $+0.80$ \\
+    \hline
+    1 & 0.50 & 0.5017 & $[0.4919, 0.5115]$ & 0.50 & $+0.34$ \\
+    \hline
+    2 & 0.00 & 0.7386 & $[0.7300, 0.7472]$ & recurrente & - \\
+    \hline
+    2 & 0.05 & 0.6662 & $[0.6570, 0.6754]$ & - & - \\
+    \hline
+    2 & 0.10 & 0.6106 & $[0.6010, 0.6202]$ & - & - \\
+    \hline
+    2 & 0.20 & 0.5313 & $[0.5215, 0.5411]$ & - & - \\
+    \hline
+    2 & 0.50 & 0.3564 & $[0.3470, 0.3658]$ & - & - \\
+    \hline
+\end{tabularx}
+\end{table}
+
+En 1D la probabilidad de retorno cae como $1-\delta$ y 4 de los 5 valores con deriva no rechazan la teoría. La excepción es $\delta=0.01$ ($Z=-2.41$), que se atribuye al horizonte finito: con una deriva tan pequeña, el tiempo característico del escape es del orden de $1/\delta^2=10000$, igual a $N$, y quedan réplicas que habrían vuelto después del paso $N$. En 2D la probabilidad también baja con $\delta$, pero con $\delta=0$ da $0.7386$ y no 1, por la convergencia logarítmica.
+
+\subsubsection{Análisis de sensibilidad}
+\textbf{A $N$} ($M=10000$): $\hat P(T\leq N)$ crece con $N$ y se aproxima a $p_0$ por debajo. En 3D, $Z$ contra Pólya es $-5.3$ y $-3.3$ para $N=100$ y $500$, y $-0.45$ y $-0.22$ para $N=5000$ y $20000$; en 4D el sesgo queda por debajo del ruido de $M=10000$.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\caption{$\hat p$ según el número de pasos $N$ ($M=10000$)}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$N$} & \textbf{1D} & \textbf{2D} & \textbf{3D} & \textbf{4D} \\
+    \hline
+    100 & 0.9178 & 0.5768 & 0.3153 & 0.1871 \\
+    \hline
+    500 & 0.9640 & 0.6598 & 0.3248 & 0.1928 \\
+    \hline
+    1000 & 0.9750 & 0.6783 & 0.3250 & 0.1920 \\
+    \hline
+    5000 & 0.9894 & 0.7227 & 0.3384 & 0.2027 \\
+    \hline
+    20000 & 0.9939 & 0.7579 & 0.3395 & 0.1848 \\
+    \hline
+    Pólya & 1 & 1 & 0.340537 & 0.193206 \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\textbf{A $M$} ($N=10000$): al subir $M$ el error estándar baja de $0.044$ ($M=100$) a $0.0021$ ($M=50000$) en 3D. Las $Z$ en 3D son $-1.49$, $+1.97$, $+0.86$ y $-2.02$ para $M=100$, $1000$, $10000$ y $50000$, y en 4D $+2.20$, $-0.18$, $-0.58$ y $-0.13$.
+
+\textbf{A la semilla} ($M=10000$, $N=10000$, 10 semillas): la media de $\hat p$ es $0.33869$ en 3D y $0.1929$ en 4D, con desvío entre semillas de $0.0053$ y $0.0047$, es decir, $1.12$ y $1.20$ veces el error estándar esperado de una sola corrida ($0.0047$ y $0.0039$).
+
+\subsection{Química Cinética}
+\begin{figure}[H]
+    \centering    
+    \includegraphics[width=0.3\linewidth]{Resultados/Quimica Cinetica/reactor_1.png}
+    \includegraphics[width=0.5\linewidth]{Resultados/Quimica Cinetica/resultados_1.png}
+    \caption{Reactor con moléculas $A$ (Azul), $B$ (Amarillo) y $C$ (Verde) y curvas de las moléculas con la curva de equilibrio teórico}
+\end{figure}
+
+\subsubsection{Escenario 1: Efecto de la temperatura}
+\textbf{Que se estudia y que se espera.} Se mantiene el reactor a una temperatura fija y se compara el sistema a $T=100,200,300$ y $400$, con $N_{A,0}=N_{B,0}=150$. La teoría predice dos efectos. Primero, la constante de $k_1$ crece de forma exponencial con $T$, de modo que el tiempo de media reacción $t_{1/2}$ debe caer con rapidez al calentar. Segundo, como la reacción es exotermica ($E_{a,2}>E_{a,1}$), la constante de equilibrio $K_{eq}=k_{1c}/k_2$ decrece con $T$, y el numero de moléculas de $C$ en equilibrio debe bajar. Se mide $t_{1/2}$ y el promedio de $C$ en una ventana posterior a la relajación, y se compara con el valor que dan las ecuaciones diferenciales. la ventana debe empezar cuando la solución de las ecuaciones ya llego al 98\% del equilibrio, un tiempo que va de 522 segundos a $T=100$ hasta 8.4 segundos a $T=400$
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 1}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | Y | Y | Y | Y | }
+    \hline
+    \textbf{$T$} & \textbf{$t_{1/2}$ agentes (s)} & \textbf{$t_{1/2}$ EDO (s)} & \textbf{$C$ medio} & \textbf{$C_{eq}$ Teórico} & \textbf{Error} & \textbf{$t$ (crit 2.262)} \\
+    \hline
+    100 (ventana corta) & $94.6 \pm 16.1$ & $81.7$ & $65.04$ & $71.58$ & $-9.1$\% & $-6.13$ \\
+    \hline
+    100 (ventana larga) & $80.0 \pm 11.8$ & $81.7$ & $71.42$ & $71.58$ & $-0.2$\% & $-0.15$ \\
+    \hline
+    200 & $7.34\pm 1.66$ & $5.9$ & $53.81$ & $54.84$ & $-1.9$\% & $-1.82$ \\
+    \hline
+    300 & $2.58\pm 0.94$ & $2.3$ & $51.97$ & $51.53$ & $+0.8$\% & $1.05$ \\
+    \hline
+    400 & $1.84\pm 0.57$ & $1.4$ & $51.54$ & $50.96$ & $+1.1$\% & $2.53$ \\
+    \hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Resultados/Quimica Cinetica/esc1_T100.png}
+    \includegraphics[width=0.7\linewidth]{Resultados/Quimica Cinetica/esc1_T200.png}
+    \includegraphics[width=0.7\linewidth]{Resultados/Quimica Cinetica/esc1_T400.png}
+    \caption{$C(t)$ para $T=100,200,400$ y agentes contra SD.}
+\end{figure}
+
+El numero de moléculas de $C$ en equilibrio disminuye al subir la temperatura, como corresponde a una reacción exotermica $E_{a,2}>E_{a,1}: K_{eq}$ decrece con $T$ (Principio de Le Chatelier), mientras que la velocidad crece fuertemente y $t_{1/2}$ cae en un factor cercano a 40 entre $T=100$ y $T=400$
+
+La primera tanda a $T=100$ promedio entre $300$ y $600$ segundos, pero la solución de las ecuaciones diferenciales llega al 98\% del equilibrio recién a los 522 segundos. La ventana mezclaba la subida con el equilibrio y la prueba rechazaba la hipótesis nula. Con una ventana de 900 a 1500 segundos la diferencia es de 0.2\% y la prueba no rechaza. A $T\geq 200$ los agentes coinciden con la teoría dentro de 2\%. El rechazo a $T=400$ corresponde a una diferencia de 1.1\%. es estilísticamente detectable porque la varianza entre replicas es muy baja, pero no es relevante en la practica.
+
+\subsubsection{Escenario 2: Reactivo Limitante}
+\textbf{Que se estudia y que se espera.} Se parte de $N_{A,0}=200$ y $N_{B,0}=50$, de modo que $B$ es el reactivo limítate, a al temperatura de referencia $T=200$. Si la reacción fuera irreversible, $C$ llegaría a 50 y el excedente de $A$ quedaría intacto. Como es reversible, la teoría predice que $C$ se estabiliza por debajo de 50, en el valor que resulte de resolver $K(a-C)(b-C)=C$, y que quedan sin reaccionar tanto $A$ como $B$. Se mide el promedio de $A$, $B$ y $C$ en equilibrio y el balance de átomos de cada corrida.
+
+Con $N_A=200$ y $N_B=50$
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 2}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y | }
+    \hline
+    & \textbf{Agentes} & \textbf{Teoria} \\
+    \hline
+    $C$ medio & $25.25\pm 0.43$ & 25.68 \\
+    \hline
+    $A$ medio & $174.75$ & 174.32 \\
+    \hline
+    $B$ medio & $24.75$ & 24.32 \\
+    \hline
+\end{tabularx}
+\end{table}
+
+La formación de $C$ no llega a 50: se estabiliza en torno a 25, quedan alrededor de 25 moléculas de $B$ y 175 de $A$. Es una consecuencia de la reversibilidad: En el equilibrio coexisten reactivos y producto aunque falte reactivo limitante para convertir todo. El balance de átomos ($\langle A\rangle+\langle C\rangle=200$ y $\langle B\rangle+\langle C\rangle=50$ se cumple en las 10 corridas. La diferencia con la teoría es de $-1.7\%$ $(t=-3.21)$, significativa por la baja varianza; la ventana (100 a 400 segundos) esta pasada la relajación, de modo que no se explica por ella. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Resultados/Quimica Cinetica/esc2.png}
+    \caption{$A$, $B$ y $C$ en el escenario de reactivo limitante.}
+\end{figure}
+
+\subsubsection{Escenario 3: Catalizador}
+\textbf{Que se estudia y que se espera.} Se compara el sistema sin catalizador con uno en el que el catalizador se activa a $t=50$, ambos a $T=100$ (donde la reacción es lenta y el efecto se ve mejor) y se mide $C$ a $t=100$ segundos en dos grupos de 10 replicas independientes. Como el catalizador baja ambas barreras de activación, la teoría predice que acelera el avance hacia el equilibrio sin cambiar su posición. Lo que se mide es la velocidad, es decir, que fracción de $C_{eq}$ se alcanza a $t=100$ en cada grupo, y se compara con una \textit{Prueba de Welch}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 3}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y |}
+    \hline
+    & \textbf{Sin catalizador} & \textbf{Con catalizador} \\
+    \hline
+    $C$ a $t=100$ s & $38.8\pm 3.2$ & $68.8 \pm 3.0$\\
+    \hline
+    Avance hacia $C_{eq}$ (71.58) & 54\% & 96\% \\
+    \hline
+\end{tabularx}
+\end{table}
+
+La prueba de Welch da $t=21.8$ con 18 grados de libertad. El catalizador acelera de forma clara. Habiendo actuado solo los últimos 50 segundos, el avance a $t=100$ segundos es 1.8 veces el del sistema sin catalizador, no modifica $K_{eq}$ ni $C_{eq}$ este experimento muestra el efecto sobre la velocidad, y la invarianza del equilibrio es consecuencia de la construcción del modelo y no se midió por separado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{Resultados/Quimica Cinetica/esc3.png}
+    \caption{Cambio de pendiente de $C(t)$ al activar el catalizador a $t = 50$ seg}
+\end{figure}
+
+\subsubsection{Escenario 4: Perturbaciones del equilibrio}
+\textbf{Que se estudia y que se espera.} Se perturba el sistema en dos momentos y se observa como responde el equilibrio (principio de Le Chatelier). A $t=150$ segundos, se inyectan 100 moléculas de $A$; a $t=450$ segundos, se enfría el reactor de $T=200$ a $T=100$. La teoría predice que el exceso de $A$ se consume junto con $B$ y forma mas $C$ (el $C_{eq}$ teórico sube a 96.24), y que el enfriamiento favorece que al producto porque la reacción es exotermica, con lo cual $k_{eq}$ crece. Se mide la constante de equilibrio estimada $\langle C \rangle \langle A\cdot B\rangle $ y $C$ en una ventana posterior al enfriamiento y se compara con $k_{1c}/k_2$ a $T=100$. Como la relajación a esa temperatura es lenta, se compara una ventana corta con una larga.
+
+Tras el pulso, $N_A$ pasa de 150 a 250 y el equilibrio teórico se desplaza hacia $C$; el enfriamiento lo desplaza aun mas.
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3} 
+\caption{Resultados Escenario 4}
+\begin{tabularx}{\textwidth}{ | Y | Y | Y |}
+    \hline
+    & \textbf{Ventana corta (600-900 seg)} & \textbf{Ventana larga (900-1500 seg)} \\
+    \hline
+    $K_{eq}$ medida & $0.01079 \pm 0.00126$ & $0.01152 \pm 0.00124$ \\
+    \hline
+    $K_{eq}$ teórica & 0.01164 & 0.01164 \\
+    \hline
+    Error de $K_{eq}$ & $-7.4$\% & $-1.0$\% \\
+    \hline
+    $t$ (critico 2.262) & $-2.15$ & $-0.30$ \\
+    \hline
+    Error de $C$ medio & $-2.4$\% & $-0.4$\% \\
+    \hline
+\end{tabularx}
+\end{table}
+
+Con 150 segundos de espera después del enfriamiento el promedio incluía parte de la relajación, que a $T=100$ es lenta, y que subestimaba $C$ y $K_{eq}$. Con 450 segundos de espera, $K_{eq}$ queda dentro del ruido de la teoría y la prueba no rechaza la hipótesis nula. Estos datos miden $K_{eq}$ solo al final del experimento; no comparan su valor antes y después del pulso.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\linewidth]{Resultados/Quimica Cinetica/esc4_t150.png}
+    \includegraphics[width=0.6\linewidth]{Resultados/Quimica Cinetica/esc4_t450.png}
+    \caption{$A$, $B$, $C$ durante el pulso $(t = 150 s)$ y el enfriamiento $(t = 450 s)$.}
+\end{figure}
+
+\section{Discusión}
+\subsection{Gas Ideal Bidimensional}
+El modelo reproduce las leyes del gas ideal en equilibrio. La distribución de velocidades no se impone: surge de choques elásticos, y la fracción de fotos que rechazan el test $X^2$ es la esperable por azar para un gas que sigue la distribución teórica. La ley $\langle v\rangle$ se cumple dentro del error del ajuste y la equiparticion se cumple para todas las masas probadas, con diferencias de hasta 1.4 \% en $v_{rms}$. La conservación de la energía es exacta en la practica.
+
+El hallazgo metodológico mas importante es que la unidad de comparación debe ser la temperatura realmente medida y no la nominal. Con paredes adiabaticas y 250 partículas, la temperatura de la muestra inicial fluctúa un 6.3 \% y esa fluctuación no se disipa porque la energía se conserva. Contra la temperatura nominal, ese efecto produjo el único rechazo del Escenario 1: contra la medida, el rechazo desaparece. Es el mismo tipo de conclusión que en la ventana de promedio de la simulación química: una discrepancia aparente que proviene el procedimiento y no el modelo.
+
+\subsection{Caminatas aleatorias de 1D a 4D}
+El modelo reproduce la transición de recurrencia a transitoriedad del teorema de Pólya. En 3D y 4D la probabilidad de retorno estimada coincide con el valor teórico dentro del intervalo de confianza, y las caminatas pasan las tres verificaciones (isotropía, varianza difusiva y paridad). La ley macroscópica no se programó: surge de la regla local de elegir una de las $2d$ direcciones.
+
+El hallazgo metodológico más importante es el \textbf{sesgo de horizonte finito}: la simulación estima $P(T\leq N)$ y no $p_0$, por lo que $\hat p$ queda por debajo del valor de Pólya. El efecto es grande en 1D y 2D (en 2D la convergencia es logarítmica, y con $N=10000$ se obtiene 0.75 aunque $p_0=1$), apreciable en 3D con $N$ pequeño ($Z=-5.3$ con $N=100$) y menor que el ruido de $M=10000$ en 4D. Es el mismo tipo de conclusión que en la ventana de promedio de la simulación química: una discrepancia que proviene del procedimiento y no del modelo.
+
+Otro resultado es la diferencia entre volver a una dimensión y volver al origen. En 4D la coordenada $w$ por sí sola es recurrente, por eso `entradasW0' crece sin cota y el plano $w=0$ se visita unas 158 veces, mientras que el origen completo se visita 0.24 veces. Un contador alto de entradas a $w=0$ no indica por tanto un error del modelo.
+
+Quedan observaciones sin explicar o que no se pudieron contrastar:
+\begin{itemize}
+    \item En 4D la corrida con $\hat p=0.203$ ($Z\approx+2.4$) rechaza al nivel 5 \%; las demás corridas del mismo escenario no. El desvío entre semillas es 1.1 a 1.2 veces el error estándar esperado, de modo que lo más probable es que sea variación entre réplicas, pero no se hizo una prueba formal.
+    \item Con $M=50000$ el 3D da $Z=-2.02$ contra Pólya; parte puede ser sesgo de $N$ finito, que no se cuantificó con la fórmula exacta de $P(T\leq N)$ en 3D y 4D.
+    \item En 1D, $E[R^2]$ rechaza con $M=10000$ ($Z=-2.15$) y no con $M=100000$; se atribuye al azar.
+    \item En el Escenario 4, $\delta=0.01$ rechaza $1-\delta$ ($Z=-2.41$); se atribuye al horizonte finito, pero no se repitió con un $N$ mayor.
+\end{itemize}
+
+\subsection{Quimica Cinetica}
+El modelo de agentes reproduce la posición del equilibrio predicha por las ecuaciones de acciones de masas, siempre que la ventana de promedio comience después de que el sistema relajo. Ese resultado cuantifica algo que la simulación sola no garantiza: la ley macroscópica emerge de choques individuales con un umbral de energía, y la desviación entre ambos niveles es del orden de 1 a 2 \%  de moléculas
+
+La dependencia con la ventana de promedio fue el hallazgo metodológico mas importante. A temperatura baja la relajación es lenta (la solución de las ecuaciones llega al 98\% del equilibrio recién a los 522 segundos a $T=100$, y promediar antes produce una diferencia aparente de -9\% que es un artefacto del procedimiento y no un error del modelo. Este mismo mecanismo explico la diferencia inicial del escenario 4
+\begin{itemize}
+    \item El tiempo de media reacción de los agentes es entre 12 y 31 mayor que el de las ecuaciones a $T = 200$, 300 y 400, en una única tanda de 10 réplicas que no se repitió. A $T = 100$, una segunda tanda dio un valor a 2 \% de la teoría y la diferencia entre ambas tandas es estadísticamente apreciable (Welch $t = 2.33$, crítico 2.12), por lo que ese valor varía entre tandas más de lo que sugiere el desvío de una sola.
+    \item El número de $C$ queda 1.7 y 1.9 \% por debajo de la teoría a $T = 200$ (Escenarios 2 y 1), con el mismo signo. Las hipótesis que quedan son el termostato (el consumo de energía cinética por la reacción impide que la energía media sea exactamente $k_BT$) y la discretización del paso de tiempo.
+    \item No se hicieron corridas del modelo de AnyLogic dedicadas a verificación y validación; esas pruebas se apoyaron en una implementación independiente en Python y en los indicadores incorporados al modelo (errores de balance). Tampoco se hizo el análisis de sensibilidad a $E_a$ ni a $N$; solo se estudió el efecto del volumen en la implementación de Python.
+\end{itemize}
+
+\section{Conclusiones}
+\subsection{Gas Ideal Bidimensional}
+\begin{itemize}
+    \item Un gas de discos duros con choques elásticos reproduce la distribución de velocidades de Maxwell-Boltzmann bidimensional: la ley $\langle v\rangle=a\sqrt{T}$ da $a=1.248\pm 0.004$ contra $1.2533$ y el test $X^2$ rechaza en el 4.5 \% de las fotos, lo esperado por azar al nivel 0.05
+    \item El modelo conserva la energía con deriva de orden $10^{-15}$ relativo en paredes adiabaticas
+    \item En una mezcla de dos masas se cumple la equiparticion: la energía cinética media es la misma para las dos especies y las velocidades cuadráticas medias están en la razón $\sqrt{m_1}$, con diferencias de hasta 1.4\%
+    \item Con paredes a distinta temperatura se forma un perfil de temperatura decreciente cuya pendiente central (-3.05 a -3.25) esta cerca de la ideal de -3.33, y el balance de flujos se cumple para $N\leq 1500$. La estimacion de los saltos en las paredes es inconclusa por el sesgo del ajuste lineal.
+    \item En la expansión libre de Joule la energía se conserva y la fracción izquierda tiende a 0.5, con una desviación pequeña y sistemática (0.5 a 1\%) para $N\geq400$ que no se explica.
+    \item Al comparar una simulación con la teoría hay que usar la magnitud realmente medida y no la nominal, y la fracción de rechazos de un test es mas informativa que el resultado de una sola foto.
+\end{itemize}
+
+\subsection{Caminatas aleatorias de 1D a 4D}
+\begin{itemize}
+    \item Una caminata aleatoria de agentes sobre $\mathbb{Z}^d$ reproduce la transición de Pólya: en 3D $\hat p=0.3458$ contra $0.340537$ y en 4D $\hat p=0.1987$ contra $0.193206$, con $|Z|<1.96$ en ambos casos; en 1D y 2D la probabilidad tiende a 1.
+    \item El modelo cumple isotropía, $E[R_N^2]=N$ (4 de 4 dimensiones con $M=100000$) y paridad estricta de los retornos.
+    \item Las simulaciones de horizonte finito subestiman $p_0$. El sesgo es grande en 1D y 2D, notable en 3D con $N=100$ y $500$, y se vuelve menor que el ruido con $N\geq5000$.
+    \item Los retornos son rápidos o no ocurren: $P(T=2)$ coincide con $\frac{1}{2d}$ ($0.1643$ contra $\frac16$ en 3D y $0.1308$ contra $\frac18$ en 4D), y en 4D el 99.2 \% de los que vuelven lo hacen antes del paso 100.
+    \item En 4D el plano $w=0$ se visita unas 158 veces y el origen solo 0.24 veces; el contador `entradasW0' no mide retornos al origen.
+    \item Con deriva $\delta$ la probabilidad de retorno en 1D sigue $1-\delta$ (4 de 5 valores no rechazan; la excepción, $\delta=0.01$, se atribuye al horizonte finito), y en 2D también cae con $\delta$.
+    \item La validación contra la teoría exige compararse con la probabilidad de horizonte finito y no con $p_0$ cuando $N$ es pequeño.
+\end{itemize}
+
+\subsection{Química Cinética}
+\begin{itemize}
+    \item Un modelo de discos duros con reacción por umbral de energía y descomposición con probabilidad de Arrhenius reproduce, con coincidencia de 0.2 a 2 \% en el numero de moléculas $C$, la posición del equilibrio que predice la ley de acción de masas, en el rango de temperatura estudiado $T=100$ a $400$
+    \item La temperatura acelera la reacción y desplaza el equilibrio hacia los reactivos, como corresponde a una reacción exotermica. La constante de equilibrio medida tras el enfriamiento difiere el 1.0 \% de la teórica.
+    \item Con reactivo limitante y reacción reversible, el producto no alcanza la conversión estequiométrica completa: Se estabiliza en una fracción determinada por $K_{eq}$
+    \item Un catalizador que baja ambas barreras acelera el avance. (96 \% contra 54 \% del equilibrio a $t=100$ segundos) sin cambiar el equilibrio, lo que sostiene la decisión de modelarlo con descenso simétrico de $E_{a,1}$ y $E_{a,2}$
+    \item En la estimación de promedios de equilibrio es decisivo que la espera supere el tiempo de relajación, que crece con rapidez al bajar la temperatura. Una ventana inadecuada produce discrepancias de 7 a 9\% que no son del modelo.
+    \item La combinación de agentes y dinámica de sistemas en una sola herramienta permite ver a la vez el comportamiento estocástico y la referencia determinista, y cuantificar el acuerdo con pruebas estadísticas sobre replicas independientes/
+\end{itemize}
+
+\section{Anexos}
+\subsection{Planilla de resultados}
+Los datos de las corridas, los resúmenes y pruebas estadísticas están en 'Resultados\textunderscore Quimica.xlsx', 'Resultados\textunderscore Fisica.xlsx', 'Resultados\textunderscore RandomWalk.xlsx'
+\subsection{Codigo AnyLogic}
+El código AnyLogic se encuentra publicado en el repositorio GitHub donde se encuentra un archivo .md en el que se explica el procedimiento y mas detalles teóricos sobre el proyecto. \href{https://github.com/Salograma/Simulaci-nUTN/tree/main/Simulacion%20TPI}{Repositorio}
+
+\section{Referencias}
+\begin{itemize}
+    \item \href{https://www.bipm.org/en/measurement-units/si-defining-constants}{Boltzmann}
+    \item \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/cpa.20198}{The Andersen thermostat in Molecular Dynamics}
+    \item \href{https://es.wikipedia.org/wiki/Prueba_t_de_Student}{Prueba t de student}
+    \item \href{https://en.wikipedia.org/wiki/Welch%E2%80%93Satterthwaite_equation}{Welch–Satterthwaite Equation}
+    \item \href{https://es.wikipedia.org/wiki/Distribuci%C3%B3n_de_Maxwell-Boltzmann}{Distribución de Maxwell-Boltzmann (y su versión bidimensional)}
+    \item \href{https://es.wikipedia.org/wiki/Prueba_%CF%87%C2%B2}{Prueba $X^2$ de bondad de ajuste}
+    \item \href{http://www.sc.ehu.es/sbweb/fisica_/transporte/cond_calor/conduccion/conduccion.html}{Ley de Fourier y conducción de calor en gases diluidos.}
+    \item \href{https://es.wikipedia.org/wiki/Expansi%C3%B3n_libre}{Expansión de Joule (Joule-Gay-Lussac)}
+\end{itemize} 
+\end{document}

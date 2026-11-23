@@ -2335,7 +2335,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
     			<TimePlot>
 					<Id>1793387771288</Id>
 					<Name><![CDATA[plot]]></Name>
-					<X>860</X><Y>400</Y>
+					<X>2940</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2425,7 +2425,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
     			<TimePlot>
 					<Id>1793386801916</Id>
 					<Name><![CDATA[TP_CH]]></Name>
-					<X>880</X><Y>40</Y>
+					<X>2960</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2545,7 +2545,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793387723406</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>1320</X><Y>40</Y>
+					<X>3400</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2566,7 +2566,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793387864298</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>1320</X><Y>400</Y>
+					<X>3400</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2587,7 +2587,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
     			<TimePlot>
 					<Id>1793387882593</Id>
 					<Name><![CDATA[plot1]]></Name>
-					<X>870</X><Y>740</Y>
+					<X>4000</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2615,7 +2615,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>610</Width>
+						<Width>480</Width>
 						<Height>200</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
@@ -2624,7 +2624,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 					<Legend>
 						<Place>EAST</Place>
 						<TextColor>-16777216</TextColor>
-						<Size>170</Size>
+						<Size>300</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
@@ -2677,7 +2677,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793387949695</Id>
 					<Name><![CDATA[text2]]></Name>
-					<X>1320.318</X><Y>740.001</Y>
+					<X>4450.318</X><Y>40.001</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2698,7 +2698,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388422341</Id>
 					<Name><![CDATA[text3]]></Name>
-					<X>10</X><Y>480</Y>
+					<X>800</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2720,7 +2720,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388527169</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>10</X><Y>500</Y>
+					<X>800</X><Y>80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2743,7 +2743,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388538163</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>10</X><Y>520</Y>
+					<X>800</X><Y>100</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2767,7 +2767,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388547594</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>10</X><Y>540</Y>
+					<X>800</X><Y>120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2790,7 +2790,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388555921</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>10</X><Y>560</Y>
+					<X>800</X><Y>140</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2813,7 +2813,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388563467</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>10</X><Y>580</Y>
+					<X>800</X><Y>160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2837,7 +2837,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793388832996</Id>
 					<Name><![CDATA[sliderT]]></Name>
-					<X>430</X><Y>30</Y>
+					<X>440</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2861,7 +2861,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388914801</Id>
 					<Name><![CDATA[ParametroT]]></Name>
-					<X>580</X><Y>10</Y>
+					<X>590</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2882,7 +2882,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388960866</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>430</X><Y>60</Y>
+					<X>440</X><Y>90</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2904,7 +2904,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388960868</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>730</X><Y>60</Y>
+					<X>740</X><Y>90</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2926,7 +2926,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				<Text>
 					<Id>1793388960870</Id>
 					<Name><![CDATA[text11]]></Name>
-					<X>580</X><Y>60</Y>
+					<X>590</X><Y>90</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2949,7 +2949,7 @@ resetStats();     // usa tEq, que ya está cargado arriba]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793388988555</Id>
 					<Name><![CDATA[BtnCatalizadorON]]></Name>
-					<X>430</X><Y>110</Y>
+					<X>440</X><Y>140</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2971,7 +2971,7 @@ resetStats();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793389019192</Id>
 					<Name><![CDATA[btnCatalizadorOFF]]></Name>
-					<X>540</X><Y>110</Y>
+					<X>550</X><Y>140</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2992,7 +2992,7 @@ resetStats();]]></ActionCode>
 				<Text>
 					<Id>1793389097196</Id>
 					<Name><![CDATA[txtCatalizador]]></Name>
-					<X>430</X><Y>90</Y>
+					<X>440</X><Y>120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3015,7 +3015,7 @@ resetStats();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793389327684</Id>
 					<Name><![CDATA[btnInyectar]]></Name>
-					<X>430</X><Y>170</Y>
+					<X>440</X><Y>200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3041,7 +3041,7 @@ tEqSD = -1;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793389355633</Id>
 					<Name><![CDATA[btnInyectar1]]></Name>
-					<X>555</X><Y>170</Y>
+					<X>565</X><Y>200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3066,7 +3066,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793389439242</Id>
 					<Name><![CDATA[txtCA]]></Name>
-					<X>430</X><Y>155</Y>
+					<X>440</X><Y>185</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3088,7 +3088,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793389466011</Id>
 					<Name><![CDATA[txtCB1]]></Name>
-					<X>555</X><Y>155</Y>
+					<X>565</X><Y>185</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3110,7 +3110,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793389536235</Id>
 					<Name><![CDATA[text12]]></Name>
-					<X>10</X><Y>460</Y>
+					<X>800</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3132,7 +3132,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393287473</Id>
 					<Name><![CDATA[text13]]></Name>
-					<X>10</X><Y>640</Y>
+					<X>800</X><Y>220</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3155,7 +3155,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393303375</Id>
 					<Name><![CDATA[text14]]></Name>
-					<X>10</X><Y>660</Y>
+					<X>800</X><Y>240</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3179,7 +3179,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393316061</Id>
 					<Name><![CDATA[text15]]></Name>
-					<X>10</X><Y>680</Y>
+					<X>800</X><Y>260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3202,7 +3202,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000510</Id>
 					<Name><![CDATA[textRateC]]></Name>
-					<X>10</X><Y>700</Y>
+					<X>800</X><Y>280</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3225,7 +3225,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000520</Id>
 					<Name><![CDATA[textRateDirInv]]></Name>
-					<X>10</X><Y>720</Y>
+					<X>800</X><Y>300</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3248,7 +3248,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793800000530</Id>
 					<Name><![CDATA[textRateSD]]></Name>
-					<X>10</X><Y>740</Y>
+					<X>800</X><Y>320</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3271,7 +3271,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1793393349315</Id>
 					<Name><![CDATA[text16]]></Name>
-					<X>10</X><Y>620</Y>
+					<X>800</X><Y>200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3293,7 +3293,7 @@ tEqSD = -1;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793901779424</Id>
 					<Name><![CDATA[esc1]]></Name>
-					<X>430</X><Y>220</Y>
+					<X>440</X><Y>250</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3314,7 +3314,7 @@ tEqSD = -1;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793901815456</Id>
 					<Name><![CDATA[esc2]]></Name>
-					<X>430</X><Y>255</Y>
+					<X>440</X><Y>285</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3335,7 +3335,7 @@ tEqSD = -1;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793901818264</Id>
 					<Name><![CDATA[esc3]]></Name>
-					<X>430</X><Y>290</Y>
+					<X>440</X><Y>320</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3356,7 +3356,7 @@ tEqSD = -1;]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793901821205</Id>
 					<Name><![CDATA[esc4]]></Name>
-					<X>430</X><Y>325</Y>
+					<X>440</X><Y>355</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3376,7 +3376,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517201264</Id>
 					<Name><![CDATA[text17]]></Name>
-					<X>1320</X><Y>340</Y>
+					<X>3400</X><Y>340</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3397,7 +3397,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517230833</Id>
 					<Name><![CDATA[text18]]></Name>
-					<X>870</X><Y>190</Y>
+					<X>2950</X><Y>190</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3418,7 +3418,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517414095</Id>
 					<Name><![CDATA[text19]]></Name>
-					<X>1320</X><Y>680</Y>
+					<X>3400</X><Y>680</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3439,7 +3439,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517414097</Id>
 					<Name><![CDATA[text20]]></Name>
-					<X>870</X><Y>540</Y>
+					<X>2950</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3460,7 +3460,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517555039</Id>
 					<Name><![CDATA[text21]]></Name>
-					<X>1320</X><Y>1000</Y>
+					<X>4290</X><Y>300</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3481,7 +3481,7 @@ tEqSD = -1;]]></ActionCode>
 				<Text>
 					<Id>1794517555041</Id>
 					<Name><![CDATA[text22]]></Name>
-					<X>870</X><Y>870</Y>
+					<X>4000</X><Y>170</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3499,6 +3499,336 @@ tEqSD = -1;]]></ActionCode>
 					</Font>
 					<Alignment>CENTER</Alignment>
 				</Text>
+				<Rectangle>
+					<Id>1795449098483</Id>
+					<Name><![CDATA[rectangle1]]></Name>
+					<X>0</X><Y>760</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>1880</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1146130</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Group>
+					<Id>1795449202121</Id>
+					<Name><![CDATA[group]]></Name>
+					<X>440</X><Y>820</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaMain.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1795449157378</Id>
+					<Name><![CDATA[rectangle2]]></Name>
+					<X>-100</X><Y>-60</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4565549</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1795449172547</Id>
+					<Name><![CDATA[text23]]></Name>
+					<X>0</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Principal]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1795449211520</Id>
+					<Name><![CDATA[group1]]></Name>
+					<X>660</X><Y>820</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaGraficos.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1795449211522</Id>
+					<Name><![CDATA[rectangle3]]></Name>
+					<X>-100</X><Y>-60</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4565549</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1795449211524</Id>
+					<Name><![CDATA[text24]]></Name>
+					<X>0</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Graficos]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Text>
+					<Id>1795449246281</Id>
+					<Name><![CDATA[text25]]></Name>
+					<X>20</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Quimica Cinetica]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Rectangle>
+					<Id>1795449380970</Id>
+					<Name><![CDATA[rectangle4]]></Name>
+					<X>2920</X><Y>760</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>1880</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1146130</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Group>
+					<Id>1795449380972</Id>
+					<Name><![CDATA[group2]]></Name>
+					<X>3360</X><Y>820</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaMain.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1795449380974</Id>
+					<Name><![CDATA[rectangle5]]></Name>
+					<X>-100</X><Y>-60</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4565549</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1795449380976</Id>
+					<Name><![CDATA[text26]]></Name>
+					<X>0</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Principal]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1795449380978</Id>
+					<Name><![CDATA[group3]]></Name>
+					<X>3580</X><Y>820</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaGraficos.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1795449380980</Id>
+					<Name><![CDATA[rectangle6]]></Name>
+					<X>-100</X><Y>-60</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>120</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-4565549</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1795449380982</Id>
+					<Name><![CDATA[text27]]></Name>
+					<X>0</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Graficos]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Text>
+					<Id>1795449380984</Id>
+					<Name><![CDATA[text28]]></Name>
+					<X>2940</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Quimica Cinetica]]></Text>
+					<Font>
+						<Name>Franklin Gothic Medium</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
@@ -3506,15 +3836,27 @@ tEqSD = -1;]]></ActionCode>
 			<Areas>
 				<Area>
 					<Id>1794517660924</Id>
-					<Name><![CDATA[viewArea]]></Name>
+					<Name><![CDATA[vaMain]]></Name>
 					<X>0</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>1920</Width>
-					<Height>1120</Height>
+					<Width>1880</Width>
+					<Height>880</Height>
+				</Area>
+				<Area>
+					<Id>1795449013850</Id>
+					<Name><![CDATA[vaGraficos]]></Name>
+					<X>2920</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[]]></Title>
+					<Width>1880</Width>
+					<Height>880</Height>
 				</Area>
 			</Areas>
 
@@ -3793,8 +4135,8 @@ else             { mass = get_Main().masaC; rad = get_Main().radioC; }]]></Body>
 	<TimeAccuracy>1.0E-5</TimeAccuracy>
 	<Frame>
 		<Id>1793383542452</Id>
-		<Width>1920</Width>
-		<Height>1120</Height>
+		<Width>1880</Width>
+		<Height>880</Height>
 	</Frame>
 	<Database>
 		<Id>1793383542451</Id>

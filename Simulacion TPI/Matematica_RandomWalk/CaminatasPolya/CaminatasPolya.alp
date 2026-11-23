@@ -123,7 +123,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480302556</Id>
 					<Name><![CDATA[y]]></Name>
-					<X>60</X><Y>520</Y>
+					<X>3830</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -138,7 +138,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480453096</Id>
 					<Name><![CDATA[x]]></Name>
-					<X>60</X><Y>540</Y>
+					<X>3830</X><Y>116</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -153,7 +153,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480454466</Id>
 					<Name><![CDATA[z]]></Name>
-					<X>60</X><Y>560</Y>
+					<X>3830</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -168,7 +168,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793480455700</Id>
 					<Name><![CDATA[w]]></Name>
-					<X>60</X><Y>580</Y>
+					<X>3830</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -183,7 +183,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793887528158</Id>
 					<Name><![CDATA[entradasW0]]></Name>
-					<X>150</X><Y>520</Y>
+					<X>3830</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -198,7 +198,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1793969980803</Id>
 					<Name><![CDATA[pFinal]]></Name>
-					<X>430</X><Y>520</Y>
+					<X>3830</X><Y>256</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -213,7 +213,7 @@
 				<Variable Class="Parameter">
 					<Id>1793969913541</Id>
 					<Name><![CDATA[dimensionSel]]></Name>
-					<X>280</X><Y>520</Y>
+					<X>3620</X><Y>116</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -237,7 +237,7 @@
 				<Variable Class="Parameter">
 					<Id>1793969918371</Id>
 					<Name><![CDATA[Npasos]]></Name>
-					<X>280</X><Y>550</Y>
+					<X>3620</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -261,7 +261,7 @@
 				<Variable Class="Parameter">
 					<Id>1793969921503</Id>
 					<Name><![CDATA[Mreplicas]]></Name>
-					<X>280</X><Y>580</Y>
+					<X>3620</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -285,7 +285,7 @@
 			<Variable Class="Parameter">
 					<Id>1796100000001</Id>
 					<Name><![CDATA[nCorridas]]></Name>
-					<X>280</X><Y>610</Y>
+					<X>3620</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -309,7 +309,7 @@
 				<Variable Class="Parameter">
 					<Id>1796100000003</Id>
 					<Name><![CDATA[semillaBase]]></Name>
-					<X>280</X><Y>640</Y>
+					<X>3620</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -333,7 +333,7 @@
 				<Variable Class="PlainVariable">
 					<Id>1796100000005</Id>
 					<Name><![CDATA[resumenTexto]]></Name>
-					<X>430</X><Y>610</Y>
+					<X>3830</X><Y>284</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -352,7 +352,7 @@
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793208417993</Id>
 					<Name><![CDATA[retornoMC]]></Name>
-					<X>300</X><Y>-140</Y>
+					<X>4500</X><Y>116</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -399,7 +399,7 @@ return (double) retornos / M;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793365478860</Id>
 					<Name><![CDATA[verificarIsotropia]]></Name>
-					<X>455</X><Y>-120</Y>
+					<X>4500</X><Y>302</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -436,7 +436,7 @@ for (int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793366339065</Id>
 					<Name><![CDATA[estadisticasPosicion]]></Name>
-					<X>300</X><Y>-160</Y>
+					<X>4500</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -494,7 +494,7 @@ return resultado;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793366960349</Id>
 					<Name><![CDATA[validarPolya]]></Name>
-					<X>300</X><Y>-120</Y>
+					<X>4740</X><Y>256</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -521,7 +521,7 @@ guardarCorridas("validacion_corridas.csv", new String[] { "p_1D", "p_2D", "p_3D"
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1793388800531</Id>
 					<Name><![CDATA[estadisticasR2]]></Name>
-					<X>455</X><Y>-160</Y>
+					<X>4500</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -573,7 +573,7 @@ return new double[] { media, standardError };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793388934577</Id>
 					<Name><![CDATA[verificarDifusion]]></Name>
-					<X>610</X><Y>-160</Y>
+					<X>4500</X><Y>330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -606,7 +606,7 @@ for (int d = 1; d <= 4; d++) {
 					<ReturnType><![CDATA[long[]]]></ReturnType>
 					<Id>1793392203436</Id>
 					<Name><![CDATA[contarVisitasOrigen]]></Name>
-					<X>455</X><Y>-140</Y>
+					<X>4500</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -655,7 +655,7 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793392748096</Id>
 					<Name><![CDATA[verificarParidad]]></Name>
-					<X>610</X><Y>-140</Y>
+					<X>4500</X><Y>358</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -684,7 +684,7 @@ for(int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480350551</Id>
 					<Name><![CDATA[updateX]]></Name>
-					<X>460</X><Y>-80</Y>
+					<X>4980</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -696,7 +696,7 @@ for(int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480405079</Id>
 					<Name><![CDATA[updateZ]]></Name>
-					<X>460</X><Y>-60</Y>
+					<X>4980</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -708,7 +708,7 @@ for(int d = 1; d <= 4; d++){
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480407203</Id>
 					<Name><![CDATA[updateY]]></Name>
-					<X>460</X><Y>-100</Y>
+					<X>4980</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -721,7 +721,7 @@ y = valor;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793480420580</Id>
 					<Name><![CDATA[updateW]]></Name>
-					<X>460</X><Y>-40</Y>
+					<X>4980</X><Y>256</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -733,7 +733,7 @@ y = valor;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793887522194</Id>
 					<Name><![CDATA[W0]]></Name>
-					<X>610</X><Y>-100</Y>
+					<X>4980</X><Y>284</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -745,7 +745,7 @@ y = valor;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1793970099437</Id>
 					<Name><![CDATA[calcularCurva]]></Name>
-					<X>610</X><Y>-120</Y>
+					<X>4740</X><Y>116</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -802,7 +802,7 @@ guardarCorridas("corridas_curva_d" + d + ".csv", new String[] { "p_retorno" }, n
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794067152986</Id>
 					<Name><![CDATA[reiniciarCaminante]]></Name>
-					<X>610</X><Y>-80</Y>
+					<X>4980</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -823,7 +823,7 @@ caminante.entradasW0 = 0;]]></Body>
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1794195442903</Id>
 					<Name><![CDATA[curvaAcumulada]]></Name>
-					<X>800</X><Y>-160</Y>
+					<X>4500</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -880,7 +880,7 @@ return acumulada;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794195697871</Id>
 					<Name><![CDATA[escenario1]]></Name>
-					<X>800</X><Y>-140</Y>
+					<X>4740</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -916,7 +916,7 @@ guardarCorridas("escenario1_corridas.csv", new String[] { "p_1D", "p_2D", "p_3D"
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794198009076</Id>
 					<Name><![CDATA[escenario2]]></Name>
-					<X>957</X><Y>-161</Y>
+					<X>4740</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -999,7 +999,7 @@ guardarCorridas("escenario2_corridas.csv",
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794198326172</Id>
 					<Name><![CDATA[escenario3]]></Name>
-					<X>960</X><Y>-130</Y>
+					<X>4740</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1074,7 +1074,7 @@ guardarCorridas("escenario3_d" + d + "_corridas.csv", cols.toArray(new String[0]
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794220444736</Id>
 					<Name><![CDATA[escenario4]]></Name>
-					<X>960</X><Y>-104.4</Y>
+					<X>4740</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1130,7 +1130,7 @@ guardarCorridas("escenario4_d" + d + "_deriva" + deriva + "_corridas.csv", new S
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794220948228</Id>
 					<Name><![CDATA[sensibilidadN]]></Name>
-					<X>1100</X><Y>-133.333</Y>
+					<X>4740</X><Y>284</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1153,7 +1153,7 @@ for (int d = 1; d <= 4; d++) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794220981418</Id>
 					<Name><![CDATA[sensibilidadM]]></Name>
-					<X>1098.667</X><Y>-112</Y>
+					<X>4740</X><Y>312</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1178,7 +1178,7 @@ for (int d = 3; d <= 4; d++) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1794221010933</Id>
 					<Name><![CDATA[sensibilidadSemilla]]></Name>
-					<X>1100</X><Y>-89.333</Y>
+					<X>4740</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1208,7 +1208,7 @@ for (int b : bases) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1796100000016</Id>
 					<Name><![CDATA[fijarSemilla]]></Name>
-					<X>1300</X><Y>-160</Y>
+					<X>4260</X><Y>116</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1226,7 +1226,7 @@ getEngine().getDefaultRandomGenerator().setSeed((long) semillaBase + corrida);]]
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1796100000017</Id>
 					<Name><![CDATA[tCritico]]></Name>
-					<X>1300</X><Y>-140</Y>
+					<X>4260</X><Y>228</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1248,7 +1248,7 @@ return z + (z3 + z) / (4.0 * gl) + (5 * z5 + 16 * z3 + 3 * z) / (96.0 * gl * gl)
 					<ReturnType><![CDATA[String]]></ReturnType>
 					<Id>1796100000018</Id>
 					<Name><![CDATA[fmt]]></Name>
-					<X>1300</X><Y>-120</Y>
+					<X>4260</X><Y>312</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1264,7 +1264,7 @@ return z + (z3 + z) / (4.0 * gl) + (5 * z5 + 16 * z3 + 3 * z) / (96.0 * gl * gl)
 					<ReturnType><![CDATA[String]]></ReturnType>
 					<Id>1796100000019</Id>
 					<Name><![CDATA[encabezadoCorridas]]></Name>
-					<X>1300</X><Y>-100</Y>
+					<X>4260</X><Y>284</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1285,7 +1285,7 @@ return z + (z3 + z) / (4.0 * gl) + (5 * z5 + 16 * z3 + 3 * z) / (96.0 * gl * gl)
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1796100000020</Id>
 					<Name><![CDATA[resumir]]></Name>
-					<X>1300</X><Y>-80</Y>
+					<X>4260</X><Y>200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1333,7 +1333,7 @@ return new double[] { media, sd, li, ls };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1796100000021</Id>
 					<Name><![CDATA[teoricoRetorno]]></Name>
-					<X>1300</X><Y>-60</Y>
+					<X>4260</X><Y>256</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1370,7 +1370,7 @@ return Double.NaN;   // 2D: tiende a 1 con convergencia logarítmica en N (sin v
 					<ReturnType><![CDATA[double[]]]></ReturnType>
 					<Id>1796100000022</Id>
 					<Name><![CDATA[pCorridas]]></Name>
-					<X>1300</X><Y>-40</Y>
+					<X>4260</X><Y>144</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1405,7 +1405,7 @@ return p;]]></Body>
 					<ReturnType><![CDATA[double[][]]]></ReturnType>
 					<Id>1796100000023</Id>
 					<Name><![CDATA[curvaCorridas]]></Name>
-					<X>1300</X><Y>-20</Y>
+					<X>4260</X><Y>172</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1459,7 +1459,7 @@ return new double[][] { media, li, ls, finales };]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1796100000024</Id>
 					<Name><![CDATA[guardarCorridas]]></Name>
-					<X>1300</X><Y>0</Y>
+					<X>4260</X><Y>340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1498,7 +1498,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1793970017445</Id>
 					<Name><![CDATA[curvaRetorno]]></Name>
-					<X>430</X><Y>550</Y>
+					<X>4040</X><Y>116</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1523,7 +1523,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1793970022151</Id>
 					<Name><![CDATA[curvaPolya]]></Name>
-					<X>430</X><Y>580</Y>
+					<X>4040</X><Y>200</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1548,7 +1548,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1794196930645</Id>
 					<Name><![CDATA[curva1D]]></Name>
-					<X>800</X><Y>-120</Y>
+					<X>4040</X><Y>228</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1573,7 +1573,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1794196942658</Id>
 					<Name><![CDATA[curva2D]]></Name>
-					<X>800</X><Y>-97.5</Y>
+					<X>4040</X><Y>256</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1598,7 +1598,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1794196944311</Id>
 					<Name><![CDATA[curva3D]]></Name>
-					<X>800.5</X><Y>-76</Y>
+					<X>4040</X><Y>284</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1623,7 +1623,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1794196945398</Id>
 					<Name><![CDATA[curva4D]]></Name>
-					<X>801.5</X><Y>-53</Y>
+					<X>4040</X><Y>312</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1648,7 +1648,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 			    			<DataSet>
 					<Id>1796100000006</Id>
 					<Name><![CDATA[curvaICinf]]></Name>
-					<X>430</X><Y>640</Y>
+					<X>4040</X><Y>144</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1673,7 +1673,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1796100000008</Id>
 					<Name><![CDATA[curvaICsup]]></Name>
-					<X>430</X><Y>670</Y>
+					<X>4040</X><Y>172</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1698,7 +1698,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1796100000010</Id>
 					<Name><![CDATA[datosCorridas]]></Name>
-					<X>430</X><Y>700</Y>
+					<X>4040</X><Y>340</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1723,7 +1723,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1796100000012</Id>
 					<Name><![CDATA[mediaCorridas]]></Name>
-					<X>430</X><Y>730</Y>
+					<X>4040</X><Y>368</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1748,7 +1748,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<DataSet>
 					<Id>1796100000014</Id>
 					<Name><![CDATA[polyaCorridas]]></Name>
-					<X>430</X><Y>760</Y>
+					<X>4040</X><Y>396</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1776,7 +1776,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<EmbeddedObject>
 					<Id>1793207772691</Id>
 					<Name><![CDATA[walker]]></Name>
-					<X>300</X><Y>-60</Y>
+					<X>4980</X><Y>116</Y>
 					<Label><X>-30</X><Y>-30</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1845,9 +1845,9 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Control Type="Window3D">
 					<Id>1793479846741</Id>
 					<Name><![CDATA[window3d]]></Name>
-					<X>60</X><Y>200</Y>
-					<Width>500</Width>
-					<Height>300</Height>
+					<X>10</X><Y>110</Y>
+					<Width>600</Width>
+					<Height>480</Height>
 					<MakeDefaultViewArea>true</MakeDefaultViewArea>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<ShowLabel>false</ShowLabel>
@@ -2010,7 +2010,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<TimePlot>
 					<Id>1793885635215</Id>
 					<Name><![CDATA[plot]]></Name>
-					<X>60</X><Y>0</Y>
+					<X>670</X><Y>250</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2090,7 +2090,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<Plot>
 					<Id>1793971317014</Id>
 					<Name><![CDATA[plot1]]></Name>
-					<X>60</X><Y>740</Y>
+					<X>2160</X><Y>100</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2188,13 +2188,13 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1793971588533</Id>
 					<Name><![CDATA[button]]></Name>
-					<X>100</X><Y>700</Y>
+					<X>1820</X><Y>430</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2202,20 +2202,20 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Calcular]]></LabelText>
+						<LabelText><![CDATA[Ejecutar n corridas (d elegida)]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067240015</Id>
 					<Name><![CDATA[restartCaminante]]></Name>
-					<X>120</X><Y>540</Y>
+					<X>930</X><Y>120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="130" Height="30">
+					<BasicProperties Width="170" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2223,20 +2223,20 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Reiniciar Caminante]]></LabelText>
+						<LabelText><![CDATA[Reiniciar caminante]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Slider">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067281715</Id>
 					<Name><![CDATA[sliderDimension]]></Name>
-					<X>400</X><Y>10</Y>
+					<X>660</X><Y>120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="200" Height="30">
+					<BasicProperties Width="240" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<Enabled>true</Enabled>
 					</BasicProperties>
@@ -2253,7 +2253,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067431217</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>400</X><Y>40</Y>
+					<X>660</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2275,7 +2275,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067431219</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>600</X><Y>40</Y>
+					<X>900</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2297,7 +2297,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067431221</Id>
 					<Name><![CDATA[text2]]></Name>
-					<X>500</X><Y>40</Y>
+					<X>780</X><Y>150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2308,7 +2308,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
 					<Text><![CDATA[value]]></Text>
-					<TextCode><![CDATA[sliderDimension.getValue()]]></TextCode>
+					<TextCode><![CDATA[dimensionSel]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -2320,13 +2320,13 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067477844</Id>
 					<Name><![CDATA[sliderPasos]]></Name>
-					<X>400</X><Y>70</Y>
+					<X>1820</X><Y>186</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="200" Height="30">
+					<BasicProperties Width="240" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<Enabled>true</Enabled>
 					</BasicProperties>
@@ -2344,22 +2344,22 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794067480460</Id>
 					<Name><![CDATA[sliderReplicas]]></Name>
-					<X>400</X><Y>120</Y>
+					<X>1820</X><Y>252</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="200" Height="30">
+					<BasicProperties Width="240" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<Enabled>true</Enabled>
 					</BasicProperties>
 					<ExtendedProperties>
 						<DefaultValueCode><![CDATA[0]]></DefaultValueCode>
 						<Orientation>HORIZONTAL</Orientation>
-						<MinValue><![CDATA[500]]></MinValue>
+						<MinValue><![CDATA[100]]></MinValue>
 						<MaxValue><![CDATA[20000]]></MaxValue>
-						<Step><![CDATA[500]]></Step>
+						<Step><![CDATA[100]]></Step>
 						<LinkTo>true</LinkTo>
 						<Link>Mreplicas</Link>
 					</ExtendedProperties>
@@ -2367,7 +2367,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067618774</Id>
 					<Name><![CDATA[text3]]></Name>
-					<X>400</X><Y>100</Y>
+					<X>1820</X><Y>216</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2389,7 +2389,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067618776</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>600</X><Y>100</Y>
+					<X>2060</X><Y>216</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2411,7 +2411,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067618778</Id>
 					<Name><![CDATA[text5]]></Name>
-					<X>500</X><Y>100</Y>
+					<X>1940</X><Y>216</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2422,7 +2422,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
 					<Text><![CDATA[value]]></Text>
-					<TextCode><![CDATA[sliderPasos.getValue()]]></TextCode>
+					<TextCode><![CDATA[Npasos]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -2433,7 +2433,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067621109</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>400</X><Y>150</Y>
+					<X>1820</X><Y>282</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2455,7 +2455,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067621111</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>600</X><Y>150</Y>
+					<X>2060</X><Y>282</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2477,7 +2477,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				<Text>
 					<Id>1794067621113</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>500</X><Y>150</Y>
+					<X>1940</X><Y>282</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2488,7 +2488,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
 					<Text><![CDATA[value]]></Text>
-					<TextCode><![CDATA[sliderReplicas.getValue()]]></TextCode>
+					<TextCode><![CDATA[Mreplicas]]></TextCode>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -2499,7 +2499,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<Plot>
 					<Id>1794196344204</Id>
 					<Name><![CDATA[plotEscenario1]]></Name>
-					<X>720</X><Y>740</Y>
+					<X>2160</X><Y>520</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2597,13 +2597,13 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794196435018</Id>
 					<Name><![CDATA[escenariaio1]]></Name>
-					<X>540</X><Y>700</Y>
+					<X>1820</X><Y>468</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2611,20 +2611,20 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Escenario 1]]></LabelText>
+						<LabelText><![CDATA[Escenario 1: P(retorno) en d = 1..4]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794198068152</Id>
 					<Name><![CDATA[escenariaio2]]></Name>
-					<X>100</X><Y>620</Y>
+					<X>1820</X><Y>506</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2632,20 +2632,20 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Escenario 2]]></LabelText>
+						<LabelText><![CDATA[Escenario 2: caminata 4D y plano w = 0]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794198370011</Id>
 					<Name><![CDATA[escenariaio3]]></Name>
-					<X>226</X><Y>620</Y>
+					<X>1820</X><Y>544</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2654,20 +2654,20 @@ escenario3(4, Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Escenario 3]]></LabelText>
+						<LabelText><![CDATA[Escenario 3: tiempo de primer retorno]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794220483204</Id>
 					<Name><![CDATA[escenariaio4]]></Name>
-					<X>340</X><Y>620</Y>
+					<X>1820</X><Y>582</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
@@ -2686,37 +2686,34 @@ escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Escenario 4]]></LabelText>
+						<LabelText><![CDATA[Escenario 4: caminata con deriva]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1794221066522</Id>
 					<Name><![CDATA[sensibilidad]]></Name>
-					<X>660</X><Y>240</Y>
+					<X>1820</X><Y>620</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="300" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[sensibilidadN(Mreplicas);
-sensibilidadM(Npasos);
-sensibilidadSemilla(3, Mreplicas, Npasos);
-sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
+						<ActionCode><![CDATA[sensibilidadN(Mreplicas);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Sensisibilidad]]></LabelText>
+						<LabelText><![CDATA[Sensibilidad a N (pasos)]]></LabelText>
 					</ExtendedProperties>
 				</Control>
     			<Plot>
 					<Id>1796100001027</Id>
 					<Name><![CDATA[plotCorridas]]></Name>
-					<X>1380</X><Y>740</Y>
+					<X>2780</X><Y>100</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2803,7 +2800,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001029</Id>
 					<Name><![CDATA[titulo_plot]]></Name>
-					<X>410</X><Y>-20</Y>
+					<X>1020</X><Y>230</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2824,7 +2821,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001030</Id>
 					<Name><![CDATA[ejeX_plot]]></Name>
-					<X>410</X><Y>292</Y>
+					<X>1020</X><Y>542</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2845,7 +2842,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001031</Id>
 					<Name><![CDATA[ejeY_plot]]></Name>
-					<X>50</X><Y>150</Y>
+					<X>660</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2866,7 +2863,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001032</Id>
 					<Name><![CDATA[titulo_plot1]]></Name>
-					<X>310</X><Y>720</Y>
+					<X>2410</X><Y>80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2888,7 +2885,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001033</Id>
 					<Name><![CDATA[ejeX_plot1]]></Name>
-					<X>310</X><Y>1062</Y>
+					<X>2410</X><Y>422</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2909,7 +2906,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001034</Id>
 					<Name><![CDATA[ejeY_plot1]]></Name>
-					<X>50</X><Y>905</Y>
+					<X>2150</X><Y>265</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2930,7 +2927,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001035</Id>
 					<Name><![CDATA[titulo_plotEscenario1]]></Name>
-					<X>970</X><Y>720</Y>
+					<X>2410</X><Y>500</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2952,7 +2949,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001036</Id>
 					<Name><![CDATA[ejeX_plotEscenario1]]></Name>
-					<X>970</X><Y>1062</Y>
+					<X>2410</X><Y>842</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2973,7 +2970,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001037</Id>
 					<Name><![CDATA[ejeY_plotEscenario1]]></Name>
-					<X>710</X><Y>905</Y>
+					<X>2150</X><Y>685</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2994,7 +2991,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001038</Id>
 					<Name><![CDATA[titulo_plotCorridas]]></Name>
-					<X>1630</X><Y>720</Y>
+					<X>3030</X><Y>80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3016,7 +3013,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001039</Id>
 					<Name><![CDATA[ejeX_plotCorridas]]></Name>
-					<X>1630</X><Y>1062</Y>
+					<X>3030</X><Y>422</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3037,7 +3034,7 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 				<Text>
 					<Id>1796100001040</Id>
 					<Name><![CDATA[ejeY_plotCorridas]]></Name>
-					<X>1370</X><Y>905</Y>
+					<X>2770</X><Y>265</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3055,10 +3052,1774 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 					</Font>
 					<Alignment>CENTER</Alignment>
 				</Text>
+				<Rectangle>
+					<Id>1796100002041</Id>
+					<Name><![CDATA[barraMenu0]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>1600</Width>
+					<Height>64</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-2301200</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002042</Id>
+					<Name><![CDATA[tituloMenu0]]></Name>
+					<X>20</X><Y>16</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Caminatas aleatorias de Pólya  ·  Vistas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Group>
+					<Id>1796100002045</Id>
+					<Name><![CDATA[tab00]]></Name>
+					<X>1100</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaVistas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002043</Id>
+					<Name><![CDATA[r_tab00]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-14774017</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002044</Id>
+					<Name><![CDATA[t_tab00]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-1</Color>
+					<Text><![CDATA[Vistas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002048</Id>
+					<Name><![CDATA[tab01]]></Name>
+					<X>1270</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaEstadisticas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002046</Id>
+					<Name><![CDATA[r_tab01]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002047</Id>
+					<Name><![CDATA[t_tab01]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Estadísticas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002051</Id>
+					<Name><![CDATA[tab02]]></Name>
+					<X>1440</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaLogica.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002049</Id>
+					<Name><![CDATA[r_tab02]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002050</Id>
+					<Name><![CDATA[t_tab02]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Lógica]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Rectangle>
+					<Id>1796100002052</Id>
+					<Name><![CDATA[barraMenu1]]></Name>
+					<X>1800</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>1600</Width>
+					<Height>64</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-2301200</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002053</Id>
+					<Name><![CDATA[tituloMenu1]]></Name>
+					<X>1820</X><Y>16</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Caminatas aleatorias de Pólya  ·  Estadísticas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Group>
+					<Id>1796100002056</Id>
+					<Name><![CDATA[tab10]]></Name>
+					<X>2900</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaVistas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002054</Id>
+					<Name><![CDATA[r_tab10]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002055</Id>
+					<Name><![CDATA[t_tab10]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Vistas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002059</Id>
+					<Name><![CDATA[tab11]]></Name>
+					<X>3070</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaEstadisticas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002057</Id>
+					<Name><![CDATA[r_tab11]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-14774017</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002058</Id>
+					<Name><![CDATA[t_tab11]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-1</Color>
+					<Text><![CDATA[Estadísticas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002062</Id>
+					<Name><![CDATA[tab12]]></Name>
+					<X>3240</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaLogica.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002060</Id>
+					<Name><![CDATA[r_tab12]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002061</Id>
+					<Name><![CDATA[t_tab12]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Lógica]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Rectangle>
+					<Id>1796100002063</Id>
+					<Name><![CDATA[barraMenu2]]></Name>
+					<X>3600</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>1600</Width>
+					<Height>64</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-2301200</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002064</Id>
+					<Name><![CDATA[tituloMenu2]]></Name>
+					<X>3620</X><Y>16</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Caminatas aleatorias de Pólya  ·  Lógica]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Group>
+					<Id>1796100002067</Id>
+					<Name><![CDATA[tab20]]></Name>
+					<X>4700</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaVistas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002065</Id>
+					<Name><![CDATA[r_tab20]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002066</Id>
+					<Name><![CDATA[t_tab20]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Vistas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002070</Id>
+					<Name><![CDATA[tab21]]></Name>
+					<X>4870</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaEstadisticas.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002068</Id>
+					<Name><![CDATA[r_tab21]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002069</Id>
+					<Name><![CDATA[t_tab21]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Estadísticas]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Group>
+					<Id>1796100002073</Id>
+					<Name><![CDATA[tab22]]></Name>
+					<X>5040</X><Y>32</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<OnClickCode><![CDATA[vaLogica.navigateTo();]]></OnClickCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1796100002071</Id>
+					<Name><![CDATA[r_tab22]]></Name>
+					<X>-75</X><Y>-22</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-8355712</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>150</Width>
+					<Height>44</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-14774017</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002072</Id>
+					<Name><![CDATA[t_tab22]]></Name>
+					<X>0</X><Y>-10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-1</Color>
+					<Text><![CDATA[Lógica]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>15</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Group>
+				<Text>
+					<Id>1796100002074</Id>
+					<Name><![CDATA[secAnimacion]]></Name>
+					<X>20</X><Y>78</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Animación 3D del caminante (arrastrá con el mouse para girar la cámara)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002075</Id>
+					<Name><![CDATA[secEstado]]></Name>
+					<X>20</X><Y>606</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Estado del caminante animado]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002076</Id>
+					<Name><![CDATA[estado1]]></Name>
+					<X>20</X><Y>628</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Dimensión de la caminata: d = " + walker.get(0).dimension]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002077</Id>
+					<Name><![CDATA[estado2]]></Name>
+					<X>20</X><Y>652</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Pasos dados: " + walker.get(0).steps + " pasos"]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002078</Id>
+					<Name><![CDATA[estado3]]></Name>
+					<X>20</X><Y>676</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Posición (x, y, z, w) = (" + x + ", " + y + ", " + z + ", " + w + ")"]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002079</Id>
+					<Name><![CDATA[estado4]]></Name>
+					<X>20</X><Y>700</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["¿Volvió al origen? " + (walker.get(0).returned ? "sí, en el paso " + walker.get(0).returnTime : "todavía no")]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002080</Id>
+					<Name><![CDATA[estado5]]></Name>
+					<X>20</X><Y>724</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Entradas al plano w = 0 antes de volver: " + entradasW0]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002081</Id>
+					<Name><![CDATA[leyendaColores]]></Name>
+					<X>20</X><Y>760</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Colores: esfera verde = origen.  Caminante: blanco si w = 0, rojo si w > 0, azul si w < 0
+(la 4.ª coordenada w se representa con el color de la esfera).]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002082</Id>
+					<Name><![CDATA[secControles]]></Name>
+					<X>660</X><Y>78</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Controles del caminante]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002083</Id>
+					<Name><![CDATA[lblDimension]]></Name>
+					<X>660</X><Y>102</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[d: dimensión de la caminata (1 a 4)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002084</Id>
+					<Name><![CDATA[ayudaCaminante]]></Name>
+					<X>660</X><Y>172</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Elegí d con el deslizador y presioná «Reiniciar caminante»: el caminante vuelve al origen y empieza
+a caminar en la nueva dimensión (un paso por segundo, en una de las 2d direcciones con probabilidad 1/(2d)).]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002085</Id>
+					<Name><![CDATA[notaPlot]]></Name>
+					<X>670</X><Y>590</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[La curva sólo varía cuando d = 4; cada vez que toca la línea w = 0 el caminante está en el hiperplano que se ve en la vista 3D.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002086</Id>
+					<Name><![CDATA[secParametros]]></Name>
+					<X>1820</X><Y>78</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Parámetros del experimento]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002087</Id>
+					<Name><![CDATA[lblDimEst]]></Name>
+					<X>1820</X><Y>102</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[d: dimensión de la caminata (1 a 4)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="Slider">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002088</Id>
+					<Name><![CDATA[sliderDimensionEst]]></Name>
+					<X>1820</X><Y>120</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="240" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<DefaultValueCode><![CDATA[0]]></DefaultValueCode>
+						<Orientation>HORIZONTAL</Orientation>
+						<MinValue><![CDATA[1]]></MinValue>
+						<MaxValue><![CDATA[4]]></MaxValue>
+						<Step><![CDATA[1]]></Step>
+						<LinkTo>true</LinkTo>
+						<Link>dimensionSel</Link>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1796100002089</Id>
+					<Name><![CDATA[minDimEst]]></Name>
+					<X>1820</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[min]]></Text>
+					<TextCode><![CDATA[sliderDimensionEst.getMin()]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002090</Id>
+					<Name><![CDATA[maxDimEst]]></Name>
+					<X>2060</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[max]]></Text>
+					<TextCode><![CDATA[sliderDimensionEst.getMax()]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002091</Id>
+					<Name><![CDATA[valDimEst]]></Name>
+					<X>1940</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[value]]></Text>
+					<TextCode><![CDATA[dimensionSel]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002092</Id>
+					<Name><![CDATA[lblPasos]]></Name>
+					<X>1820</X><Y>168</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[N: pasos por caminata [pasos]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002093</Id>
+					<Name><![CDATA[lblReplicas]]></Name>
+					<X>1820</X><Y>234</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[M: caminatas por corrida]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002094</Id>
+					<Name><![CDATA[lblCorridas]]></Name>
+					<X>1820</X><Y>300</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[n: corridas independientes (mínimo 100)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="Slider">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002095</Id>
+					<Name><![CDATA[sliderCorridas]]></Name>
+					<X>1820</X><Y>318</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="240" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<DefaultValueCode><![CDATA[0]]></DefaultValueCode>
+						<Orientation>HORIZONTAL</Orientation>
+						<MinValue><![CDATA[100]]></MinValue>
+						<MaxValue><![CDATA[1000]]></MaxValue>
+						<Step><![CDATA[50]]></Step>
+						<LinkTo>true</LinkTo>
+						<Link>nCorridas</Link>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1796100002096</Id>
+					<Name><![CDATA[minCorridas]]></Name>
+					<X>1820</X><Y>348</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[min]]></Text>
+					<TextCode><![CDATA[sliderCorridas.getMin()]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002097</Id>
+					<Name><![CDATA[maxCorridas]]></Name>
+					<X>2060</X><Y>348</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[max]]></Text>
+					<TextCode><![CDATA[sliderCorridas.getMax()]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>RIGHT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002098</Id>
+					<Name><![CDATA[valCorridas]]></Name>
+					<X>1940</X><Y>348</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[value]]></Text>
+					<TextCode><![CDATA[nCorridas]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002099</Id>
+					<Name><![CDATA[textoSemillas]]></Name>
+					<X>1820</X><Y>372</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA["Semillas: la corrida i usa semillaBase + i − 1 = " + semillaBase + " … " + (semillaBase + nCorridas - 1)]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002100</Id>
+					<Name><![CDATA[secExperimentos]]></Name>
+					<X>1820</X><Y>404</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Experimentos (resultados en la consola)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002101</Id>
+					<Name><![CDATA[btnSensM]]></Name>
+					<X>1820</X><Y>658</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="300" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[sensibilidadM(Npasos);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Sensibilidad a M (caminatas por corrida)]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002102</Id>
+					<Name><![CDATA[btnSensSemilla]]></Name>
+					<X>1820</X><Y>696</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="300" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[sensibilidadSemilla(3, Mreplicas, Npasos);
+sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Sensibilidad a la semilla]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1796100002103</Id>
+					<Name><![CDATA[notaExperimentos]]></Name>
+					<X>1820</X><Y>740</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Cada botón repite el experimento en n corridas (una semilla distinta por corrida)
+e informa media, desvío entre corridas, IC 95 % y prueba t contra la teoría.
+Los datos de cada corrida se guardan en archivos .csv en la carpeta del modelo.
+Duración aproximada: de 20 segundos a 3 minutos según el experimento.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Rectangle>
+					<Id>1796100002104</Id>
+					<Name><![CDATA[panelResumen]]></Name>
+					<X>2780</X><Y>500</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-4144960</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>600</Width>
+					<Height>360</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1796100002105</Id>
+					<Name><![CDATA[tituloResumen]]></Name>
+					<X>2800</X><Y>514</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Resumen de la última ejecución de «Ejecutar n corridas»]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002106</Id>
+					<Name><![CDATA[textoResumen]]></Name>
+					<X>2800</X><Y>542</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[]]></Text>
+					<TextCode><![CDATA[resumenTexto]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002107</Id>
+					<Name><![CDATA[tituloGuia]]></Name>
+					<X>2800</X><Y>630</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Cómo leer los gráficos]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002108</Id>
+					<Name><![CDATA[textoGuia]]></Name>
+					<X>2800</X><Y>656</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[• T es el paso en que la caminata vuelve por primera vez al origen; P(T ≤ N) es adimensional.
+• Curva azul: media de P(T ≤ N) sobre las n corridas; líneas celestes: IC 95 %.
+• Línea roja: valor teórico (1D exacto; 3D y 4D, constante de Pólya corregida
+   a N finito; en 2D tiende a 1 muy lentamente y no tiene valor finito simple).
+• Gráfico de corridas: cada punto es una corrida con su propia semilla; la
+   dispersión entre puntos es el error de Monte Carlo de una sola corrida.
+• d = 1 y d = 2: recurrentes (siempre vuelven). d ≥ 3: transitorias.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002109</Id>
+					<Name><![CDATA[secLogica0]]></Name>
+					<X>3620</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Parámetros]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002110</Id>
+					<Name><![CDATA[secLogica1]]></Name>
+					<X>3830</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Variables]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002111</Id>
+					<Name><![CDATA[secLogica2]]></Name>
+					<X>4040</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Conjuntos de datos]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002112</Id>
+					<Name><![CDATA[secLogica3]]></Name>
+					<X>4260</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Corridas y estadística]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002113</Id>
+					<Name><![CDATA[secLogica4]]></Name>
+					<X>4500</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Núcleo Monte Carlo]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002114</Id>
+					<Name><![CDATA[secLogica5]]></Name>
+					<X>4740</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Escenarios y validación]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002115</Id>
+					<Name><![CDATA[secLogica6]]></Name>
+					<X>4980</X><Y>84</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Animación del caminante]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002116</Id>
+					<Name><![CDATA[secLogicaVerif]]></Name>
+					<X>4500</X><Y>270</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Verificación]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002117</Id>
+					<Name><![CDATA[secBotonesLogica]]></Name>
+					<X>3620</X><Y>330</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Verificación y validación]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002118</Id>
+					<Name><![CDATA[btnVerificar]]></Name>
+					<X>3620</X><Y>356</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[traceln("=== Verificación (isotropía, difusión y paridad) ===");
+verificarIsotropia(10000, 1000);
+verificarDifusion(10000, 1000);
+verificarParidad(10000, 1000);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Verificación del modelo]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="Button">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1796100002119</Id>
+					<Name><![CDATA[btnValidar]]></Name>
+					<X>3620</X><Y>394</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="190" Height="30">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[validarPolya(Mreplicas, Npasos);]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[Validación contra Pólya]]></LabelText>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1796100002120</Id>
+					<Name><![CDATA[secFlujo]]></Name>
+					<X>3620</X><Y>600</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-14540254</Color>
+					<Text><![CDATA[Lógica de una corrida]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100002121</Id>
+					<Name><![CDATA[textoFlujo]]></Name>
+					<X>3620</X><Y>628</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[1. fijarSemilla: la corrida i (i = 1 … n) usa la semilla semillaBase + i − 1; así las corridas son independientes y cualquier resultado se puede reproducir.
+2. retornoMC / curvaAcumulada: se simulan M caminatas de hasta N pasos; en cada paso se elige una de las 2d direcciones con probabilidad 1/(2d).
+3. Para cada caminata se registra si vuelve al origen y en qué paso T lo hace por primera vez.
+4. pCorridas / curvaCorridas: el experimento completo se repite en n ≥ 100 corridas independientes.
+5. resumir: media, desvío entre corridas, IC 95 % con t de Student y prueba t contra teoricoRetorno (α = 0,05).
+6. guardarCorridas: archivo .csv con una fila por corrida (corrida; semilla; resultados) para la planilla de cálculo.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
 			</Presentation>
+			<Areas>
+				<Area>
+					<Id>1796100002122</Id>
+					<Name><![CDATA[vaVistas]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[Vistas]]></Title>
+					<Width>1600</Width>
+					<Height>880</Height>
+				</Area>
+				<Area>
+					<Id>1796100002123</Id>
+					<Name><![CDATA[vaEstadisticas]]></Name>
+					<X>1800</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[Estadísticas]]></Title>
+					<Width>1600</Width>
+					<Height>880</Height>
+				</Area>
+				<Area>
+					<Id>1796100002124</Id>
+					<Name><![CDATA[vaLogica]]></Name>
+					<X>3600</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[Lógica]]></Title>
+					<Width>1600</Width>
+					<Height>880</Height>
+				</Area>
+			</Areas>
 
 		</ActiveObjectClass>
 		<!--   =========   Active Object Class   ========  -->
@@ -3468,8 +5229,8 @@ if(!returned && wAntes != 0 && w == 0){
 	<TimeAccuracy>1.0E-5</TimeAccuracy>
 	<Frame>
 		<Id>1793206775857</Id>
-		<Width>1000</Width>
-		<Height>600</Height>
+		<Width>1600</Width>
+		<Height>880</Height>
 	</Frame>
 	<Database>
 		<Id>1793206775842</Id>

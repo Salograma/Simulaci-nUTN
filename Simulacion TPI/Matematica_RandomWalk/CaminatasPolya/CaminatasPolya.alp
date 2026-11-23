@@ -2031,23 +2031,23 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 						</RecurrenceCode>
 					</RecurrenceProperties>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>300</Width>
-					<Height>200</Height>
+					<Width>820</Width>
+					<Height>320</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>30</XOffset>
-						<YOffset>10</YOffset>
-						<Width>260</Width>
-						<Height>140</Height>
+						<XOffset>70</XOffset>
+						<YOffset>30</YOffset>
+						<Width>560</Width>
+						<Height>240</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
 					</ChartArea>
 					<Legend>
-						<Place>SOUTH</Place>
+						<Place>EAST</Place>
 						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
+						<Size>160</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
@@ -2063,7 +2063,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
-						<Title><![CDATA[w(t)]]></Title>
+						<Title><![CDATA[w(t) del caminante]]></Title>
 					<Id>1793885636688</Id>
 					<Expression><![CDATA[get.walker(0).w]]></Expression>
 					<Color>-13447886</Color>
@@ -2073,7 +2073,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 						<LineWidth>1.0</LineWidth>
 					</DatasetExpression>
 					<DatasetExpression>  
-						<Title><![CDATA[0]]></Title>
+						<Title><![CDATA[Plano w = 0]]></Title>
 					<Id>1793887892951</Id>
 					<Expression><![CDATA[curvaRetorno]]></Expression>
 					<Color>-65536</Color>
@@ -2098,9 +2098,9 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<AutoUpdate>false</AutoUpdate>
 					<RecurrenceProperties>
-						<Id>1793971317012</Id>
+						<Id>1796100001025</Id>
 						<OccurrenceAtTime>true</OccurrenceAtTime>
-						<OccurrenceDate>1794038400000</OccurrenceDate>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
 							<Code><![CDATA[0]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
@@ -2110,24 +2110,23 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 					</RecurrenceProperties>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>420</Width>
-					<Height>340</Height>
+					<Width>600</Width>
+					<Height>360</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>50</XOffset>
+						<XOffset>70</XOffset>
 						<YOffset>30</YOffset>
-						<Width>340</Width>
-						<Height>250</Height>
+						<Width>360</Width>
+						<Height>270</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
 					</ChartArea>
 					<Legend>
-						<Place>SOUTH</Place>
+						<Place>EAST</Place>
 						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
+						<Size>150</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
@@ -2141,10 +2140,9 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
-						<Title><![CDATA[P(retorno <= N) simulada]]></Title>
-					<Id>1793971318936</Id>
+						<Title><![CDATA[Media de las n corridas]]></Title>
 					<Expression><![CDATA[curvaRetorno]]></Expression>
-					<Color>-16711681</Color>
+					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
@@ -2152,14 +2150,33 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
-						<Title><![CDATA[Valor de Polya]]></Title>
-					<Id>1793971442280</Id>
-					<Expression><![CDATA[curvaPolya]]></Expression>
-					<Color>-14774017</Color>
+						<Title><![CDATA[IC 95 %: límite inferior]]></Title>
+					<Expression><![CDATA[curvaICinf]]></Expression>
+					<Color>-8411175</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
 						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[IC 95 %: límite superior]]></Title>
+					<Expression><![CDATA[curvaICsup]]></Expression>
+					<Color>-8411175</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Valor teórico]]></Title>
+					<Expression><![CDATA[curvaPolya]]></Expression>
+					<Color>-65536</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.5</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<SamplesToKeep>100</SamplesToKeep>
@@ -2482,7 +2499,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
     			<Plot>
 					<Id>1794196344204</Id>
 					<Name><![CDATA[plotEscenario1]]></Name>
-					<X>500</X><Y>740</Y>
+					<X>720</X><Y>740</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2490,7 +2507,7 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<AutoUpdate>false</AutoUpdate>
 					<RecurrenceProperties>
-						<Id>1794196344202</Id>
+						<Id>1796100001026</Id>
 						<OccurrenceAtTime>true</OccurrenceAtTime>
 						<OccurrenceDate>1794211200000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
@@ -2502,24 +2519,23 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</RecurrenceCode>
 					</RecurrenceProperties>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>420</Width>
-					<Height>340</Height>
+					<Width>600</Width>
+					<Height>360</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
-						<XOffset>50</XOffset>
+						<XOffset>70</XOffset>
 						<YOffset>30</YOffset>
-						<Width>340</Width>
-						<Height>250</Height>
+						<Width>360</Width>
+						<Height>270</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
 						<GridColor>-12566464</GridColor>
 					</ChartArea>
 					<Legend>
-						<Place>SOUTH</Place>
+						<Place>EAST</Place>
 						<TextColor>-16777216</TextColor>
-						<Size>30</Size>
+						<Size>150</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
@@ -2533,47 +2549,43 @@ try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWr
 					<DrawLine>true</DrawLine>
 					<Interpolation>LINEAR</Interpolation>
 					<DatasetExpression>  
-						<Title><![CDATA[1D]]></Title>
-					<Id>1794196346998</Id>
+						<Title><![CDATA[d = 1 (recurrente)]]></Title>
 					<Expression><![CDATA[curva1D]]></Expression>
 					<Color>-3137392</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>1.5</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
-						<Title><![CDATA[2D]]></Title>
-					<Id>1794196385466</Id>
+						<Title><![CDATA[d = 2 (recurrente)]]></Title>
 					<Expression><![CDATA[curva2D]]></Expression>
 					<Color>-32944</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>1.5</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
-						<Title><![CDATA[3D]]></Title>
-					<Id>1794196393015</Id>
+						<Title><![CDATA[d = 3 (transitoria)]]></Title>
 					<Expression><![CDATA[curva3D]]></Expression>
 					<Color>-13447886</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>1.5</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<DatasetExpression>  
-						<Title><![CDATA[4D]]></Title>
-					<Id>1794196404557</Id>
+						<Title><![CDATA[d = 4 (transitoria)]]></Title>
 					<Expression><![CDATA[curva4D]]></Expression>
 					<Color>-16776961</Color>
 					<Expression2><![CDATA[0]]></Expression2>
 					<Expression2Flag>false</Expression2Flag>
 						<PointStyle>NONE</PointStyle>
-						<LineWidth>1.0</LineWidth>
+						<LineWidth>1.5</LineWidth>
 						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
 					</DatasetExpression>
 					<SamplesToKeep>100</SamplesToKeep>
@@ -2701,6 +2713,348 @@ sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 						<LabelText><![CDATA[Sensisibilidad]]></LabelText>
 					</ExtendedProperties>
 				</Control>
+    			<Plot>
+					<Id>1796100001027</Id>
+					<Name><![CDATA[plotCorridas]]></Name>
+					<X>1380</X><Y>740</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100001028</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<Width>600</Width>
+					<Height>360</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>70</XOffset>
+						<YOffset>30</YOffset>
+						<Width>360</Width>
+						<Height>270</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>EAST</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>150</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
+					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
+					<VerScaleType>AUTO</VerScaleType>
+					<DrawLine>true</DrawLine>
+					<Interpolation>LINEAR</Interpolation>
+					<DatasetExpression>  
+						<Title><![CDATA[P(T ≤ N) de cada corrida]]></Title>
+					<Expression><![CDATA[datosCorridas]]></Expression>
+					<Color>-12156236</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>CIRCLE</PointStyle>
+						<LineWidth>1.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Media de las corridas]]></Title>
+					<Expression><![CDATA[mediaCorridas]]></Expression>
+					<Color>-29696</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>2.0</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<DatasetExpression>  
+						<Title><![CDATA[Valor teórico]]></Title>
+					<Expression><![CDATA[polyaCorridas]]></Expression>
+					<Color>-65536</Color>
+					<Expression2><![CDATA[0]]></Expression2>
+					<Expression2Flag>false</Expression2Flag>
+						<PointStyle>NONE</PointStyle>
+						<LineWidth>1.5</LineWidth>
+						<HorizontalAxisExpression><![CDATA[0]]></HorizontalAxisExpression>
+					</DatasetExpression>
+					<SamplesToKeep>100</SamplesToKeep>
+					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
+					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
+					<HorScaleType>AUTO</HorScaleType>
+    			</Plot>
+				<Text>
+					<Id>1796100001029</Id>
+					<Name><![CDATA[titulo_plot]]></Name>
+					<X>410</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Coordenada w del caminante en el tiempo (caminata animada)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001030</Id>
+					<Name><![CDATA[ejeX_plot]]></Name>
+					<X>410</X><Y>292</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[t: tiempo de simulación [s]   (el caminante da 1 paso por segundo)]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001031</Id>
+					<Name><![CDATA[ejeY_plot]]></Name>
+					<X>50</X><Y>150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>270.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[w(t): posición sobre el 4.º eje [pasos de red]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001032</Id>
+					<Name><![CDATA[titulo_plot1]]></Name>
+					<X>310</X><Y>720</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Probabilidad acumulada de retorno al origen]]></Text>
+					<TextCode><![CDATA["P(retorno al origen ≤ N) en d = " + dimensionSel + ": media de " + nCorridas + " corridas con IC 95 %"]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001033</Id>
+					<Name><![CDATA[ejeX_plot1]]></Name>
+					<X>310</X><Y>1062</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[N: cantidad de pasos de la caminata [pasos]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001034</Id>
+					<Name><![CDATA[ejeY_plot1]]></Name>
+					<X>50</X><Y>905</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>270.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[P(T ≤ N): probabilidad de haber vuelto al origen [adim.]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001035</Id>
+					<Name><![CDATA[titulo_plotEscenario1]]></Name>
+					<X>970</X><Y>720</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Escenario 1: P(retorno ≤ N) según la dimensión]]></Text>
+					<TextCode><![CDATA["Escenario 1: P(retorno ≤ N) para d = 1, 2, 3 y 4 (media de " + nCorridas + " corridas)"]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001036</Id>
+					<Name><![CDATA[ejeX_plotEscenario1]]></Name>
+					<X>970</X><Y>1062</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[N: cantidad de pasos de la caminata [pasos]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001037</Id>
+					<Name><![CDATA[ejeY_plotEscenario1]]></Name>
+					<X>710</X><Y>905</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>270.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[P(T ≤ N): probabilidad de haber vuelto al origen [adim.]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001038</Id>
+					<Name><![CDATA[titulo_plotCorridas]]></Name>
+					<X>1630</X><Y>720</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Resultado de cada corrida]]></Text>
+					<TextCode><![CDATA["Resultado de cada una de las " + nCorridas + " corridas (d = " + dimensionSel + ", M = " + Mreplicas + " caminatas)"]]></TextCode>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>13</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001039</Id>
+					<Name><![CDATA[ejeX_plotCorridas]]></Name>
+					<X>1630</X><Y>1062</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[i: número de corrida (semilla = semillaBase + i − 1) [adim.]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1796100001040</Id>
+					<Name><![CDATA[ejeY_plotCorridas]]></Name>
+					<X>1370</X><Y>905</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>270.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[P(T ≤ N) estimada en la corrida i [adim.]]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>11</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>

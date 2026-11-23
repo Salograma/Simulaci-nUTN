@@ -271,7 +271,7 @@
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[2000]]></Code>
+							<Code><![CDATA[1000]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1793969921501</Id>
@@ -281,6 +281,69 @@
 							<DelimeterType>NO_DELIMETER</DelimeterType>
 						</ParameterEditor>
 					</Properties>                 
+				</Variable>
+			<Variable Class="Parameter">
+					<Id>1796100000001</Id>
+					<Name><![CDATA[nCorridas]]></Name>
+					<X>280</X><Y>610</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1796100000002</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1796100000003</Id>
+					<Name><![CDATA[semillaBase]]></Name>
+					<X>280</X><Y>640</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[12345]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1796100000004</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1796100000005</Id>
+					<Name><![CDATA[resumenTexto]]></Name>
+					<X>430</X><Y>610</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[String]]></Type>
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA["Presione \"Ejecutar corridas\" para calcular."]]></Code>
+						</InitialValue>
+					</Properties>
 				</Variable>
 			</Variables>
 			<Functions>
@@ -349,7 +412,8 @@ return (double) retornos / M;]]></Body>
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[String[] ejes = {"x","y","z","w"};
+					<Body><![CDATA[fijarSemilla(0);   // verificación reproducible: semilla semillaBase
+String[] ejes = {"x","y","z","w"};
 
 for (int d = 1; d <= 4; d++){
 	double[] r = estadisticasPosicion(d, M, N);
@@ -443,22 +507,14 @@ return resultado;]]></Body>
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[double[] teorico = {1.0, 1.0, 0.340537, 0.193206};
-
+					<Body><![CDATA[// Validación: P(retorno) simulada en nCorridas corridas vs. valor teórico (prueba t, alfa = 0.05).
+traceln("=== Validación contra Pólya | " + encabezadoCorridas(M, N) + " ===");
+double[][] todas = new double[4][];
 for (int d = 1; d <= 4; d++) {
-    double p = retornoMC(d, M, N);
-    double standardError = Math.sqrt(p * (1 - p) / M);
-
-    traceln("d=" + d + "  p=" + p
-        + "  IC95%=[" + (p - 1.96 * standardError)
-        + ", " + (p + 1.96 * standardError) + "]");
-
-    if (d >= 3) {
-        double p0 = teorico[d - 1];
-        double z = (p - p0) / Math.sqrt(p0 * (1 - p0) / M);
-        traceln("     Z vs Polya = " + z + (Math.abs(z) < 1.96 ? "  -> valida" : "  -> rechaza"));
-    }
-}]]></Body>
+    todas[d - 1] = pCorridas(d, M, N, semillaBase);
+    resumir("d = " + d, todas[d - 1], teoricoRetorno(d, N));
+}
+guardarCorridas("validacion_corridas.csv", new String[] { "p_1D", "p_2D", "p_3D", "p_4D" }, todas);]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -530,7 +586,8 @@ return new double[] { media, standardError };]]></Body>
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[for (int d = 1; d <= 4; d++) {
+					<Body><![CDATA[fijarSemilla(0);   // verificación reproducible: semilla semillaBase
+for (int d = 1; d <= 4; d++) {
     double[] r = estadisticasR2(d, M, N);
     double media = r[0];
     double standardError = r[1];
@@ -611,7 +668,8 @@ return new long[] { visitasPares, visitasImpares };]]></Body>
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[for(int d = 1; d <= 4; d++){
+					<Body><![CDATA[fijarSemilla(0);   // verificación reproducible: semilla semillaBase
+for(int d = 1; d <= 4; d++){
 	long[] r = contarVisitasOrigen(d, M, N);
 	boolean pasa = r[1] == 0 && r[0] > 0;
 	
@@ -692,48 +750,52 @@ y = valor;]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[int d = dimensionSel;
+					<Body><![CDATA[// Curva P(retorno <= N) para la dimensión elegida, promediada sobre nCorridas corridas
+// independientes (cada una con su semilla) y con su banda de confianza del 95 %.
+int d = dimensionSel;
 int bins = Npasos / 2;
-long[] primeros = new long[bins + 1];
+traceln("=== Curva de retorno, d = " + d + " | " + encabezadoCorridas(Mreplicas, Npasos) + " ===");
 
-for (int rep = 0; rep < Mreplicas; rep++){
-	int x = 0, y = 0, z = 0, w = 0;
-	
-	for (int s = 1; s <= Npasos; s++){
-		int dir = uniform_discr(0, 2 * d - 1);
-		
-		if (dir == 0) x++;
-        else if (dir == 1) x--;
-        else if (dir == 2) y++;
-        else if (dir == 3) y--;
-        else if (dir == 4) z++;
-        else if (dir == 5) z--;
-        else if (dir == 6) w++;
-        else if (dir == 7) w--;
-        
-        if (x == 0 && y == 0 && z == 0 && w == 0) {
-            primeros[s / 2]++;
-            break;
-        }
-	}
-}
+double[][] r = curvaCorridas(d, Mreplicas, Npasos);
 
 curvaRetorno.reset();
-long acumulado = 0;
+curvaICinf.reset();
+curvaICsup.reset();
 int salto = Math.max(1, bins / 200);
-
-for (int k = 1; k <= bins; k++){
-	acumulado += primeros[k];
-	if(k % salto == 0 || k == bins){
-		curvaRetorno.add(2.0 * k, (double) acumulado / Mreplicas);
-	}
+for (int k = salto; k <= bins; k += salto) {
+    curvaRetorno.add(2.0 * k, r[0][k]);
+    curvaICinf.add(2.0 * k, r[1][k]);
+    curvaICsup.add(2.0 * k, r[2][k]);
 }
-pFinal = (double) acumulado / Mreplicas;
 
-double[] teorico = {1.0, 1.0, 0.340537, 0.193206};
+double teo = teoricoRetorno(d, Npasos);
 curvaPolya.reset();
-curvaPolya.add(0, teorico[d - 1]);
-curvaPolya.add(Npasos, teorico[d - 1]);]]></Body>
+if (!Double.isNaN(teo)) {
+    curvaPolya.add(0, teo);
+    curvaPolya.add(Npasos, teo);
+}
+
+double[] res = resumir("P(retorno <= N)", r[3], teo);
+pFinal = res[0];
+
+int n = r[3].length;
+datosCorridas.reset();
+for (int i = 0; i < n; i++) datosCorridas.add(i + 1, r[3][i]);
+mediaCorridas.reset();
+mediaCorridas.add(1, res[0]);
+mediaCorridas.add(n, res[0]);
+polyaCorridas.reset();
+if (!Double.isNaN(teo)) {
+    polyaCorridas.add(1, teo);
+    polyaCorridas.add(n, teo);
+}
+
+resumenTexto = "d = " + d + "   |   n = " + n + " corridas  x  M = " + Mreplicas + " caminatas,  N = " + Npasos + " pasos\n"
+    + "P(retorno <= N):  media = " + fmt(res[0]) + "    IC95% = [" + fmt(res[2]) + ", " + fmt(res[3]) + "]\n"
+    + "Desvío entre corridas = " + fmt(res[1]) + "    Valor teórico = "
+    + (Double.isNaN(teo) ? "1 (solo para N -> infinito)" : fmt(teo));
+
+guardarCorridas("corridas_curva_d" + d + ".csv", new String[] { "p_retorno" }, new double[][] { r[3] });]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -831,26 +893,23 @@ return acumulada;]]></Body>
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[DataSet[] datasets = { curva1D, curva2D, curva3D, curva4D };
-double[] teorico = {1.0, 1.0, 0.340537, 0.193206};
+					<Body><![CDATA[// Escenario 1: P(retorno <= N) en d = 1..4, cada curva promediada sobre nCorridas corridas.
+DataSet[] datasets = { curva1D, curva2D, curva3D, curva4D };
 int bins = N / 2;
 int salto = Math.max(1, bins / 200);
+traceln("=== Escenario 1: P(retorno al origen <= N) para d = 1..4 | " + encabezadoCorridas(M, N) + " ===");
 
+double[][] finales = new double[4][];
 for (int d = 1; d <= 4; d++) {
-    double[] acum = curvaAcumulada(d, M, N);
-
+    double[][] r = curvaCorridas(d, M, N);
     datasets[d - 1].reset();
     for (int k = salto; k <= bins; k += salto) {
-        datasets[d - 1].add(2.0 * k, acum[k]);
+        datasets[d - 1].add(2.0 * k, r[0][k]);
     }
-
-    double p = acum[bins];
-    double standardError = Math.sqrt(p * (1 - p) / M);
-    traceln("d=" + d + "  p=" + p
-        + "  IC95%=[" + (p - 1.96 * standardError)
-        + ", " + (p + 1.96 * standardError) + "]"
-        + "  Polya=" + teorico[d - 1]);
-}]]></Body>
+    finales[d - 1] = r[3];
+    resumir("d = " + d, r[3], teoricoRetorno(d, N));
+}
+guardarCorridas("escenario1_corridas.csv", new String[] { "p_1D", "p_2D", "p_3D", "p_4D" }, finales);]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -870,61 +929,70 @@ for (int d = 1; d <= 4; d++) {
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[int d = 4;
-long visitasPlano = 0;
-long visitasOrigen = 0;
-double sumaOrigenCuad = 0;
-int conVisitaPlano = 0;
-int conRetorno = 0;
+					<Body><![CDATA[// Escenario 2: caminata 4D y su paso por el plano w = 0, repetido en nCorridas corridas.
+int d = 4;
+int n = nCorridas;
+double[] pVisita = new double[n];
+double[] pRetorno = new double[n];
+double[] pCondicional = new double[n];
+double[] mediaPlano = new double[n];
+double[] mediaOrigen = new double[n];
+double[] fraccion = new double[n];
 
-for (int rep = 0; rep < M; rep++) {
-    int x = 0, y = 0, z = 0, w = 0;
-    int vPlano = 0;
-    int vOrigen = 0;
+for (int i = 0; i < n; i++) {
+    fijarSemilla(i);
+    long visitasPlano = 0;
+    long visitasOrigen = 0;
+    int conVisitaPlano = 0;
+    int conRetorno = 0;
 
-    for (int s = 1; s <= N; s++) {
-        int dir = uniform_discr(0, 2 * d - 1);
+    for (int rep = 0; rep < M; rep++) {
+        int x = 0, y = 0, z = 0, w = 0;
+        int vPlano = 0;
+        int vOrigen = 0;
 
-        if (dir == 0) x++;
-        else if (dir == 1) x--;
-        else if (dir == 2) y++;
-        else if (dir == 3) y--;
-        else if (dir == 4) z++;
-        else if (dir == 5) z--;
-        else if (dir == 6) w++;
-        else if (dir == 7) w--;
+        for (int s = 1; s <= N; s++) {
+            int dir = uniform_discr(0, 2 * d - 1);
 
-        if (w == 0) {
-            vPlano++;
-            if (x == 0 && y == 0 && z == 0) vOrigen++;
+            if (dir == 0) x++;
+            else if (dir == 1) x--;
+            else if (dir == 2) y++;
+            else if (dir == 3) y--;
+            else if (dir == 4) z++;
+            else if (dir == 5) z--;
+            else if (dir == 6) w++;
+            else if (dir == 7) w--;
+
+            if (w == 0) {
+                vPlano++;
+                if (x == 0 && y == 0 && z == 0) vOrigen++;
+            }
         }
+
+        visitasPlano += vPlano;
+        visitasOrigen += vOrigen;
+        if (vPlano > 0) conVisitaPlano++;
+        if (vOrigen > 0) conRetorno++;
     }
 
-    visitasPlano += vPlano;
-    visitasOrigen += vOrigen;
-    sumaOrigenCuad += (double) vOrigen * vOrigen;
-    if (vPlano > 0) conVisitaPlano++;
-    if (vOrigen > 0) conRetorno++;
+    pVisita[i] = (double) conVisitaPlano / M;
+    pRetorno[i] = (double) conRetorno / M;
+    pCondicional[i] = conVisitaPlano > 0 ? (double) conRetorno / conVisitaPlano : 0;
+    mediaPlano[i] = (double) visitasPlano / M;
+    mediaOrigen[i] = (double) visitasOrigen / M;
+    fraccion[i] = visitasPlano > 0 ? (double) visitasOrigen / visitasPlano : 0;
 }
 
-double pVisita = (double) conVisitaPlano / M;
-double pRetorno = (double) conRetorno / M;
-double pCondicional = (double) conRetorno / conVisitaPlano;
-double mediaPlano = (double) visitasPlano / M;
-double mediaOrigen = (double) visitasOrigen / M;
-double fraccion = (double) visitasOrigen / visitasPlano;
-
-double varianzaOrigen = sumaOrigenCuad / M - mediaOrigen * mediaOrigen;
-double standardError = Math.sqrt(varianzaOrigen / M);
-
-traceln("P(visita w=0) = " + pVisita);
-traceln("P(retorno) = " + pRetorno);
-traceln("P(retorno | visita w=0) = " + pCondicional);
-traceln("Visitas medias al plano w=0 = " + mediaPlano);
-traceln("Visitas medias al origen = " + mediaOrigen
-    + "  IC95%=[" + (mediaOrigen - 1.96 * standardError)
-    + ", " + (mediaOrigen + 1.96 * standardError) + "]  (Polya: u-1 = 0.239467)");
-traceln("Fraccion de visitas al plano que caen en el origen = " + fraccion);]]></Body>
+traceln("=== Escenario 2: caminata 4D y el plano w = 0 | " + encabezadoCorridas(M, N) + " ===");
+resumir("P(visitar el plano w = 0)", pVisita, Double.NaN);
+resumir("P(retornar al origen)", pRetorno, 0.193206);
+resumir("P(retorno | visitó w = 0)", pCondicional, Double.NaN);
+resumir("Visitas medias al plano w = 0 [visitas por caminata]", mediaPlano, Double.NaN);
+resumir("Visitas medias al origen [visitas por caminata] (Pólya: u - 1)", mediaOrigen, 0.239467);
+resumir("Fracción de visitas al plano que caen en el origen", fraccion, Double.NaN);
+guardarCorridas("escenario2_corridas.csv",
+    new String[] { "p_visita_plano", "p_retorno", "p_retorno_dado_plano", "visitas_plano", "visitas_origen", "fraccion_origen" },
+    new double[][] { pVisita, pRetorno, pCondicional, mediaPlano, mediaOrigen, fraccion });]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -948,38 +1016,58 @@ traceln("Fraccion de visitas al plano que caen en el origen = " + fraccion);]]><
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[int[] limites = {2, 4, 6, 10, 20, 50, 100, 1000, 10000};
-long[] cuenta = new long[limites.length];
-long retornos = 0;
-double sumaT = 0;
+					<Body><![CDATA[// Escenario 3: distribución del tiempo T de primer retorno, repetido en nCorridas corridas.
+int[] limites = {2, 4, 6, 10, 20, 50, 100, 1000, 10000};
+int n = nCorridas;
+double[] pRet = new double[n];
+double[] tMedio = new double[n];
+double[][] fr = new double[limites.length][n];
 
-for (int m = 0; m < M; m++) {
-    int x = 0, y = 0, z = 0, w = 0;
-    for (int t = 1; t <= N; t++) {
-        int dir = uniform_discr(0, 2 * d - 1);
-        if (dir == 0) x++; else if (dir == 1) x--;
-        else if (dir == 2) y++; else if (dir == 3) y--;
-        else if (dir == 4) z++; else if (dir == 5) z--;
-        else if (dir == 6) w++; else w--;
-        if (x == 0 && y == 0 && z == 0 && w == 0) {
-            retornos++;
-            sumaT += t;
-            for (int k = 0; k < limites.length; k++) {
-                if (t <= limites[k]) cuenta[k]++;
+for (int i = 0; i < n; i++) {
+    fijarSemilla(i);
+    long[] cuenta = new long[limites.length];
+    long retornos = 0;
+    double sumaT = 0;
+
+    for (int m = 0; m < M; m++) {
+        int x = 0, y = 0, z = 0, w = 0;
+        for (int t = 1; t <= N; t++) {
+            int dir = uniform_discr(0, 2 * d - 1);
+            if (dir == 0) x++; else if (dir == 1) x--;
+            else if (dir == 2) y++; else if (dir == 3) y--;
+            else if (dir == 4) z++; else if (dir == 5) z--;
+            else if (dir == 6) w++; else w--;
+            if (x == 0 && y == 0 && z == 0 && w == 0) {
+                retornos++;
+                sumaT += t;
+                for (int k = 0; k < limites.length; k++) {
+                    if (t <= limites[k]) cuenta[k]++;
+                }
+                break;   // primer retorno: corta esta caminata
             }
-            break;   // primer retorno: corta esta caminata
         }
     }
+    pRet[i] = (double) retornos / M;
+    tMedio[i] = retornos > 0 ? sumaT / retornos : 0;
+    for (int k = 0; k < limites.length; k++) fr[k][i] = (double) cuenta[k] / M;
 }
 
-traceln("Escenario 3: d=" + d + ", M=" + M + ", N=" + N);
-traceln("  P(retorno) = " + (double) retornos / M);
-traceln("  T medio entre los que vuelven = " + sumaT / retornos);
+traceln("=== Escenario 3: tiempo de primer retorno T, d = " + d + " | " + encabezadoCorridas(M, N) + " ===");
+resumir("P(retorno <= N)", pRet, teoricoRetorno(d, N));
+resumir("T medio de los que vuelven [pasos]", tMedio, Double.NaN);
+
+java.util.List<String> cols = new java.util.ArrayList<>();
+java.util.List<double[]> datos = new java.util.ArrayList<>();
+cols.add("p_retorno"); datos.add(pRet);
+cols.add("T_medio");   datos.add(tMedio);
 for (int k = 0; k < limites.length; k++) {
     if (limites[k] > N) break;
-    traceln("  T <= " + limites[k] + ": " + (double) cuenta[k] / M
-          + " del total | " + (double) cuenta[k] / retornos + " de los que vuelven");
-}]]></Body>
+    // P(T = 2) = 1 / (2d) exacto: es la probabilidad de deshacer el primer paso
+    resumir("P(T <= " + limites[k] + ")", fr[k], limites[k] == 2 ? 1.0 / (2 * d) : Double.NaN);
+    cols.add("P_T_hasta_" + limites[k]);
+    datos.add(fr[k]);
+}
+guardarCorridas("escenario3_d" + d + "_corridas.csv", cols.toArray(new String[0]), datos.toArray(new double[0][]));]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -1007,130 +1095,35 @@ for (int k = 0; k < limites.length; k++) {
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[long retornos = 0;
+					<Body><![CDATA[// Escenario 4: caminata con deriva (sesgo en el eje x), repetido en nCorridas corridas.
+int n = nCorridas;
+double[] p = new double[n];
 
-for (int m = 0; m < M; m++) {
-    int x = 0, y = 0;
-    for (int t = 1; t <= N; t++) {
-        double u = uniform();
-        if (d == 1) {
-            x += (u < (1 + deriva) / 2) ? 1 : -1;
-        } else {
-            if (u < (1 + deriva) / 4) x++;
-            else if (u < 0.5) x--;
-            else if (u < 0.75) y++;
-            else y--;
+for (int i = 0; i < n; i++) {
+    fijarSemilla(i);
+    long retornos = 0;
+    for (int m = 0; m < M; m++) {
+        int x = 0, y = 0;
+        for (int t = 1; t <= N; t++) {
+            double u = uniform();
+            if (d == 1) {
+                x += (u < (1 + deriva) / 2) ? 1 : -1;
+            } else {
+                if (u < (1 + deriva) / 4) x++;
+                else if (u < 0.5) x--;
+                else if (u < 0.75) y++;
+                else y--;
+            }
+            if (x == 0 && y == 0) { retornos++; break; }
         }
-        if (x == 0 && y == 0) { retornos++; break; }
     }
+    p[i] = (double) retornos / M;
 }
 
-double p = (double) retornos / M;
-double se = Math.sqrt(p * (1 - p) / M);
-String s = "d=" + d + ", deriva=" + deriva + ": P(retorno) = " + p
-         + "  IC95% = [" + (p - 1.96 * se) + ", " + (p + 1.96 * se) + "]";
-if (d == 1) {
-    double teo = 1 - deriva;
-    s += "  | teórico 1-δ = " + teo;
-    if (teo < 1) s += "  Z = " + (p - teo) / Math.sqrt(teo * (1 - teo) / M);
-}
-traceln(s); ]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1794220483206</Id>
-					<Name><![CDATA[escenario5]]></Name>
-					<X>1361.6</X><Y>-511.6</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[d]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[deriva]]></Name>
-						<Type><![CDATA[double]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[M]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[N]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Body><![CDATA[long retornos = 0;
-
-for (int m = 0; m < M; m++) {
-    int x = 0, y = 0;
-    for (int t = 1; t <= N; t++) {
-        double u = uniform();
-        if (d == 1) {
-            x += (u < (1 + deriva) / 2) ? 1 : -1;
-        } else {
-            if (u < (1 + deriva) / 4) x++;
-            else if (u < 0.5) x--;
-            else if (u < 0.75) y++;
-            else y--;
-        }
-        if (x == 0 && y == 0) { retornos++; break; }
-    }
-}
-
-double p = (double) retornos / M;
-double se = Math.sqrt(p * (1 - p) / M);
-String s = "d=" + d + ", deriva=" + deriva + ": P(retorno) = " + p
-         + "  IC95% = [" + (p - 1.96 * se) + ", " + (p + 1.96 * se) + "]";
-if (d == 1) {
-    double teo = 1 - deriva;
-    s += "  | teórico 1-δ = " + teo;
-    if (teo < 1) s += "  Z = " + (p - teo) / Math.sqrt(teo * (1 - teo) / M);
-}
-traceln(s); ]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1794220873684</Id>
-					<Name><![CDATA[retornoMCsemilla]]></Name>
-					<X>1100</X><Y>-160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[d]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[M]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[N]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[semilla]]></Name>
-						<Type><![CDATA[long]]></Type>
-					</Parameter>
-					<Body><![CDATA[java.util.Random r = new java.util.Random(semilla);
-long retornos = 0;
-for (int m = 0; m < M; m++) {
-    int x = 0, y = 0, z = 0, w = 0;
-    for (int t = 1; t <= N; t++) {
-        int dir = r.nextInt(2 * d);
-        if (dir == 0) x++; else if (dir == 1) x--;
-        else if (dir == 2) y++; else if (dir == 3) y--;
-        else if (dir == 4) z++; else if (dir == 5) z--;
-        else if (dir == 6) w++; else w--;
-        if (x == 0 && y == 0 && z == 0 && w == 0) { retornos++; break; }
-    }
-}
-return (double) retornos / M;]]></Body>
+// En 1D con deriva delta > 0 la probabilidad de retorno es exactamente 1 - delta
+double teo = (d == 1 && deriva > 0) ? 1 - deriva : Double.NaN;
+resumir("d = " + d + ", deriva = " + deriva + ": P(retorno <= N)", p, teo);
+guardarCorridas("escenario4_d" + d + "_deriva" + deriva + "_corridas.csv", new String[] { "p_retorno" }, new double[][] { p });]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -1146,13 +1139,12 @@ return (double) retornos / M;]]></Body>
 						<Name><![CDATA[M]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[int[] Ns = {100, 500, 1000, 5000, 20000};
-double[] pol = {1.0, 1.0, 0.340537, 0.193206};
-traceln("Sensibilidad a N (M=" + M + ")");
+					<Body><![CDATA[// Sensibilidad a la cantidad de pasos N (cada punto con nCorridas corridas).
+int[] Ns = {100, 500, 1000, 5000, 20000};
+traceln("=== Sensibilidad a N | M = " + M + " caminatas por corrida, n = " + nCorridas + " corridas ===");
 for (int d = 1; d <= 4; d++) {
     for (int k = 0; k < Ns.length; k++) {
-        double p = retornoMC(d, M, Ns[k]);
-        traceln("  d=" + d + ", N=" + Ns[k] + ": p = " + p + "  (Polya p0 = " + pol[d - 1] + ")");
+        resumir("d = " + d + ", N = " + Ns[k], pCorridas(d, M, Ns[k], semillaBase), teoricoRetorno(d, Ns[k]));
     }
 }]]></Body>
 				</Function>
@@ -1170,16 +1162,14 @@ for (int d = 1; d <= 4; d++) {
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[int[] Ms = {100, 1000, 10000, 50000};
-double[] pol = {1.0, 1.0, 0.340537, 0.193206};
-traceln("Sensibilidad a M (N=" + N + ")");
+					<Body><![CDATA[// Sensibilidad a la cantidad de caminatas por corrida M (cada punto con nCorridas corridas).
+// El desvío entre corridas debe caer como 1 / raíz(M).
+int[] Ms = {100, 200, 500, 1000};
+traceln("=== Sensibilidad a M | N = " + N + " pasos, n = " + nCorridas + " corridas ===");
 for (int d = 3; d <= 4; d++) {
     for (int k = 0; k < Ms.length; k++) {
-        double p = retornoMC(d, Ms[k], N);
-        double se = Math.sqrt(p * (1 - p) / Ms[k]);
-        traceln("  d=" + d + ", M=" + Ms[k] + ": p = " + p + "  SE = " + se
-              + "  IC95% = [" + (p - 1.96 * se) + ", " + (p + 1.96 * se) + "]"
-              + "  Z vs Polya = " + (p - pol[d - 1]) / Math.sqrt(pol[d - 1] * (1 - pol[d - 1]) / Ms[k]));
+        double[] res = resumir("d = " + d + ", M = " + Ms[k], pCorridas(d, Ms[k], N, semillaBase), teoricoRetorno(d, N));
+        traceln("      desvío binomial esperado de una corrida = " + fmt(Math.sqrt(res[0] * (1 - res[0]) / Ms[k])));
     }
 }]]></Body>
 				</Function>
@@ -1205,23 +1195,303 @@ for (int d = 3; d <= 4; d++) {
 						<Name><![CDATA[N]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
+					<Body><![CDATA[// Sensibilidad a la semilla: se repite el experimento completo (nCorridas corridas)
+// con tres familias de semillas disjuntas. Las medias deben coincidir dentro de sus IC.
+int[] bases = { semillaBase, semillaBase + 1000000, semillaBase + 2000000 };
+traceln("=== Sensibilidad a la semilla, d = " + d + " | N = " + N + ", M = " + M + ", n = " + nCorridas + " corridas por familia ===");
+for (int b : bases) {
+    resumir("semillas " + b + " a " + (b + nCorridas - 1), pCorridas(d, M, N, b), teoricoRetorno(d, N));
+}]]></Body>
+				</Function>
+			<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1796100000016</Id>
+					<Name><![CDATA[fijarSemilla]]></Name>
+					<X>1300</X><Y>-160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
 					<Parameter>
-						<Name><![CDATA[nSem]]></Name>
+						<Name><![CDATA[corrida]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
-					<Body><![CDATA[double suma = 0, suma2 = 0;
-traceln("Sensibilidad a la semilla: d=" + d + ", M=" + M + ", N=" + N);
-for (int s = 1; s <= nSem; s++) {
-    double p = retornoMCsemilla(d, M, N, s * 1000L + 7);
-    traceln("  semilla " + (s * 1000L + 7) + ": p = " + p);
-    suma += p;
-    suma2 += p * p;
+					<Body><![CDATA[// Cada corrida i (0, 1, ..., nCorridas-1) usa su propia semilla: semillaBase + i.
+// Así las corridas son independientes entre sí y cualquier resultado se puede reproducir.
+getEngine().getDefaultRandomGenerator().setSeed((long) semillaBase + corrida);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1796100000017</Id>
+					<Name><![CDATA[tCritico]]></Name>
+					<X>1300</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[gl]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Valor crítico t de Student bilateral al 95 % (expansión de Cornish-Fisher).
+// Para gl = 99 (n = 100 corridas) da 1.9842.
+if (gl <= 0) return Double.NaN;
+double z = 1.959964;
+double z3 = z * z * z;
+double z5 = z3 * z * z;
+return z + (z3 + z) / (4.0 * gl) + (5 * z5 + 16 * z3 + 3 * z) / (96.0 * gl * gl);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[String]]></ReturnType>
+					<Id>1796100000018</Id>
+					<Name><![CDATA[fmt]]></Name>
+					<X>1300</X><Y>-120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[v]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[return String.format(java.util.Locale.US, "%.5f", v);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[String]]></ReturnType>
+					<Id>1796100000019</Id>
+					<Name><![CDATA[encabezadoCorridas]]></Name>
+					<X>1300</X><Y>-100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[return "N = " + N + " pasos, M = " + M + " caminatas por corrida, n = " + nCorridas
+     + " corridas (semillas " + semillaBase + " a " + (semillaBase + nCorridas - 1) + ")";]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double[]]]></ReturnType>
+					<Id>1796100000020</Id>
+					<Name><![CDATA[resumir]]></Name>
+					<X>1300</X><Y>-80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[etiqueta]]></Name>
+						<Type><![CDATA[String]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[v]]></Name>
+						<Type><![CDATA[double[]]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[teorico]]></Name>
+						<Type><![CDATA[double]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Resume una salida medida en cada corrida: media, desvío entre corridas,
+// IC 95 % con t de Student (n - 1 gl) y, si hay valor teórico, prueba t de una muestra.
+int n = v.length;
+double s = 0, s2 = 0;
+for (double a : v) { s += a; s2 += a * a; }
+double media = s / n;
+double sd = n > 1 ? Math.sqrt(Math.max(0, (s2 - n * media * media) / (n - 1))) : 0;
+double se = sd / Math.sqrt(n);
+double t = tCritico(n - 1);
+double li = media - t * se;
+double ls = media + t * se;
+
+String txt = "  " + etiqueta + ": media = " + fmt(media)
+           + " | desvío entre corridas = " + fmt(sd)
+           + " | IC95% = [" + fmt(li) + ", " + fmt(ls) + "]";
+if (!Double.isNaN(teorico)) {
+    txt += " | teórico = " + fmt(teorico);
+    if (se > 0) {
+        double est = (media - teorico) / se;
+        txt += ", t = " + String.format(java.util.Locale.US, "%.3f", est)
+             + (Math.abs(est) <= t ? " -> no se rechaza H0" : " -> se rechaza H0 (alfa = 0.05)");
+    }
 }
-double media = suma / nSem;
-double sd = Math.sqrt((suma2 - nSem * media * media) / (nSem - 1));
-double seEsperado = Math.sqrt(media * (1 - media) / M);
-traceln("  media = " + media + "  desvío entre semillas = " + sd
-      + "  SE esperado = " + seEsperado);]]></Body>
+traceln(txt);
+return new double[] { media, sd, li, ls };]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1796100000021</Id>
+					<Name><![CDATA[teoricoRetorno]]></Name>
+					<X>1300</X><Y>-60</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Valor teórico de P(retorno al origen en a lo sumo N pasos), comparable con la simulación.
+if (d == 1) {
+    // Exacto para N finito: P(T > 2m) = C(2m, m) / 4^m
+    int m = N / 2;
+    double u = 1.0;
+    for (int k = 1; k <= m; k++) u *= (2.0 * k - 1) / (2.0 * k);
+    return 1.0 - u;
+}
+if (d == 3 || d == 4) {
+    // Constante de Pólya (N -> infinito) corregida por horizonte finito:
+    //   P(T <= N) = p - P(N < T < infinito),  P(N < T < infinito) ~ (1 - p)^2 * suma_{n > N} u_n
+    // con u_n ~ 2 (d / (2 pi n))^(d/2) (teorema central del límite local, solo n par).
+    // Sumando sobre n par > N:  suma ~ (d / (2 pi))^(d/2) * N^(1 - d/2) / (d/2 - 1).
+    double p = (d == 3) ? 0.340537 : 0.193206;
+    double cola = Math.pow(d / (2 * Math.PI), d / 2.0) * Math.pow(N, 1 - d / 2.0) / (d / 2.0 - 1);
+    return p - (1 - p) * (1 - p) * cola;
+}
+return Double.NaN;   // 2D: tiende a 1 con convergencia logarítmica en N (sin valor finito simple)]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double[]]]></ReturnType>
+					<Id>1796100000022</Id>
+					<Name><![CDATA[pCorridas]]></Name>
+					<X>1300</X><Y>-40</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[base]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Proporción de caminatas que retornan, medida en cada una de las nCorridas corridas.
+// La corrida i usa la semilla base + i.
+double[] p = new double[nCorridas];
+for (int i = 0; i < nCorridas; i++) {
+    getEngine().getDefaultRandomGenerator().setSeed((long) base + i);
+    p[i] = retornoMC(d, M, N);
+}
+return p;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double[][]]]></ReturnType>
+					<Id>1796100000023</Id>
+					<Name><![CDATA[curvaCorridas]]></Name>
+					<X>1300</X><Y>-20</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[d]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[M]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[N]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Repite curvaAcumulada en nCorridas corridas independientes (una semilla por corrida).
+// Devuelve: [0] curva media, [1] límite inferior IC95%, [2] límite superior IC95%,
+//           [3] P(retorno <= N) de cada corrida.
+int n = Math.max(2, nCorridas);
+int bins = N / 2;
+double[] suma = new double[bins + 1];
+double[] suma2 = new double[bins + 1];
+double[] finales = new double[n];
+
+for (int i = 0; i < n; i++) {
+    fijarSemilla(i);
+    double[] acum = curvaAcumulada(d, M, N);
+    for (int k = 0; k <= bins; k++) {
+        suma[k] += acum[k];
+        suma2[k] += acum[k] * acum[k];
+    }
+    finales[i] = acum[bins];
+}
+
+double t = tCritico(n - 1);
+double[] media = new double[bins + 1];
+double[] li = new double[bins + 1];
+double[] ls = new double[bins + 1];
+for (int k = 0; k <= bins; k++) {
+    media[k] = suma[k] / n;
+    double var = Math.max(0, (suma2[k] - n * media[k] * media[k]) / (n - 1));
+    double h = t * Math.sqrt(var / n);
+    li[k] = media[k] - h;
+    ls[k] = media[k] + h;
+}
+return new double[][] { media, li, ls, finales };]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1796100000024</Id>
+					<Name><![CDATA[guardarCorridas]]></Name>
+					<X>1300</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[archivo]]></Name>
+						<Type><![CDATA[String]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[columnas]]></Name>
+						<Type><![CDATA[String[]]]></Type>
+					</Parameter>
+					<Parameter>
+						<Name><![CDATA[datos]]></Name>
+						<Type><![CDATA[double[][]]]></Type>
+					</Parameter>
+					<Body><![CDATA[// Guarda una fila por corrida (separador ';' y coma decimal, listo para Excel en español).
+try (java.io.PrintWriter pw = new java.io.PrintWriter(new java.io.OutputStreamWriter(
+        new java.io.FileOutputStream(archivo), java.nio.charset.StandardCharsets.UTF_8))) {
+    StringBuilder sb = new StringBuilder("corrida;semilla");
+    for (String c : columnas) sb.append(';').append(c);
+    pw.println(sb);
+    for (int i = 0; i < datos[0].length; i++) {
+        sb = new StringBuilder();
+        sb.append(i + 1).append(';').append((long) semillaBase + i);
+        for (double[] col : datos) sb.append(';').append(String.valueOf(col[i]).replace('.', ','));
+        pw.println(sb);
+    }
+    traceln("  Datos de cada corrida guardados en: " + new java.io.File(archivo).getAbsolutePath());
+} catch (Exception e) {
+    traceln("  (No se pudo guardar " + archivo + ": " + e.getMessage() + ")");
+}]]></Body>
 				</Function>
 			</Functions>
 			<AnalysisData>
@@ -1374,6 +1644,131 @@ traceln("  media = " + media + "  desvío entre semillas = " + sd
 					</RecurrenceProperties>
 					<FreezeXAxis>true</FreezeXAxis>
 					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+			    			<DataSet>
+					<Id>1796100000006</Id>
+					<Name><![CDATA[curvaICinf]]></Name>
+					<X>430</X><Y>640</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100000007</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1796100000008</Id>
+					<Name><![CDATA[curvaICsup]]></Name>
+					<X>430</X><Y>670</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100000009</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>300</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1796100000010</Id>
+					<Name><![CDATA[datosCorridas]]></Name>
+					<X>430</X><Y>700</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100000011</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>1000</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1796100000012</Id>
+					<Name><![CDATA[mediaCorridas]]></Name>
+					<X>430</X><Y>730</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100000013</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>2</SamplesToKeep>
+				</DataSet>
+    			<DataSet>
+					<Id>1796100000014</Id>
+					<Name><![CDATA[polyaCorridas]]></Name>
+					<X>430</X><Y>760</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<AutoUpdate>false</AutoUpdate>
+					<RecurrenceProperties>
+						<Id>1796100000015</Id>
+						<OccurrenceAtTime>true</OccurrenceAtTime>
+						<OccurrenceDate>1794211200000</OccurrenceDate>
+						<OccurrenceTime Class="CodeUnitValue">
+							<Code><![CDATA[0]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</OccurrenceTime>
+						<RecurrenceCode Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+						</RecurrenceCode>
+					</RecurrenceProperties>
+					<FreezeXAxis>true</FreezeXAxis>
+					<SamplesToKeep>2</SamplesToKeep>
 				</DataSet>
 			</AnalysisData>
 
@@ -2200,7 +2595,7 @@ traceln("  media = " + media + "  desvío entre semillas = " + sd
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[escenario1(10000,10000)]]></ActionCode>
+						<ActionCode><![CDATA[escenario1(Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2221,7 +2616,7 @@ traceln("  media = " + media + "  desvío entre semillas = " + sd
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[escenario2(10000,10000)]]></ActionCode>
+						<ActionCode><![CDATA[escenario2(Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2242,8 +2637,8 @@ traceln("  media = " + media + "  desvío entre semillas = " + sd
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[escenario3(3, 10000, 10000);
-escenario3(4, 10000, 10000);]]></ActionCode>
+						<ActionCode><![CDATA[escenario3(3, Mreplicas, Npasos);
+escenario3(4, Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2264,18 +2659,18 @@ escenario3(4, 10000, 10000);]]></ActionCode>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[traceln("--- Escenario 4: deriva ---");
-escenario4(1, 0.0, 10000, 10000);
-escenario4(1, 0.01, 10000, 10000);
-escenario4(1, 0.05, 10000, 10000);
-escenario4(1, 0.1, 10000, 10000);
-escenario4(1, 0.2, 10000, 10000);
-escenario4(1, 0.5, 10000, 10000);
-escenario4(2, 0.0, 10000, 10000);
-escenario4(2, 0.05, 10000, 10000);
-escenario4(2, 0.1, 10000, 10000);
-escenario4(2, 0.2, 10000, 10000);
-escenario4(2, 0.5, 10000, 10000);]]></ActionCode>
+						<ActionCode><![CDATA[traceln("=== Escenario 4: deriva | " + encabezadoCorridas(Mreplicas, Npasos) + " ===");
+escenario4(1, 0.0, Mreplicas, Npasos);
+escenario4(1, 0.01, Mreplicas, Npasos);
+escenario4(1, 0.05, Mreplicas, Npasos);
+escenario4(1, 0.1, Mreplicas, Npasos);
+escenario4(1, 0.2, Mreplicas, Npasos);
+escenario4(1, 0.5, Mreplicas, Npasos);
+escenario4(2, 0.0, Mreplicas, Npasos);
+escenario4(2, 0.05, Mreplicas, Npasos);
+escenario4(2, 0.1, Mreplicas, Npasos);
+escenario4(2, 0.2, Mreplicas, Npasos);
+escenario4(2, 0.5, Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2296,12 +2691,10 @@ escenario4(2, 0.5, 10000, 10000);]]></ActionCode>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[traceln("--- Paso 9: sensibilidad ---");
-sensibilidadN(10000);
-sensibilidadM(10000);
-sensibilidadSemilla(3, 10000, 10000, 10);
-sensibilidadSemilla(4, 10000, 10000, 10);
-traceln("--- fin Paso 9 ---");]]></ActionCode>
+						<ActionCode><![CDATA[sensibilidadN(Mreplicas);
+sensibilidadM(Npasos);
+sensibilidadSemilla(3, Mreplicas, Npasos);
+sensibilidadSemilla(4, Mreplicas, Npasos);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2806,6 +3199,12 @@ if(!returned && wAntes != 0 && w == 0){
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[Mreplicas]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[nCorridas]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[semillaBase]]></ParameterName>
 				</Parameter>
 			</Parameters>
 			<PresentationProperties>
